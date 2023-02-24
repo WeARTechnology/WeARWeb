@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <!-- Título da Aba -->
+    <title>Reconhecimento Facial</title>
+
+    <!-- Importando o traçamento facial e versão mais recente do Tensorflow.JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/facemesh"></script>
+
+    <!-- Importando o código em JavaScript -->
+    <script src="./js/reconhecimentoFacial.js"></script>
+
+    <!-- Script main -->
+    <script>
+        main();
+    </script>
+</head>
+
+<body style="background-color:aliceblue;text-align:center;">
+    <!-- Definição do uso e formato de aplicação da câmera -->
+    <video autoplay muted playsinline hidden id="video" style="width: auto; height: auto;"></video>
+
+    <!-- O canvas é usado para aplicação de desenhos/elementos gráficos na composição de fotos e etc. -->
+    <canvas id="facecanvas"></canvas>
+</body>
+
+</html>

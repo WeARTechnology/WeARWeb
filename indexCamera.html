@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Título da Página -->
+    <title>Acesso a Câmera</title>
+
+    <!-- Importando a versão mais recente do TF.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+
+    <!-- Importando um modelo de reconhecimento dos pontos faciais -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/facemesh"></script>
+
+    <!-- Importando o código em JavaScript -->
+    <script src="./js/facemeshsetupCamera.js"></script>
+</head>
+
+<body style="background-color:ghostwhite;">
+  
+  <!-- Definição do uso e formato da camera -->
+    <video autoplay muted hidden playsinline id="video" style="
+		-webkit-transform: scaleX(-1);
+		transform: scaleX(-1);
+		width: auto;
+		height: auto;">
+    </video>
+
+</body>
+
+</html>
