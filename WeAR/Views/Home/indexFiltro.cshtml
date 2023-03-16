@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Nomeando a aba -->
+    <title>Filtro de Óculos Funcional</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400&display=swap" rel="stylesheet">
+
+    <!-- Importando os requisitos do código em JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/facemesh"></script>
+
+    <!-- Script Main -->
+    <script>
+        main();
+    </script>
+
+    <!-- Importando o JavaScript -->
+    <script src="./js/indexFiltro.js"></script>
+
+</head>
+
+<!-- Corpo da página web -->
+<body style="background-color:aliceblue; text-align:center;">
+	
+    <!-- Definições dos valores da câmera e vídeo -->
+    <video autoplay muted playsinline hidden id="video" style=" width: auto; height: auto;"></video>
+          
+    <!-- A função de canvas é destinada a delimitar uma área para renderização dinâmica de gráficos, além de fazer composição em imagens e animações -->
+    <canvas id="facecanvas"></canvas>
+
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Nomeando a aba -->
+    <title>Óculos 3D</title>
+
+    <!-- Importando o documetno CSS -->
+    <link rel="stylesheet" href="./css/objeto3D.css">
+</head>
+
+<body>
+
+    <!-- Importando os documentos e requisitos do THREE.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/102/three.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
+    <script src="./threeJS/obj.js"></script>
+    <script src="./threeJS/mtl.js"></script>
+
+    <!-- Definição dos valores de JavaScript -->
+    <script>
+        //Criando a cena Three.js
+        var scene = new THREE.Scene();
+
+        //Criando a perspectiva da câmera
+        var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
+        camera.position.z = 25;
+
+        //Criando um WebGL Renderer de tela cheia
+        var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setClearColor("#DDDDDD");
+        renderer.setSize(window.innerWidth, window.innerHeight);
+
+        document.body.appendChild(renderer.domElement);
+
+        //Tornando o programa responsivo baseado no reajuste do tamanha da janela
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+
+            camera.updateProjectionMatrix();
+        });
+
+        //Adicionando luz
+        var light = new THREE.PointLight(0xFFFFFF, 1.4, 1000)
+        light.position.set(0, 15, 15);
+        scene.add(light);
+
+        //Definindo a variável para o objeto
+        var oculosObj;
+        var oculosObj2;
+
+        //Criando o material
+        var mtlLoader = new THREE.MTLLoader();
+        mtlLoader.load('conteudo3D/oculos.mtl', function (materials) {
+            materials.preload();
+
+            //Carregar o objeto
+            var objLoader = new THREE.OBJLoader();
+            objLoader.setMaterials(materials);
+            objLoader.load('conteudo3D/oculos.obj', function (object) {
+                scene.add(object);
+            });
+        });
+
+    </script>
+</body>
+
+</html>

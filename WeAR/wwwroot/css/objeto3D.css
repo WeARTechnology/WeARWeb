@@ -1,0 +1,10 @@
+/* Definindo as caracterísiticas do corpor web */
+body{
+    margin: 0; /* Margem */
+    height: 100vh; /* Altura */
+}
+
+/* Características do canva */
+canvas { /* Destinado a delimitar uma área para renderização dinâmica de gráficos, além de fazer composição em imagens e animações */
+    display: block; /* Bloqueando o display */
+}
