@@ -5,4 +5,15 @@
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about , ta hospedado, gabi?? <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    @using (Html.BeginForm("EnviarImagem", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <input type="number" name="id" class="id" id="id" />
+        <input type="file" name="arquivos" class="arquivos" id="arquivos" accept="image/png, image/jpeg" />
+        <button>Cadastrar</button>
+    }
 </div>
+<script>
+    if ("@ViewBag.Alert" != null && "@ViewBag.Alert" != "") {
+        window.alert("@ViewBag.Alert");
+    }
+</script>

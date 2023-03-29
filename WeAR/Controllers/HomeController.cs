@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -36,6 +37,22 @@ namespace WeAR.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public String EnviarImagem(IFormCollection form)
+        {
+
+            IFormFile arq = form.Files.First();
+            int id = int.Parse(form["id"]);
+
+            Login cadastro = new Login();
+
+            //Cadastra o cliente
+            string resultado = cadastro.CadastroCliente(id, arq);
+            ViewBag.Alert = resultado;
+            return resultado;
+
+           
         }
     }
 }
