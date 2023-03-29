@@ -34,8 +34,8 @@ namespace WeAR.Models
                     try
                     {
                         conecta.Open();
-                        query = new SqlCommand("Insert into cliente(imagem) " +
-                            "VALUES (@imagem) where id=@id", conecta); //Define o comando SQL
+                        query = new SqlCommand("Insert into Imagem(imagem) " +
+                            "VALUES (@imagem)", conecta); //Define o comando SQL
                         //Parameters para evitar SQLInjection
                         query.Parameters.AddWithValue("@imagem", bytesArquivo);
                         query.Parameters.AddWithValue("@id", id);
@@ -58,5 +58,32 @@ namespace WeAR.Models
             }
             return null;
         }
+
+
+        public String PegarImagem()
+        {
+            try
+            {
+                conecta.Open();
+                query = new SqlCommand("Select  * from Imagem", conecta); //Define o comando SQL
+                SqlDataReader leitor = query.ExecuteReader();
+                while (leitor.Read()
+                {
+                    byte[] bytesArquivo = Convert.FromBase64String(leitor["imagem"].ToString());
+                }
+                
+            }
+            catch (Exception f) //Em caso de erro, retorna o erro
+            {
+                return "Erro" + f.ToString();
+
+            }
+            finally
+            {
+                conecta.Close(); //Fecha a conexão independente do caso
+
+            }
+        }
+    }
     }
 }

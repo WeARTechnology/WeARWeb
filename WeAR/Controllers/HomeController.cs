@@ -54,5 +54,18 @@ namespace WeAR.Controllers
 
            
         }
+
+        public String PegarImagem(IFormCollection form)
+        {
+
+            IFormFile arq = form.Files.First();
+            int id = int.Parse(form["id"]);
+
+            Login cadastro = new Login();
+
+            
+
+
+        }
     }
 }
