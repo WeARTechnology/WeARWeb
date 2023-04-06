@@ -27,7 +27,13 @@ namespace WeAR.Controllers
         {
             return View();
         }
+        public IActionResult Listar()
+        {
+            Login banco = new Login();
+            List<String> imagens = banco.PegarImagem();
 
+            return View(imagens);
+        }
         public IActionResult Privacy()
         {
             return View();
@@ -48,24 +54,15 @@ namespace WeAR.Controllers
             Login cadastro = new Login();
 
             //Cadastra o cliente
-            string resultado = cadastro.CadastroCliente(id, arq);
+            string resultado = cadastro.addImagem(id, arq);
             ViewBag.Alert = resultado;
             return resultado;
 
            
         }
 
-        public String PegarImagem(IFormCollection form)
-        {
+       
 
-            IFormFile arq = form.Files.First();
-            int id = int.Parse(form["id"]);
-
-            Login cadastro = new Login();
-
-            
-
-
-        }
+      
     }
 }

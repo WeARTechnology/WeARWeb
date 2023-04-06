@@ -11,10 +11,5 @@
         <input type="file" name="arquivos" class="arquivos" id="arquivos" accept="image/png, image/jpeg" />
         <button>Cadastrar</button>
     }
-    <img src=@ alt="Alternate Text" />
+    <p>@ViewBag.Alert</p>
 </div>
-<script>
-    if ("@ViewBag.Alert" != null && "@ViewBag.Alert" != "") {
-        window.alert("@ViewBag.Alert");
-    }
-</script>

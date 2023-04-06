@@ -1,0 +1,10 @@
+﻿@model List<string>
+
+<h1>Listar</h1>
+
+@foreach (string imagem in Model)
+{
+    string formatoImg = "data:image/jpeg;base64," + imagem;
+    <img src="@formatoImg" />
+    <br />
+}

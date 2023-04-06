@@ -20,7 +20,7 @@ namespace WeAR.Models
 
         //Métodos
         //Metodo que cadastra o cliente
-        public string CadastroCliente(int id, IFormFile arq)
+        public string addImagem(int id, IFormFile arq)
         {
             String tipoArquivo = arq.ContentType;
 
@@ -34,8 +34,8 @@ namespace WeAR.Models
                     try
                     {
                         conecta.Open();
-                        query = new SqlCommand("Insert into Imagem(imagem) " +
-                            "VALUES (@imagem)", conecta); //Define o comando SQL
+                        query = new SqlCommand("Insert into Imagem(fk_Produto_id,imagem) " +
+                            "VALUES (@id,@imagem)", conecta); //Define o comando SQL
                         //Parameters para evitar SQLInjection
                         query.Parameters.AddWithValue("@imagem", bytesArquivo);
                         query.Parameters.AddWithValue("@id", id);
@@ -59,23 +59,25 @@ namespace WeAR.Models
             return null;
         }
 
-
-        public String PegarImagem()
+        
+        public List<String> PegarImagem()
         {
+            List<String> listaImagens = new List<string>();
             try
             {
                 conecta.Open();
                 query = new SqlCommand("Select  * from Imagem", conecta); //Define o comando SQL
                 SqlDataReader leitor = query.ExecuteReader();
-                while (leitor.Read()
+                while (leitor.Read())
                 {
-                    byte[] bytesArquivo = Convert.FromBase64String(leitor["imagem"].ToString());
+                    byte[] bytesArquivo = (byte[])leitor["imagem"];
+                    listaImagens.Add(Convert.ToBase64String(bytesArquivo));
                 }
                 
             }
             catch (Exception f) //Em caso de erro, retorna o erro
             {
-                return "Erro" + f.ToString();
+                throw;
 
             }
             finally
@@ -83,7 +85,7 @@ namespace WeAR.Models
                 conecta.Close(); //Fecha a conexão independente do caso
 
             }
+            return listaImagens;
         }
-    }
     }
 }
