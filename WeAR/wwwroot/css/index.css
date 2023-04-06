@@ -1,0 +1,10 @@
+@font-face {
+    font-family: "WeAR";
+    src: url(../fonts/postnobillscolombo-bold.ttf);
+}
+
+h1{
+    font-family: "Wear";
+    color: #144d83;
+    text-align: center;  
+}

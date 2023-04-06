@@ -1,0 +1,369 @@
+/* Import da fonte utilizada */
+@font-face {
+    font-family: "WeAR";
+    src: url(../fonts/postnobillscolombo-regular.ttf);
+}
+
+* {
+    font-family: 'WeAR', sans-serif;
+    /* Fonte */
+    margin: 0;
+    padding: 0;
+}
+
+.containerInformProduto {
+    display: flex;
+    flex-direction: row;
+}
+
+.containerInformProduto .imagemProduto .moldura#moldura {
+    margin-left: 2%;
+    margin-top: 2%;
+    /* height: 800px;
+    max-width: 1100px; */
+    height: 45vh;
+    width: 38vw;
+    z-index: 1000;
+
+    border-image: url(../img/MolduraProdutos.png) 220 stretch;
+    border-width: 20vh;
+    border-style: double;
+}
+
+.containerInformProduto .detalhesProduto #titulo {
+    padding-left: 2rem;
+    padding-top: 5rem;
+    font-size: 3rem;
+    color: #144D83;
+    display: flex;
+    width: 100%;
+    transition: 0.5s;
+}
+
+.containerInformProduto .detalhesProduto #titulo:hover {
+    transition: 0.5s;
+    color: #8CA1C5;
+    cursor: default;
+}
+
+.containerInformProduto .detalhesProduto #descricao {
+    width: 90%;
+    text-align: justify;
+    padding-left: 2rem;
+    padding-top: 2%;
+    font-size: 25px;
+    color: #8CA1C5;
+}
+
+.containerInformProduto .detalhesProduto #descricao:hover {
+    cursor: default;
+}
+
+.containerInformProduto .detalhesProduto #tamanho {
+    padding-left: 2rem;
+    padding-top: 3%;
+    font-size: 25px;
+    color: #144D83;
+}
+
+.containerInformProduto .detalhesProduto #tamanho:hover {
+    cursor: default;
+}
+
+.containerInformProduto .detalhesProduto #estoque {
+    width: 100%;
+    padding-left: 2rem;
+    padding-top: 3%;
+    font-size: 25px;
+    color: #144D83;
+}
+
+.containerInformProduto .detalhesProduto #estoque:hover {
+    cursor: default;
+}
+
+.containerInformProduto .detalhesProduto #qtde {
+    width: 100%;
+    padding-left: 2rem;
+    padding-top: 1%;
+    font-size: 25px;
+    color: #144D83;
+}
+
+.containerInformProduto .detalhesProduto #qtde:hover {
+    cursor: default;
+}
+
+.preco {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.containerInformProduto .detalhesProduto #preco {
+    padding-top: 2%;
+    font-size: 2.5rem;
+    color: #144D83;
+    transition: 0.5s;
+}
+
+.containerInformProduto .detalhesProduto #preco:hover {
+    transition: 0.5s;
+    color: #8CA1C5;
+    cursor: default;
+}
+
+/* Área de seleção de tamanhos */
+.tamanhoAnel {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.select-box {
+    padding-left: 2rem;
+    font-size: 1.2rem;
+    display: flex;
+    width: 17rem;
+    flex-direction: column;
+}
+
+.select-box .containerOpcoes {
+    text-align: center;
+    background: #E1BA77;
+    color: white;
+    max-height: 0;
+    width: 100%;
+    opacity: 0;
+    transition: all 0.4s;
+    overflow: hidden;
+
+    order: 1;
+}
+
+.selecionado {
+    background: #E1BA77;
+    margin-bottom: 8px;
+    color: white;
+    position: relative;
+
+    order: 0;
+}
+
+.selecionado::after {
+    content: "";
+    background: url(../img/arrow-down.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    position: absolute;
+    height: 100%;
+    width: 32px;
+    right: 10px;
+    top: 7px;
+
+    transition: all 0.4s;
+}
+
+.select-box .containerOpcoes.active {
+    max-height: 30vh;
+    opacity: 1;
+    overflow-y: scroll;
+}
+
+.select-box .containerOpcoes.active+.selecionado::after {
+    transform: rotateX(180deg);
+    top: -8px;
+}
+
+.select-box .containerOpcoes::-webkit-scrollbar {
+    width: 8px;
+    background: #E1BA77;
+    border-radius: 0 8px 8px 0;
+}
+
+.select-box .containerOpcoes::-webkit-scrollbar-thumb {
+    background: #C88C20;
+    border-radius: 0 8px 8px 0;
+}
+
+.select-box .opcao,
+.selecionado {
+    padding: 12px 24px;
+    cursor: pointer;
+    transition: 0.8s;
+}
+
+.select-box .opcao:hover {
+    background: #C88C20;
+}
+
+.select-box label {
+    cursor: pointer;
+}
+
+.select-box .opcao .radio {
+    display: none;
+}
+
+/* Fim da área de seleção de tamanhos */
+
+.buttons {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.buttonCarrinho .btn {
+    font-size: 1.3rem;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    background: #E1BA77;
+    color: white;
+    transition: 0.7s;
+    width: 18rem;
+    gap: 1rem;
+}
+
+.buttonCarrinho {
+    padding-left: 2rem;
+    padding-top: 2%;
+    width: fit-content;
+}
+
+.buttonCarrinho .btn:hover {
+    transition: 0.7s;
+    background: #C88C20;
+}
+
+.buttonTryOn .btn {
+    font-size: 1.3rem;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    background: #E1BA77;
+    color: white;
+    transition: 0.7s;
+    width: 18rem;
+    gap: 1rem;
+}
+
+.buttonTryOn {
+    padding-left: 2rem;
+    padding-top: 2%;
+    width: fit-content;
+}
+
+.buttonTryOn .btn:hover {
+    transition: 0.7s;
+    background: #C88C20;
+}
+
+.txtPdtSim p {
+    padding-top: 1rem;
+    margin-left: 2%;
+    font-size: 2rem;
+    color: #C88C20;
+    width: 100%;
+    transition: 0.5s;
+}
+
+.txtPdtSim p:hover {
+    color: #E1BA77;
+    transition: 0.5s;
+    cursor: default;
+}
+
+.produtosSimilares .item:hover {
+    cursor: pointer;
+}
+
+.content {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    background: #144d8386;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    opacity: 0;
+    transition: 1s;
+}
+
+.content:hover {
+    opacity: 1;
+}
+
+/* Media | Responsividade da aba */
+@media (max-width: 1196px) {
+    .containerInformProduto .imagemProduto .moldura#moldura {
+        height: 50vh;
+        width: 60vw;
+        margin-right: 2%;
+        margin-left: 2%;
+        position: center;
+    
+        border-image: url(../img/MolduraProdutos.png) 220 stretch;
+        border-width: 18vh;
+        border-style: double;
+    }
+
+    .containerInformProduto {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #titulo {
+        margin-top: -5rem;
+        margin-left: 1rem;
+    }
+
+    #descricao {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+
+    #tamanho {
+        margin-left: 1rem;
+    }
+
+    #estoque {
+        margin-left: 1rem;
+    }
+
+    #qtde {
+        margin-left: 1rem;
+    }
+
+    .select-box {
+        margin-left: 1rem;
+
+    }
+
+    .txtPdtSim {
+        margin-left: 2rem;
+        margin-top: 3rem;
+    }
+
+}
+
+@media (max-width: 900px) {
+
+    #descricao {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+
+    .containerInformProduto .imagemProduto .moldura#moldura {
+        height: 40vh;
+        width: 50vw;
+    }
+}
