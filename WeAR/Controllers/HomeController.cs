@@ -18,22 +18,6 @@ namespace WeAR.Controllers
         {
             _logger = logger;
         }
-
-        public IActionResult Index()
-        {
-            return View();
-        }
-        public IActionResult indexFiltro()
-        {
-            return View();
-        }
-        public IActionResult Listar()
-        {
-            Login banco = new Login();
-            List<String> imagens = banco.PegarImagem();
-
-            return View(imagens);
-        }
         public IActionResult Privacy()
         {
             return View();
@@ -44,6 +28,43 @@ namespace WeAR.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        public IActionResult Index()
+        {
+            return View();
+        }
+        public IActionResult indexFiltro()
+        {
+            return View();
+        }
+        public IActionResult catalogo()
+        {
+            return View();
+        }
+        public IActionResult contato()
+        {
+            return View();
+        }
+        public IActionResult EnviarImagens()
+        {
+            return View();
+        }
+        public IActionResult objeto3D()
+        {
+            return View();
+        }
+        public IActionResult produto()
+        {
+            return View();
+        }
+
+        public IActionResult ListarImagens()
+        {
+            Imagem banco = new Imagem();
+            List<String> imagens = banco.PegarTudoImagens();
+
+            return View(imagens);
+        }
+
 
         public String EnviarImagem(IFormCollection form)
         {
@@ -51,7 +72,7 @@ namespace WeAR.Controllers
             IFormFile arq = form.Files.First();
             int id = int.Parse(form["id"]);
 
-            Login cadastro = new Login();
+            Imagem cadastro = new Imagem();
 
             //Cadastra o cliente
             string resultado = cadastro.addImagem(id, arq);

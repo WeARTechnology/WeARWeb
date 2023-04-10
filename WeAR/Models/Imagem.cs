@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WeAR.Models
 {
-    public class Login
+    public class Imagem
     {
 
         //Faz a conexão com o banco de dados
@@ -60,7 +60,7 @@ namespace WeAR.Models
         }
 
         
-        public List<String> PegarImagem()
+        public List<String> PegarTudo()
         {
             List<String> listaImagens = new List<string>();
             try
@@ -86,6 +86,35 @@ namespace WeAR.Models
 
             }
             return listaImagens;
+        }
+
+        public String PegarImagem(int id)
+        {
+            String imagem = null;
+            try
+            {
+                conecta.Open();
+                query = new SqlCommand("Select  * from Imagem where fk_Produto_id = @id", conecta); //Define o comando SQL
+                query.Parameters.AddWithValue("@id", id);
+                SqlDataReader leitor = query.ExecuteReader();
+                while (leitor.Read())
+                {
+                    byte[] bytesArquivo = (byte[])leitor["imagem"];
+                    imagem = (Convert.ToBase64String(bytesArquivo));
+                }
+
+            }
+            catch (Exception f) //Em caso de erro, retorna o erro
+            {
+                throw;
+
+            }
+            finally
+            {
+                conecta.Close(); //Fecha a conexão independente do caso
+
+            }
+            return imagem;
         }
     }
 }
