@@ -34,11 +34,11 @@ namespace WeAR.Models
                     try
                     {
                         conecta.Open();
-                        query = new SqlCommand("Insert into Imagem(fk_Produto_id,imagem) " +
-                            "VALUES (@id,@imagem)", conecta); //Define o comando SQL
+                        query = new SqlCommand("Insert into Imagem(fk_Produto_id,imagem) VALUES (@id2,@imagem)", conecta); //Define o comando SQL
                         //Parameters para evitar SQLInjection
                         query.Parameters.AddWithValue("@imagem", bytesArquivo);
-                        query.Parameters.AddWithValue("@id", id);
+                        query.Parameters.AddWithValue("@id2", id);
+                       
 
                         query.ExecuteNonQuery(); //Executa o comando
                         return "Sucesso";

@@ -51,7 +51,7 @@ namespace WeAR.Models
                     Produto p;
                                         
 
-                    if (id < 8 || id > 11 && id < 15)
+                    if (id < 8)
                     {
                         SqlCommand query2 = new SqlCommand("Select * from Oculos where id=@id");
                         query2.Parameters.AddWithValue("@id", id);
@@ -90,9 +90,68 @@ namespace WeAR.Models
             }
         }
 
-        public List<Produto> pegarTudo(string categoria)
+        public List<Produto> pegarOculos(String categoria)
         {
-            return null;
+            try
+            {
+                List<Produto> produtos = new List<Produto>();
+                Produto p;
+                conecta.Open();
+                query = new SqlCommand("Select * from Produto");
+                SqlDataReader leitor = query.ExecuteReader();
+
+                if(categoria == "Sol") { 
+                while (leitor.Read())
+                {
+                    p = new Produto(leitor["descricao"].ToString(), leitor["nome"].ToString(), (double)leitor["preco"], (int)leitor["quantidade"], (int)leitor["tamanho"]);
+                    produtos.Add(p);               
+                }
+
+                return produtos;
+
+            }
+            catch (Exception e)
+            {
+                return null;
+                throw;
+            }
+            finally
+            {
+                conecta.Close();
+            }
+
+
+
+        }
+
+        public List<Produto> pegarAneis()
+        {
+            try
+            {
+                List<Produto> produtos = new List<Produto>();
+                Produto p;
+                conecta.Open();
+                query = new SqlCommand("Select * from Produto");
+                SqlDataReader leitor = query.ExecuteReader();
+
+                while (leitor.Read())
+                {
+                    p = new Produto(leitor["descricao"].ToString(), leitor["nome"].ToString(), leitor["categoria"].ToString(), (double)leitor["preco"], (int)leitor["quantidade"]);
+                    produtos.Add(p);
+                }
+
+                return produtos;
+
+            }
+            catch (Exception e)
+            {
+                return null;
+                throw;
+            }
+            finally
+            {
+                conecta.Close();
+            }
 
 
 
@@ -100,7 +159,6 @@ namespace WeAR.Models
 
 
 
-        
 
 
     }

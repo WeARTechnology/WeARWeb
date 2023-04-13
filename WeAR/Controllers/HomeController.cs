@@ -60,7 +60,7 @@ namespace WeAR.Controllers
         public IActionResult ListarImagens()
         {
             Imagem banco = new Imagem();
-            List<String> imagens = banco.PegarTudoImagens();
+            List<String> imagens = banco.PegarTudo();
 
             return View(imagens);
         }
@@ -71,7 +71,6 @@ namespace WeAR.Controllers
 
             IFormFile arq = form.Files.First();
             int id = int.Parse(form["id"]);
-
             Imagem cadastro = new Imagem();
 
             //Cadastra o cliente
