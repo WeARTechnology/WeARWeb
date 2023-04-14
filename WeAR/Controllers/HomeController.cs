@@ -36,10 +36,6 @@ namespace WeAR.Controllers
         {
             return View();
         }
-        public IActionResult catalogo()
-        {
-            return View();
-        }
         public IActionResult contato()
         {
             return View();
@@ -79,6 +75,22 @@ namespace WeAR.Controllers
             return resultado;
 
            
+        }
+
+        public IActionResult catalogo(string produto)
+        {
+            //Lista com todos os produtos
+            List<Produto> produtos = new List<Produto>();
+            Produto p = new Produto(); //Objeto de produto
+            if (produto == "Anel") {
+                produtos = p.pegarTodosAneis();
+                return View(produtos);
+
+            }
+            else
+            {
+                return View("ListarImagens");
+            }
         }
 
        

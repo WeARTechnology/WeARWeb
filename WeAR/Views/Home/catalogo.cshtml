@@ -1,181 +1,30 @@
-
+@model List<Produto>
 <head>
     <link rel="stylesheet" href="./css/catalogo.css">
     <title>Catálogo</title>
 </head>
 
-    <div class="produtos">
+<div class="produtos">
+
+    @foreach (Produto p in Model)
+    {
+        Imagem img = new Imagem();
+        string formatoImg = "data:image/jpeg;base64," + img.PegarImagem(p.pegarID(p.nome));
 
         <fieldset>
+
             <a href="#produto">
+
                 <div class="imagem">
-                    <img src="./img/anel noite estrelada.jpg" alt="">
+                    <img src=@formatoImg alt="">
                 </div>
                 <div class="descriaoProd">
-                    <h3>Noite Estrelada</h3>
-                    <p>R$ 85,00</p>
+                    <h3>@p.nome</h3>
+                    <p>@p.preco</p>
                 </div>
             </a>
         </fieldset>
+    }
 
-        <fieldset>
-            <a href="#produto">
-                <div class="imagem">
-                    <img src="./img/Anel Two Rats.jpg" alt="">
-                </div>
-                <div class="descriaoProd">
-                    <h3>Two Rats</h3>
-                    <p>R$ 34,90</p>
-                </div>
-            </a>
-        </fieldset>
+</div>
 
-        <fieldset>
-            <a href="#produto">
-                <div class="imagem">
-                    <img src="./img/anel amendoeira em flor.png" alt="">
-                </div>
-                <div class="descriaoProd">
-                    <h3>Amendoeira em Flor</h3>
-                    <p>R$ 60,00</p>
-                </div>
-            </a>
-        </fieldset>
-
-        <fieldset>
-            <a href="#produto">
-                <div class="imagem">
-                    <img src="./img/Anel mulher andnando no jardim .jpg" alt="">
-                </div>
-                <div class="descriaoProd">
-                    <h3>Mulher Andando no Jardim</h3>
-                    <p>R$ 130,00</p>
-                </div>
-            </a>
-        </fieldset>
-
-        <fieldset>
-            <a href="#produto">
-                <div class="imagem">
-                    <img src="./img/anel The Pink Peach Tree.png" alt="">
-                </div>
-                <div class="descriaoProd">
-                    <h3>The pink peach tree</h3>
-                    <p>R$ 199,99</p>
-                </div>
-            </a>
-        </fieldset>
-
-        <fieldset>
-            <a href="#produto">
-                <div class="imagem">
-                    <img src="./img/anel Girassois de Van Gogh.png" alt="">
-                </div>
-                <div class="descriaoProd">
-                    <h3>Girassóis de Van Gogh</h3>
-                    <p>R$ 190,00</p>
-                </div>
-            </a>
-        </fieldset>
-
-        <fieldset>
-            <a href="#produto">
-                <div class="imagem">
-                    <img src="./img/anel Oxcart.png" alt="">
-                </div>
-                <div class="descriaoProd">
-                    <h3>Oxcart</h3>
-                    <p>R$ 29,99</p>
-                </div>
-            </a>
-        </fieldset>
-
-        <fieldset>
-            <a href="#produto">
-                <div class="imagem">
-                    <img src="./img/Oculos pomares floridos .jpg" alt="">
-                </div>
-                <div class="descriaoProd">
-                    <h3>Pomares Floridos</h3>
-                    <p>R$ 90,00</p>
-                </div>
-            </a>
-        </fieldset>
-
-        <fieldset>
-            <a href="#produto">
-                <div class="imagem">
-                    <img src="./img/Oculos noite estrelada sobre o rodano.jpg" alt="">
-                </div>
-                <div class="descriaoProd">
-                    <h3>Noite Estrelada Sobre o Ródano</h3>
-                    <p>R$ 100,00</p>
-                </div>
-            </a>
-        </fieldset>
-
-        <fieldset>
-            <a href="#produto">
-                <div class="imagem">
-                    <img src="./img/Oculos paisagem sob um céu tempestuoso.jpg" alt="">
-                </div>
-                <div class="descriaoProd">
-                    <h3>Paisagem sob um Céu Tempestuoso</h3>
-                    <p>R$ 130,00</p>
-                </div>
-            </a>
-        </fieldset>
-
-        <fieldset>
-            <a href="#produto">
-                <div class="imagem">
-                    <img src="./img/Oculos cravos brancos e vermelhos.jpg" alt="">
-                </div>
-                <div class="descriaoProd">
-                    <h3>Cravos Brancos e Vermelhos</h3>
-                    <p>R$ 150,00
-                    </p>
-                </div>
-            </a>
-        </fieldset>
-
-        <fieldset>
-            <a href="#produto">
-                <div class="imagem">
-                    <img src="./img/oculos Cipreste.png" alt="">
-                </div>
-                <div class="descriaoProd">
-                    <h3>Cipreste</h3>
-                    <p>R$ 49,99</p>
-                </div>
-            </a>
-        </fieldset>
-
-        <fieldset>
-            <a href="#produto">
-                <div class="imagem">
-                    <img src="./img/oculos Maratus Constellatus.png" alt="">
-                </div>
-                <div class="descriaoProd">
-                    <h3>Maratus Constellatus</h3>
-                    <p>R$ 159,97
-                    </p>
-                </div>
-            </a>
-        </fieldset>
-
-        <fieldset>
-            <a href="#produto">
-                <div class="imagem">
-                    <img src="./img/oculos De Aardappeleters.png" alt="">
-                </div>
-                <div class="descriaoProd">
-                    <h3>de aardappeleters</h3>
-                    <p>R$ 70,50
-                    </p>
-                </div>
-            </a>
-        </fieldset>
-    </div>
-
- 
