@@ -15,20 +15,20 @@
     <!-- inicio navbar -->
     <header>
         <div class="logo">
-            <a href="~/index.html"><img src="~/img/icon3.png" alt="" style="height: 5%;"></a>
+            <a href="/Home/Index"><img src="~/img/icon3.png" alt="" style="height: 5%;"></a>
         </div>
         <div class="nav">
             <nav>
                 <ul>
-                    <li><a href="catalogo.html">Óculos de grau</a></li>
-                    <li><a href="catalogo.html">Óculos de sol</a></li>
-                    <li><a>@Html.ActionLink("Anéis", "catalogo", "Home", routeValues: new { produto = "Anel" })</a></li>
+                    <li><a>@Html.ActionLink("Óculos de grau", "catalogo", "Home", routeValues: new { categoria = "Oculos Grau" })</a></li>
+                    <li><a>@Html.ActionLink("Óculos de sol", "catalogo", "Home", routeValues: new { categoria = "Oculos Sol" })</a></li>
+                    <li><a>@Html.ActionLink("Anéis", "catalogo", "Home", routeValues: new { categoria = "Anel" })</a></li>
                 </ul>
             </nav>
         </div>
         <div class="buttons">
             <button><a href="#"><img src="~/img/compras4.png" alt="" id="navButton"></a></button>
-            <button><a href="~/contato.html"><img src="~/img/telefone.png" alt="" id="navButton"></a></button>
+            <button><a href="/Home/Contato"><img src="~/img/telefone.png" alt="" id="navButton"></a></button>
             <button><a href="#"><img src="~/img/pesquisar3.png" alt="" id="navButton"></a></button>
         </div>
     </header>
@@ -52,9 +52,9 @@
 
             <!-- Redirecionamentos -->
             <ul class="menu">
-                <li><a href="~/index.html">Home</a></li>
-                <li><a href="~/catalogo.html">Contato</a></li>
-                <li><a href="~/catalogo.html">Catálogo</a></li>
+                <li><a href="/Home/Index">Home</a></li>
+                <li><a href="/Home/contato">Contato</a></li>
+                <li><a href="/Home/catalogo">Catálogo</a></li>
                 <li><a href="#">FAQ</a></li>
             </ul>
 
@@ -68,6 +68,7 @@
     <!-- Instalação do material necessário para usar os ícones do ionicons -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="~/js/navbar.js"></script>
     <!-- Fim do Footer -->
 </body>
 

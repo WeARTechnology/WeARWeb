@@ -19,14 +19,12 @@
 .containerInformProduto .imagemProduto .moldura#moldura {
     margin-left: 2%;
     margin-top: 2%;
-    /* height: 800px;
-    max-width: 1100px; */
-    height: 45vh;
-    width: 38vw;
+    height: 70vh;
+    width: 30vw;
     z-index: 1000;
 
     border-image: url(../img/MolduraProdutos.png) 220 stretch;
-    border-width: 20vh;
+    border-width: 10vh;
     border-style: double;
 }
 
@@ -305,14 +303,14 @@
 /* Media | Responsividade da aba */
 @media (max-width: 1196px) {
     .containerInformProduto .imagemProduto .moldura#moldura {
-        height: 50vh;
-        width: 60vw;
+        height: 80vh;
+        width: 50vw;
         margin-right: 2%;
         margin-left: 2%;
         position: center;
     
         border-image: url(../img/MolduraProdutos.png) 220 stretch;
-        border-width: 18vh;
+        border-width: 4vh;
         border-style: double;
     }
 
@@ -355,7 +353,7 @@
 
 }
 
-@media (max-width: 900px) {
+@media (max-width: 850px) {
 
     #descricao {
         margin-left: 1rem;
@@ -363,7 +361,7 @@
     }
 
     .containerInformProduto .imagemProduto .moldura#moldura {
-        height: 40vh;
-        width: 50vw;
+        height: 60vh;
+        width: 80vw;
     }
 }

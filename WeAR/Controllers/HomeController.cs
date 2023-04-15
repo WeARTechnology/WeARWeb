@@ -48,9 +48,16 @@ namespace WeAR.Controllers
         {
             return View();
         }
-        public IActionResult produto()
+        public IActionResult produto(int id)
         {
-            return View();
+            Imagem img = new Imagem();
+            Produto p = new Produto();
+
+            TempData["ImagemProduto"] = "data:image/jpeg;base64," + img.PegarImagem(id);
+            p = p.buscaProduto(id);
+            ViewBag.modelo3D = p.valorModelo3d(id);
+
+            return View(p);
         }
 
         public IActionResult ListarImagens()
@@ -77,19 +84,33 @@ namespace WeAR.Controllers
            
         }
 
-        public IActionResult catalogo(string produto)
+        public IActionResult catalogo(string categoria)
         {
             //Lista com todos os produtos
             List<Produto> produtos = new List<Produto>();
             Produto p = new Produto(); //Objeto de produto
-            if (produto == "Anel") {
-                produtos = p.pegarTodosAneis();
+
+            //If que checka qual botão redirecionou para essa função, ou seja, se foi anel, óculos de sol ou de grau
+            if (categoria == "Anel") {
+                produtos = p.pegarTodosAneis(); //Chama o método da classe produto, para pegar os aneis
+                return View(produtos);
+
+            }
+            else if(categoria == "Oculos Sol")
+            {
+                produtos = p.pegarTodosOculos("Sol");//Chama o método da classe produto, para pegar os óculos e passa a categoria selecionada
+                return View(produtos);
+
+            }else if(categoria == "Oculos Grau")
+            {
+                produtos = p.pegarTodosOculos("Grau");//Chama o método da classe produto, para pegar os óculos e passa a categoria selecionada
                 return View(produtos);
 
             }
             else
             {
-                return View("ListarImagens");
+                produtos = p.pegarTodosProdutos();
+                return View(produtos);
             }
         }
 

@@ -1,11 +1,10 @@
 @model List<Produto>
 <head>
-    <link rel="stylesheet" href="./css/catalogo.css">
+    <link rel="stylesheet" href="~/css/catalogo.css">
     <title>Catálogo</title>
 </head>
 
 <div class="produtos">
-
     @foreach (Produto p in Model)
     {
         Imagem img = new Imagem();
@@ -13,16 +12,16 @@
 
         <fieldset>
 
-            <a href="#produto">
-
+            <a href=@Url.Action("produto","Home", values: new {id= p.pegarID(p.nome)})>
                 <div class="imagem">
                     <img src=@formatoImg alt="">
                 </div>
                 <div class="descriaoProd">
                     <h3>@p.nome</h3>
-                    <p>@p.preco</p>
+                    <p>R$ @p.preco</p>
                 </div>
             </a>
+
         </fieldset>
     }
 
