@@ -1,5 +1,6 @@
-﻿    <link rel="stylesheet" href="~/css/contato.css">
-    <title>Contato</title>
+﻿<link rel="stylesheet" href="~/css/contato.css">
+
+<title>Contato</title>
 
 <body>
 
@@ -8,54 +9,67 @@
         <h1>
             Formulário de contato
         </h1>
-        <p>Ao preencher este formulário, sua empresa (indústria comercial, pequeno negócio, etc.) garante o interesse
-            nos serviços oferecidos pelo nosso Virtual Try-On (provador virtual). </p>
+        <p>
+            Ao preencher este formulário, sua empresa (indústria comercial, pequeno negócio, etc.) garante o interesse
+            nos serviços oferecidos pelo nosso Virtual Try-On (provador virtual).
+        </p>
 
-        <p>Com estes dados, realizaremos uma análise da sua necessidade, afim de retornar nosso trabalho remonerado.</p>
+        <p>Com estes dados, realizaremos uma análise da sua necessidade, afim de retornar nosso trabalho remunerado.</p>
     </div>
-    <br><br><br><br>
+    <br>
+    <br>
+    <br>
+    <br>
 
     <div class="background">
         <div class="content">
-            <form action="https://api.staticforms.xyz/submit">
-                <input type="hidden" name="accessKey" value="#">
-                <input type="hidden" name="redirectTo" value="http://127.0.0.1:5500/index.html">
+            <form action="https://formsubmit.co/ee24cd18939a319418d2af8ed358ae71" method="POST" enctype="multipart/form-data" id="formContato">
+                <input type="hidden" name="_next" value="https://weartechhost.azurewebsites.net/Home/Index">
+                @*<input type="hidden" name="_autoresponse" value="Prezados da empresa que nos contatou, Gostaríamos de agradecer pelo contato e pela confiança em nossa empresa WeAR. Informamos que recebemos as suas informações e estamos trabalhando para analisá-las cuidadosamente. Em breve, entraremos em contato para fornecer uma resposta completa à sua solicitação. Agradecemos novamente pela sua consideração e estamos ansiosos para trabalhar juntos em um futuro próximo.Atenciosamente,Equipe WeAR">*@
+                <input type="text" name="_honey" style="display:none">
+                <input type="hidden" name="_subject" id="_subject" value="Novo Cliente - ">
+
+
                 <fieldset>
 
                     <div class="row">
                         <label for="nomeEmpresa" class="form-label">Nome da Empresa</label>
-                        <input type="text" class="form-control" id="nomeEmpresa" name="$nomeEmpresa"
-                            placeholder="Digite o nome de sua empresa" aria-describedby="emailHelp" required>
+                        <input type="text" class="form-control" id="nomeEmpresa" name="Nome da Empresa"
+                               placeholder="Digite o nome de sua empresa" aria-describedby="emailHelp" required>
                     </div>
                     <div class="row">
                         <label for="nomeResponsavel" class="form-label">Nome do responsável</label>
-                        <input type="text" class="form-control" id="nomeResponsavel" name="$nomeResponsavel"
-                            placeholder="Digite o seu nome" aria-describedby="emailHelp" required>
+                        <input type="text" class="form-control" id="nomeResponsavel" name="Nome do(a) Responsavel"
+                               placeholder="Digite o seu nome" aria-describedby="emailHelp" required>
                     </div>
                     <div class="row">
                         <label for="email" class="form-label">E-mail</label>
-                        <input type="email" class="form-control" id="email" name="$email"
-                            placeholder="Digite o seu e-mail" aria-describedby="emailHelp" required>
+                        <input type="email" class="form-control" id="email" name="E-Mail"
+                               placeholder="Digite o seu e-mail" aria-describedby="emailHelp" required>
                     </div>
                     <div class="row">
                         <label for="telefone" class="form-label">Telefone</label>
-                        <input type="text" class="form-control" id="telefone" name="$telefone"
-                            placeholder="Digite o seu telefone" aria-describedby="emailHelp" required>
+                        <input type="text" class="form-control" id="telefone" name="Telefone" oninput="mascaraTelefone(this)"
+                               placeholder="Digite o seu telefone" aria-describedby="emailHelp" required>
                     </div>
                     <div class="row">
                         <label for="cnpj" class="form-label">CNPJ</label>
-                        <input type="text" class="form-control" id="cnpj" name="$cnpj" placeholder="Digite o seu CPF"
-                            aria-describedby="emailHelp" required>
+                        <input type="text" class="form-control" id="cnpj" name="CNPJ" oninput="mascaraCNPJ(this)" placeholder="Digite o seu CPF"
+                               aria-describedby="emailHelp" required>
                     </div>
                     <div class="row">
                         <label for="ramo" class="form-label">Ramo de atuação</label>
-                        <input type="text" class="form-control" id="ramo" name="$ramo"
-                            placeholder="Digite o ramo de atuação de sua empresa" aria-describedby="emailHelp" required>
+                        <input type="text" class="form-control" id="ramo" name="Ramo de Atuacao"
+                               placeholder="Digite o ramo de atuação de sua empresa" aria-describedby="emailHelp" required>
+                    </div>
+                    <div class="row">
+                        <label for="archives" class="form-label">Arquivos/Anexos</label>
+                        <input type="file" id="archives" name="Arquivos" class="form-control" accept="image/*,.pdf,.docx">
                     </div>
                     <div class="row">
                         <label for="descricao" class="form-label">Descrição</label>
-                        <textarea name="descricao" id="descricao" cols="30" rows="10"
-                            placeholder="Digite uma breve descrição da sua empresa e do uso pretendido para o Try-On"></textarea>
+                        <textarea name="Descricao" id="descricao" cols="30" rows="10"
+                                  placeholder="Digite uma breve descrição da sua empresa e do uso pretendido para o Try-On"></textarea>
                     </div>
 
                     <div class="buttons">
@@ -67,5 +81,79 @@
             </form>
         </div>
     </div>
-    <br><br>
+    <br>
+    <br>
+
 </body>
+<script>
+    //Script para mudar o título do E-mail de acordo com a empresa
+    const nomeInput = document.getElementById('nomeEmpresa');
+    const subjectInput = document.getElementById('_subject');
+
+    nomeInput.addEventListener('input', (event) => {
+        const nomeValue = event.target.value;
+        const newSubjectValue = 'Novo Cliente - ' + nomeValue;
+        subjectInput.value = newSubjectValue;
+    });
+
+    //Script de máscara no CNPJ
+    function mascaraCNPJ(i) {
+        var v = i.value;
+        if (isNaN(v[v.length - 1])) { // impede entrar outro caractere que não seja número
+            i.value = v.substring(0, v.length - 1);
+            return;
+        }
+        i.setAttribute("maxlength", "18");
+        if (v.length == 2 || v.length == 6) i.value += ".";
+        if (v.length == 10) i.value += "/";
+        if (v.length == 15) i.value += "-";
+    }
+
+    function mascaraTelefone(i) {
+        var v = i.value;
+        if (isNaN(v[v.length - 1])) {
+            i.value = v.substring(0, v.length - 1);
+            return;
+        }
+
+        if (v.length == 1) {
+            i.value = '(' + i.value;
+        }
+
+        i.setAttribute("maxlength", "15");
+        if (v.length == 3) {
+            i.value = i.value + ") ";
+        } else if (v.length == 10) {
+            i.value = i.value + "-";
+        }
+    }
+    function validarCNPJ(cnpj) {
+        var regex = /^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$/;
+        return regex.test(cnpj);
+    }
+
+    function validarTelefone(tel) {
+        var regex = /^\([1-9]{2}\) (?:[2-8]|9[1-9])[0-9]{3}\-[0-9]{4}$/;
+        return regex.test(tel);
+    }
+
+    document.getElementById('formContato').addEventListener('submit', function (event) {
+        var cnpjInput = document.getElementById('cnpj');
+        var telInput = document.getElementById('telefone');
+        var cnpj = cnpjInput.value;
+        var tel = telInput.value;
+
+        if (!validarCNPJ(cnpj)) {
+            event.preventDefault();
+            alert('O CNPJ informado é inválido!');
+        }
+
+        if (!validarTelefone(tel)) {
+            event.preventDefault();
+            alert('O Telefone informado é inválido!');
+
+        }
+    });
+
+</script>
+

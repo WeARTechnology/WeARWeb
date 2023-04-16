@@ -61,16 +61,22 @@
             {
 
             }
-
             <p id="estoque">Quantidade Disponível em Estoque: @Model.qntd</p>
             <p id="qtde">Quantidade Desejada:</p>
+            <div>
+
+                <button onclick="menos()" class="a">-</button><input min=0 id="total" type="number"><button onclick="mais()" class="b">+</button>
+
+            </div>
+
+
             <div class="preco">
                 <p id="preco">R$ @Model.preco</p> <!--Define o preço de acordo com os valores da classe produto-->
             </div>
 
             <div class="buttons">
                 <div class="buttonCarrinho">
-                    <button class="btn" id="carrinho">Adicionar ao Carrinho</button>
+                    <a href="@Url.Action("Carrinho","Home")"><button class="btn" id="carrinho">Adicionar ao Carrinho</button></a>
                 </div>
                 <!-- Se o viewbag retornar true, o que significa que possui Modelo 3d, ele adiciona o botão de Try ON -->
                 @if (ViewBag.modelo3D == false) 
@@ -80,11 +86,11 @@
                 else
                 {
                     <div class="buttonTryOn">
-                        <button class="btn" id="try-on">Virtual Try-On</button>
+                        <a href="@Url.Action("TryON","Home")"><button class="btn" id="try-on">Virtual Try-On </button></a>
                     </div>
                 }
             </div>
-
+            
         </div>
 
     </div>
@@ -137,3 +143,18 @@
 </body>
 
 </html>
+<script>
+    function mais() {
+        var atual = document.getElementById("total").value;
+        var novo = atual - (-1); //Evitando Concatenacoes
+        document.getElementById("total").value = novo;
+    }
+
+    function menos() {
+        var atual = document.getElementById("total").value;
+        if (atual > 0) { //evita números negativos
+            var novo = atual - 1;
+            document.getElementById("total").value = novo;
+        }
+    }
+</script>

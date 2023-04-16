@@ -20,7 +20,7 @@ namespace WeAR.Models
         //Faz a conexão com o banco de dados
         const string stringConexao2 = "Data Source=tcp:weardbserver.database.windows.net,1433;Initial Catalog=WeAR_db;User Id=WeARTech@weardbserver;Password=WearTec1234";
         const string stringConexao = "Server=tcp:weardbserver.database.windows.net,1433;Initial Catalog=WeAR_db;Persist Security Info=False;User ID=WeARTech;Password=WearTec1234;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-        SqlConnection conecta = new SqlConnection(stringConexao); //Variavel que faaz a conexão com o banco
+        SqlConnection conecta = new SqlConnection(stringConexao2); //Variavel que faaz a conexão com o banco
         SqlCommand query; //Variavel que faz os comandos
 
 
