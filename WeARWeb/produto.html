@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Título da aba -->
+    <title>Produto</title>
+
+    <!-- Logo da Aba -->
+    <link rel="shortcut icon" type="image/png" href="./img/icon.png">
+
+    <!-- Import do CSS -->
+    <link rel="stylesheet" href="./css/produto.css">
+    <link rel="stylesheet" href="./css/navbar.css">
+    <link rel="stylesheet" href="./css/footer.css">
+
+    <!-- Import do diretório cdnjs utilizado para criar um owl carousel -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+        integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+        integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <!-- Início da NavBar -->
+    <div class="navbar">
+        <header>
+            <div class="logo">
+                <a href="./index.html"><img src="./img/icon3.png" alt="" style="height: 5%;"></a>
+            </div>
+            <div class="nav">
+                <nav>
+                    <ul>
+                        <li><a href="#">Óculos de grau</a></li>
+                        <li><a href="#">Óculos de sol</a></li>
+                        <li><a href="#">Anéis</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="buttons">
+                <button><a href="carrinho.html"><img src="./img/compras4.png" alt="" id="navButton"></a></button>
+                <button><a href="./teste.html"><img src="./img/pesquisar3.png" alt=""></a></button>
+                <button><a href="./contato.html"><img src="./img/telefone.png" alt=""></a></button>
+            </div>
+        </header>
+    </div>
+    <!-- Fim da NavBar -->
+
+    <!-- Criando o corpo da apresentação do produto -->
+    <div class="containerInformProduto">
+        <!-- Moldura utilizada para apresentação dos produtos -->
+        <div class="imagemProduto">
+            <img class="moldura" id="moldura" src="./img/noiteEstrelada.jpg" alt="">
+            <img class="ftProduto" id="ftProduto" src=""> <!-- Imagem do produto -->
+        </div>
+
+        <div class="detalhesProduto">
+            <p id="titulo">Amendoeira em Flor</p>
+            <p id="descricao">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque animi aliquam, non
+                autem blanditiis delectus quibusdam exercitationem, dolorem sunt modi esse numquam voluptates nostrum.
+                Similique blanditiis accusamus alias repudiandae vero!
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tenetur, maxime facilis! Suscipit laudantium,
+                non magni rem quas, quis repellat aut iure sapiente sequi, debitis voluptates soluta possimus?
+                Repudiandae, aliquid architecto.
+            </p>
+            <p id="tamanho">Tamanho Desejado:</p>
+
+            <div class="tamanhoAnel">
+                <!-- Seleção de tamanho do anél -->
+                <div class="selecaoTamanho">
+
+                    <div class="select-box">
+
+                        <div class="containerOpcoes">
+
+                            <div class="opcao">
+                                <input type="radio" class="radio" id="10" name="categoria">
+                                <label for="10">10</label>
+                            </div>
+
+                            <div class="opcao">
+                                <input type="radio" class="radio" id="11" name="categoria">
+                                <label for="11">11</label>
+                            </div>
+
+                            <div class="opcao">
+                                <input type="radio" class="radio" id="12" name="categoria">
+                                <label for="12">12</label>
+                            </div>
+
+                            <div class="opcao">
+                                <input type="radio" class="radio" id="13" name="categoria">
+                                <label for="13">13</label>
+                            </div>
+
+                            <div class="opcao">
+                                <input type="radio" class="radio" id="14" name="categoria">
+                                <label for="14">14</label>
+                            </div>
+
+                            <div class="opcao">
+                                <input type="radio" class="radio" id="15" name="categoria">
+                                <label for="15">15</label>
+                            </div>
+
+                            <div class="opcao">
+                                <input type="radio" class="radio" id="16" name="categoria">
+                                <label for="16">16</label>
+                            </div>
+
+                            <div class="opcao">
+                                <input type="radio" class="radio" id="17" name="categoria">
+                                <label for="17">17</label>
+                            </div>
+
+                            <div class="opcao">
+                                <input type="radio" class="radio" id="18" name="categoria">
+                                <label for="18">18</label>
+                            </div>
+
+                            <div class="opcao">
+                                <input type="radio" class="radio" id="19" name="categoria">
+                                <label for="19">19</label>
+                            </div>
+
+                            <div class="opcao">
+                                <input type="radio" class="radio" id="20" name="categoria">
+                                <label for="20">20</label>
+                            </div>
+                        </div>
+
+                        <div class="selecionado">
+                            Tamanho Selecionado
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Fim da área de seleção de tamanho do anél -->
+            </div>
+
+            <p id="estoque">Quantidade Disponível em Estoque:</p>
+            <p id="qtde">Quantidade Desejada:</p>
+            <div class="preco">
+                <p id="preco">R$ 299,99</p>
+            </div>
+
+            <div class="buttons">
+                <div class="buttonCarrinho">
+                    <button class="btn" id="carrinho">Adicionar ao Carrinho</button>
+                </div>
+                <div class="buttonTryOn">
+                    <button class="btn" id="try-on">Virtual Try-On</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="txtPdtSim">
+        <p>Produtos Similares/Indicados</p>
+    </div>
+
+    <br>
+
+    <!-- Carousel com as indicações dos produtos similares -->
+    <div class="produtosSimilares">
+        <div class="owl-carousel owl-theme">
+            <div class="item">
+                <img src="./img/ProdutoTeste.jpg" alt="">
+                <div class="content">
+                    <ion-icon id="icone" name="eye-outline" style="color: #ffff;"><a href="#"></a></ion-icon>
+                </div>
+            </div>
+            <div class="item">
+                <img src="./img/ProdutoTeste.jpg" alt="">
+                <div class="content">
+                    <ion-icon id="icone" name="eye-outline" style="color: #ffff;"><a href="#"></a></ion-icon>
+                </div>
+            </div>
+            <div class="item">
+                <img src="./img/ProdutoTeste.jpg" alt="">
+                <div class="content">
+                    <ion-icon id="icone" name="eye-outline" style="color: #ffff;"><a href="#"></a></ion-icon>
+                </div>
+            </div>
+            <div class="item">
+                <img src="./img/ProdutoTeste.jpg" alt="">
+                <div class="content">
+                    <ion-icon id="icone" name="eye-outline" style="color: #ffff;"><a href="#"></a></ion-icon>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fim do carousel com as indicações dos produtos similares -->
+
+    <!-- Footer -->
+    <div class="footer">
+        <footer>
+            <!-- Divisão das ondas apresentadas no footer -->
+            <div class="waves">
+                <div class="wave" id="wave1"></div>
+                <div class="wave" id="wave2"></div>
+                <div class="wave" id="wave3"></div>
+            </div>
+
+            <!-- Adicionando os ícones das redes sociais - no caso, gitHub e Instagram -->
+            <ul class="social_icon">
+                <li><a href="#"><ion-icon name="logo-instagram"></ion-icon></a></li>
+                <li><a href="#"><ion-icon name="logo-github"></ion-icon></a></li>
+            </ul>
+
+            <!-- Redirecionamentos -->
+            <ul class="menu">
+                <li><a href="#">Home</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="./catalogo.html">Catálogo</a></li>
+                <li><a href="#">FAQ</a></li>
+            </ul>
+
+            <!-- Marca d'água -->
+            <ul class="marca_dagua">
+                <li>WeAr Technology | Trabalho de Conclusão de Curso | All Rights Reserved</li>
+            </ul>
+        </footer>
+    </div>
+
+    <!-- Instalação do material necessário para usar os ícones do ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <!-- Fim do Footer -->
+
+    <!-- Import do diretório cdnjs utilizado para criar um owl carousel -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
+        integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+        integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- Linkando o JavaScript -->
+    <script src="./js/selecaoTamanho.js"></script>
+    <script src="./js/carouselProdutos.js"></script>
+</body>
+
+</html>

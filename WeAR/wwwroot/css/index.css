@@ -1,10 +1,137 @@
 @font-face {
-    font-family: "WeAR";
+    font-family: "WeAR extra negrito";
+    src: url(../fonts/postnobillscolombo-extrabold.ttf);
+}
+
+@font-face {
+    font-family: "WeAR negrito";
     src: url(../fonts/postnobillscolombo-bold.ttf);
 }
 
-h1{
-    font-family: "Wear";
+@font-face {
+    font-family: "WeAR semi negrito";
+    src: url(../fonts/postnobillscolombo-semibold.ttf);
+}
+
+@font-face {
+    font-family: "WeAR regular";
+    src: url(../fonts/postnobillscolombo-regular.ttf);
+}
+
+@font-face {
+    font-family: "WeAR médio";
+    src: url(../fonts/postnobillscolombo-medium.ttf);
+}
+
+@font-face {
+    font-family: "WeAR light";
+    src: url(../fonts/postnobillscolombo-light.ttf);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-family: "WeAR negrito";
     color: #144d83;
-    text-align: center;  
+    font-size: 5vh;
+    text-align: center;
+    margin: 1%;
+}
+
+.nossosProds {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    margin: 0% 10% 3% 10%;
+}
+
+.nossosProds img {
+    border-width: 5vh;
+    border-image: url(../img/molduras/moldura2.png) 140 stretch;
+    border-style: double;
+    width: 50vh;
+}
+
+.nossosProds a:hover {
+    text-decoration: underline #144d83;
+    transform: scale(1.4);
+    transition: all 0.2s ease 0s;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.nossosProds img:hover {
+    cursor: pointer;
+    width: 53vh;
+    transition: all 0.2s ease 0s;
+}
+
+
+.nossosProds h1 {
+    font-family: "WeAR negrito";
+    color: #144d83;
+    font-size: 4vh;
+}
+
+.nossosProds p {
+    font-family: "WeAR semi negrito";
+    color: #8CA1C5;
+    font-size: x-large;
+}
+
+.nossosProds a {
+    text-decoration: none;
+}
+
+hr {
+    background-color: #144d83;
+    width: 90%;
+    border: none;
+    height: 1px;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.osMaisVend {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    margin: 0 2% 0 2%;
+    justify-content: space-around;
+}
+
+.osMaisVend img {
+    border-width: 5vh;
+    border-image: url(../img/molduras/moldura2.png) 140 stretch;
+    border-style: double;
+    width: 43vh;
+}
+
+.osMaisVend h3 {
+    font-family: "WeAR negrito";
+    color: #144d83;
+    font-size: 3vh;
+}
+
+.osMaisVend p {
+    font-family: "WeAR semi negrito";
+    color: #8CA1C5;
+    font-size: x-large;
+}
+
+.osMaisVend a:hover {
+    text-decoration: underline #144d83;
+    transform: scale(1.4);
+    transition: all 0.2s ease 0s;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.osMaisVend img:hover {
+    cursor: pointer;
+    width: 46vh;
+    transition: all 0.2s ease 0s;
 }

@@ -1,0 +1,116 @@
+@font-face {
+    font-family: "WeAR extra negrito";
+    src: url(../fonts/postnobillscolombo-extrabold.ttf);
+}
+
+@font-face {
+    font-family: "WeAR negrito";
+    src: url(../fonts/postnobillscolombo-bold.ttf);
+}
+
+@font-face {
+    font-family: "WeAR semi negrito";
+    src: url(../fonts/postnobillscolombo-semibold.ttf);
+}
+
+@font-face {
+    font-family: "WeAR regular";
+    src: url(../fonts/postnobillscolombo-regular.ttf);
+}
+
+@font-face {
+    font-family: "WeAR médio";
+    src: url(../fonts/postnobillscolombo-medium.ttf);
+}
+
+@font-face {
+    font-family: "WeAR light";
+    src: url(../fonts/postnobillscolombo-light.ttf);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.apresentacao{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin: 1% 11% 4% 11%;
+    height: 75%;
+    width: 80%;
+}
+
+.apresentacao .texto{
+    margin-right: 8%;
+    width: 40%;
+}
+
+.apresentacao h1{
+    font-family: "WeAR negrito";
+    color: #144d83;
+    font-size: 8vh;
+}
+
+.apresentacao p {
+    font-family: "WeAR semi negrito";
+    color: #8ca1c5;
+    font-size: 3vh;
+}
+
+.apresentacao img{
+    height: 60vh;
+    width: 100%;    
+}
+
+hr{
+    background-color: #144d83;
+    width: 90%;
+    border: none; 
+	height: 1px;
+    margin-left: 5%;
+    margin-right: 5%;
+    /* text-align: center; */
+}
+
+.direcoes{
+    align-items: center;
+    text-align: center;    
+    margin: 2%;
+    padding: 1%;
+}
+
+.direcoes button{
+    border-width: 3vh;
+    border-image: url(../img/molduras/moldura\ retangular\ horizontal.png) 40 stretch;
+    border-style: double;
+    width: 37%;
+    margin: 1% 5% 1% 5%;
+}
+
+.direcoes button:hover{
+    cursor: pointer;
+    width: 38%;
+    transition: all 0.2s ease 0s;
+}
+
+.direcoes button a{
+    text-decoration: none;
+}
+
+.direcoes button a h2{
+    font-family: "WeAR semi negrito";
+    color: #144d83;
+    font-size: xx-large;
+}
+
+.direcoes button a p{
+    font-family: "WeAR semi negrito";
+    color: #8ca1c5;
+    padding: 2%;
+    font-size: large;
+}
+

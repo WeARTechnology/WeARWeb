@@ -5,7 +5,7 @@
 </head>
 
 <div class="produtos">
-    @foreach (Produto p in Model)
+    @foreach (Produto p in  Model)
     {
         Imagem img = new Imagem();
         string formatoImg = "data:image/jpeg;base64," + img.PegarImagem(p.pegarID(p.nome));

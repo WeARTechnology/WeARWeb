@@ -1,0 +1,165 @@
+@font-face {
+    font-family: "WeAR extra negrito";
+    src: url(../fonts/postnobillscolombo-extrabold.ttf);
+}
+
+@font-face {
+    font-family: "WeAR negrito";
+    src: url(../fonts/postnobillscolombo-bold.ttf);
+}
+
+@font-face {
+    font-family: "WeAR semi negrito";
+    src: url(../fonts/postnobillscolombo-semibold.ttf);
+}
+
+@font-face {
+    font-family: "WeAR regular";
+    src: url(../fonts/postnobillscolombo-regular.ttf);
+}
+
+@font-face {
+    font-family: "WeAR médio";
+    src: url(../fonts/postnobillscolombo-medium.ttf);
+}
+
+@font-face {
+    font-family: "WeAR light";
+    src: url(../fonts/postnobillscolombo-light.ttf);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+h1 {
+    font-family: "WeAR negrito";
+    color: #144d83;
+    font-size: 5vh;
+    text-align: center;
+    margin: 1%;
+}
+p{
+    font-family: "WeAR negrito";  
+}
+
+.prodCarrinho{
+    display: flex;
+    text-align: center;
+    margin-bottom: 5%;
+}
+
+.prod{
+    display: flex;
+    text-align: center;
+    margin: 0% 5%;
+}
+
+.imgProd{
+    width: 50%;
+}
+
+.prodCarrinho img{
+    width: 100%;
+    border-width: 3vh;
+    border-image: url(../img/molduras/moldura10.png) 75 stretch;
+    border-style: double;
+}
+
+.textProd{
+    width: 50%;
+    margin: 7% 2% 5% 1%;
+}
+
+.textProd h2{
+    font-family: "WeAR negrito";
+    color: #144d83;
+    font-size: 4vh;
+    text-align: center;
+    margin: 1%;
+}
+
+.textProd h3{
+    font-family: "WeAR semi negrito";
+    color: #8CA1C5;
+    font-size: 4vh;
+    text-align: center;
+    margin: 1%;
+}
+
+.textProd button{
+    font-family: "WeAR semi negrito" ;
+    font-size: 3vh ;
+    color: #FFE6BB;
+    background-color: #E1BA77;
+    padding: 0.5% 9%;
+}
+
+.textProd button:hover{
+    opacity: 70%;
+    transition: all 0.2s ease 0s;
+    padding: 0.7% 9.2%;
+}
+
+.quant button{
+    padding: 0% 2%;    
+}
+
+.quant button:hover{
+    opacity: 70%;
+    padding: 0.5% 2.5%;
+}
+
+#total{
+    height: 10%;
+    border: none;
+    font-family: "WeAR semi negrito";
+    font-size: x-large;
+    color: #144d83;
+    margin: 5% 0%;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+}
+
+.valor{
+    display: flex;
+    margin-left: 32%;
+}
+
+#valor{
+    color: #8CA1C5;
+}
+
+hr{
+    background-color: #144d83;
+    width: 90%;
+    border: none;
+    height: 1px;
+    margin-left: 5%;
+    margin-right: 5%; 
+}
+
+#finalizar{
+    font-family: "WeAR semi negrito" ;
+    font-size: 4vh ;
+    color: #FFE6BB;
+    background-color: #E1BA77;
+    padding: 0.5% 5%;
+    text-align: center;
+}
+
+#finalizar:hover{
+    opacity: 70%;
+    transition: all 0.2s ease 0s;
+    padding: 0.7% 5.2%;
+}
