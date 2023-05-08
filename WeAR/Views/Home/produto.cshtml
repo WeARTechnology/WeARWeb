@@ -79,7 +79,7 @@
                     <a href="@Url.Action("Carrinho","Home")"><button class="btn" id="carrinho">Adicionar ao Carrinho</button></a>
                 </div>
                 <!-- Se o viewbag retornar true, o que significa que possui Modelo 3d, ele adiciona o botão de Try ON -->
-                @if (ViewBag.modelo3D == false) 
+                @if (ViewBag.modelo3D == false || Model.tipo == "Anel") 
                 {
 
                 }
