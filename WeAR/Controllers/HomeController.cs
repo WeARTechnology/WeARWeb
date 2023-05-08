@@ -60,6 +60,13 @@ namespace WeAR.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult Carrinho(float preco, int qntd)
+        {
+            return View();
+        }
+
         public IActionResult produto(int id)
         {
             Imagem img = new Imagem();

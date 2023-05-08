@@ -76,7 +76,7 @@
 
             <div class="buttons">
                 <div class="buttonCarrinho">
-                    <a href="@Url.Action("Carrinho","Home")"><button class="btn" id="carrinho">Adicionar ao Carrinho</button></a>
+                    <a href=""><button class="btn" id="carrinho">Adicionar ao Carrinho</button></a>
                 </div>
                 <!-- Se o viewbag retornar true, o que significa que possui Modelo 3d, ele adiciona o botão de Try ON -->
                 @if (ViewBag.modelo3D == false || Model.tipo == "Anel") 
@@ -144,10 +144,25 @@
 
 </html>
 <script>
+    function updateAddToCartUrl() {
+    var qntd = document.getElementById("total").value;
+    var preco = @Model.preco; // Use Razor syntax to get the value from the model
+
+    var addToCartLink = document.getElementById("addToCartLink");
+    addToCartLink.href = '@Url.Action("Carrinho", "Home")' + '?preco=' + encodeURIComponent(preco) + '&qntd=' + encodeURIComponent(qntd);
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        updateAddToCartUrl();
+        document.getElementById("total").addEventListener("change", updateAddToCartUrl);
+    });
+
+
     function mais() {
         var atual = document.getElementById("total").value;
         var novo = atual - (-1); //Evitando Concatenacoes
         document.getElementById("total").value = novo;
+        updateAddToCartUrl();
     }
 
     function menos() {
@@ -156,5 +171,7 @@
             var novo = atual - 1;
             document.getElementById("total").value = novo;
         }
+        updateAddToCartUrl();
     }
+
 </script>
