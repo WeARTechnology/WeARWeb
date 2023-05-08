@@ -43,8 +43,8 @@
 
 .produtos img {
     width: 98%;
-    border-width: 2vh;
-    border-image: url(../img/molduras/moldura7.png) 40 stretch;
+    border-width: 3vh;
+    border-image: url(../img/molduras/moldura7.png) 50 stretch;
     border-style: double;
 }
 

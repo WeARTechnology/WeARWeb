@@ -54,14 +54,16 @@ p{
 fieldset{
     border-width: 50px;
     border-style: solid;
-    border-image: url(../img/backgroundcontato.png) 30 stretch;
+    border-image: url(../img/backgroundcontato.jpg) 30 stretch;
     height: 30%;
     width: 70%;
     background-color: #ffffff;
     padding: 1%;
     border-color: #8CA1C5;
+    border-style: double;
     box-shadow: #8CA1C5;
-    margin: 0px auto;
+    justify-content: start;
+    margin: 0 auto;
 }
 
 .buttons {
@@ -74,10 +76,10 @@ input[type="reset"] {
     margin-left: 1%;
     margin-right: 1%;
     margin-top: 1%;
-    padding: 5px 10px;
+    padding: 2% 4%;
     background-color: #8ca1c56c;
     border: #144d83;
-    border-radius: 1px;
+    border-radius: 5%;
     color: #144D83;
     transition: 0.3s all ease-in-out;
 }
@@ -88,7 +90,7 @@ input[type="reset"]:hover {
 }
 
 input {
-    padding: 2px;
+    padding: 5%;
     outline: none;
 }
 
@@ -110,7 +112,7 @@ input[type="email"] {
     border-bottom: 2px solid #8CA1C5;
     transition: 0.3s all ease-in-out;
 font-family: "WeAR light";
-letter-spacing: 1px;
+letter-spacing: 2%;
 
 }
 input[type="text"]:focus,
@@ -122,15 +124,14 @@ input[type="email"]:focus {
 }
 
 textarea {
-    margin: 0;
-    padding: 1%;
+    padding: 5%;
     outline: none;
-    width: 98%;
+    width: 100%;
     resize: none;
-    font-family: "WeAR regular";
-    letter-spacing: 1px;
-    font-size: 110%;
-    border-color: #8CA1C5;
+font-family: "WeAR regular";
+letter-spacing: 1px;
+font-size: 110%;
+border-color: #8CA1C5;
 
 }
 
@@ -138,31 +139,4 @@ textarea {
     color: #144d83;
     font-family: "WeAR médio";
     font-size: 145%;
-    display: block;
 }
-
-/*Estilização do botão de enviar arquivos*/
-input[type=file] {
-    width: 350px;
-    max-width: 100%;
-    color: #444;
-    padding: 5px;
-    background: #fff;
-    border-radius: 10px;
-    border: 1px solid #555;
-}
-
-    input[type=file]::-webkit-file-upload-button {
-        margin-right: 20px;
-        border: none;
-        background: #144D83;
-        padding: 10px 20px;
-        border-radius: 10px;
-        color: #fff;
-        cursor: pointer;
-        transition: background .2s ease-in-out;
-    }
-
-        input[type=file]::-webkit-file-upload-button:hover {
-            background: #144D83;
-        }

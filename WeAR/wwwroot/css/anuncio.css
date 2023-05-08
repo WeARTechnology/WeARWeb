@@ -89,12 +89,15 @@ hr{
     border-style: double;
     width: 37%;
     margin: 1% 5% 1% 5%;
+    background: #fff;
 }
 
 .direcoes button:hover{
     cursor: pointer;
-    width: 38%;
+    width: 39%;
     transition: all 0.2s ease 0s;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
 }
 
 .direcoes button a{

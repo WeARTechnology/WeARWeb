@@ -14,23 +14,24 @@
 <body>
     <!-- inicio navbar -->
     <header>
-        <div class="logo">
-            <a href="/Home/Index"><img src="~/img/icon3.png" alt="" style="height: 5%;"></a>
-        </div>
-        <div class="nav">
-            <nav>
-                <ul>
-                    <li><a>@Html.ActionLink("Óculos de grau", "catalogo", "Home", routeValues: new { categoria = "Oculos Grau" })</a></li>
-                    <li><a>@Html.ActionLink("Óculos de sol", "catalogo", "Home", routeValues: new { categoria = "Oculos Sol" })</a></li>
-                    <li><a>@Html.ActionLink("Anéis", "catalogo", "Home", routeValues: new { categoria = "Anel" })</a></li>
-                </ul>
-            </nav>
-        </div>
-        <div class="buttons">
-            <button><a href="#"><img src="~/img/compras4.png" alt="" id="navButton"></a></button>
-            <button><a href="/Home/Contato"><img src="~/img/telefone.png" alt="" id="navButton"></a></button>
-            <button><a href="#"><img src="~/img/pesquisar3.png" alt="" id="navButton"></a></button>
-        </div>
+        <nav>
+            <a href="/Home/Index" class="logo"><img src="img/icon3.png" alt=""></a>
+            <!-- menu responsivo -->
+            <div class="mobile-menu">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+
+            <ul class="nav-list">
+                <li><a>@Html.ActionLink("Óculos de grau", "catalogo", "Home", routeValues: new { categoria = "Oculos Grau" })</a></li>
+                <li><a>@Html.ActionLink("Óculos de sol", "catalogo", "Home", routeValues: new { categoria = "Oculos Sol" })</a></li>
+                <li><a>@Html.ActionLink("Anéis", "catalogo", "Home", routeValues: new { categoria = "Anel" })</a></li>
+                <li><a href="/Home/Carrinho"><img src="/img/compras.png" alt="Carrinho"></a></li>
+                <li><a href="/Home/Contato"><img src="/img/telefone.png" alt="Contato"></a></li>
+                <li><a href=""><img src="/img/pesquisar.png" alt="Pesquisar"></a></li>
+            </ul>
+        </nav>
     </header>
     <!-- fim navbar -->
     @RenderBody()
@@ -55,7 +56,7 @@
                 <li><a href="/Home/Index">Home</a></li>
                 <li><a href="/Home/contato">Contato</a></li>
                 <li><a href="/Home/catalogo">Catálogo</a></li>
-                <li><a href="#">FAQ</a></li>
+                <li><a href="/Home/Faq">FAQ</a></li>
             </ul>
 
             <!-- Marca d'água -->

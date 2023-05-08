@@ -1,0 +1,143 @@
+@font-face {
+    font-family: "WeAR extra negrito";
+    src: url(../fonts/postnobillscolombo-extrabold.ttf);
+}
+
+@font-face {
+    font-family: "WeAR negrito";
+    src: url(../fonts/postnobillscolombo-bold.ttf);
+}
+
+@font-face {
+    font-family: "WeAR semi negrito";
+    src: url(../fonts/postnobillscolombo-semibold.ttf);
+}
+
+@font-face {
+    font-family: "WeAR regular";
+    src: url(../fonts/postnobillscolombo-regular.ttf);
+}
+
+@font-face {
+    font-family: "WeAR médio";
+    src: url(../fonts/postnobillscolombo-medium.ttf);
+}
+
+@font-face {
+    font-family: "WeAR light";
+    src: url(../fonts/postnobillscolombo-light.ttf);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.pesquisa{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 3%;
+}
+
+#divBusca{
+    text-align: center;
+    border: none;
+    width:70%;
+    display: flex;
+}
+  
+ #txtBusca{
+    padding-left:1%;
+    font-family: "WeAR semi negrito";
+    font-style:italic;
+    font-size: 140%;
+    border:none;
+    height:18%;
+    width: 95%;
+}
+
+input:focus{
+    outline: 0;
+}
+
+input:focus img{
+    transition: all 0.2s ease 0s;
+    
+}
+
+#divBusca img{
+padding-right: 1%;
+padding-bottom: 1%;
+}
+
+.pesquisa hr{
+    border-color: #144d83;
+    border-top: none;
+    width: 70%;
+}
+
+
+.faqDropdown{
+    width: 95%;
+    margin: 1% 5% 1% 5%;
+}
+
+.faqDropdown li{
+    list-style: none;
+}
+
+.faqDropdown hr{
+    border-color: #144d83;
+    border-top: none;
+    width: 95%;
+}
+
+.faqDropdown p{
+    font-family: "WeAR regular";
+    font-size: 130%;
+    text-align: justify;
+    margin: 1% 7% 1% 2%;
+}
+
+.faqDropdown h2{
+    font-family: "WeAR semi negrito";
+    color: #144d83;
+    font-size: 230%;
+    width: 70%;
+    text-align: left;
+    white-space: nowrap;
+    margin-left: 1%;
+}
+
+
+.faqDropdown img{
+    margin-left: 26%;
+}
+
+.faqItem{
+    margin: 7% 0%;
+}
+
+button{
+    border: none;
+    background-color: #fff;
+    width: 95%;
+    display: flex;
+    align-items: center;
+}
+
+.buttonPergunta {
+    width: 100%;
+}
+
+.buttonPergunta:hover{
+    opacity: 70%;
+}
+
+@media (max-width: 1100px){
+    .faqDropdown h2{
+    white-space: normal;
+    }
+}

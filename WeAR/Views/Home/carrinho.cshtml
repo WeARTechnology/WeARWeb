@@ -1,95 +1,104 @@
-﻿
+
+<head>
     <link rel="stylesheet" href="~/css/carrinho.css">
+    <title>Carrinho</title>
+</head>
 
 <body>
-
     <h1>Seu carrinho</h1>
-    <div class="prodCarrinho">
-        <div class="prod">
-            <div class="imgProd">
-                <img src="/img/anel amendoeira em flor.png" alt="">
-            </div>
-            <div class="textProd">
-                <h2>Amendoeira em Flor</h2>
-                <h3>R$ 60,00</h3>
-                <div class="quant">
-                    <button onclick="menos()" class="a">-</button><input min=0 id="total" type="number"><button onclick="mais()" class="b">+</button>
+    <div class="carrinho">
+        <div class="produtos">
+            <div class="prodCarrinho">
+                <div class="prod">
+                    <div class="imgProd">
+                        <img src="/img/anel The Pink Peach Tree.png" alt="">
+                    </div>
+                    <div class="textProd">
+                        <h2>Amendoeira em Flor</h2>
+                        <h3>R$ 60,00</h3>
+                        <div class="quant">
+                            <button onclick="menos()" class="a">-</button><input min=0 id="total" type="number"><button onclick="mais()" class="b">+</button>
+                        </div>
+                        <button>Remover</button>
+                    </div>
                 </div>
-                <button>Remover</button>
+
+                <div class="prod">
+                    <div class="imgProd">
+                        <img src="/img/anel The Pink Peach Tree.png" alt="">
+                    </div>
+                    <div class="textProd">
+                        <h2>Amendoeira em Flor</h2>
+                        <h3>R$ 60,00</h3>
+                        <div class="quant">
+                            <button onclick="menos()" class="a">-</button><input min=0 id="total" type="number"><button onclick="mais()" class="b">+</button>
+                        </div>
+                        <button>Remover</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="prodCarrinho">
+                <div class="prod">
+                    <div class="imgProd">
+                        <img src="/img/anel The Pink Peach Tree.png" alt="">
+                    </div>
+                    <div class="textProd">
+                        <h2>Amendoeira em Flor</h2>
+                        <h3>R$ 60,00</h3>
+                        <div class="quant">
+                            <button onclick="menos()" class="a">-</button><input min=0 id="total" type="number"><button onclick="mais()" class="b">+</button>
+                        </div>
+                        <button>Remover</button>
+                    </div>
+                </div>
+
+                <div class="prod">
+                    <div class="imgProd">
+                        <img src="/img/anel amendoeira em flor.png" alt="">
+                    </div>
+                    <div class="textProd">
+                        <h2>The Pink Peach Tree</h2>
+                        <h3>R$ 199,99</h3>
+                        <div class="quant">
+                            <button onclick="menos()" class="a">-</button><input min=0 id="total" type="number"><button onclick="mais()" class="b">+</button>
+                        </div>
+                        <button>Remover</button>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="prod">
-            <div class="imgProd">
-                <img src="/img/anel amendoeira em flor.png" alt="">
+        <div class="valorFinalizacao">
+            <div class="valor">
+                <h1>Valor total da compra:</h1>
+                <h1 id="valor">R$79,90</h1>
             </div>
-            <div class="textProd">
-                <h2>The Pink Peach Tree</h2>
-                <h3>R$ 199,99</h3>
-                <div class="quant">
-                    <button onclick="menos()" class="a">-</button><input min=0 id="total" type="number"><button onclick="mais()" class="b">+</button>
-                </div>
-                <button>Remover</button>
-            </div>
+
+            <hr>
+            <br><br>
+            <button id="finalizar">Finalizar Pedido</button>
         </div>
+
     </div>
 
-    <div class="prodCarrinho">
-        <div class="prod">
-            <div class="imgProd">
-                <img src="/img/anel amendoeira em flor.png" alt="">
-            </div>
-            <div class="textProd">
-                <h2>Amendoeira em Flor</h2>
-                <h3>R$ 60,00</h3>
-                <div class="quant">
-                    <button onclick="menos()" class="a">-</button><input min=0 id="total" type="number"><button onclick="mais()" class="b">+</button>
-                </div>
-                <button>Remover</button>
-            </div>
-        </div>
 
-        <div class="prod">
-            <div class="imgProd">
-                <img src="/img/anel amendoeira em flor.png" alt="">
-            </div>
-            <div class="textProd">
-                <h2>The Pink Peach Tree</h2>
-                <h3>R$ 199,99</h3>
-                <div class="quant">
-                    <button onclick="menos()" class="a">-</button><input min=0 id="total" type="number"><button onclick="mais()" class="b">+</button>
-                </div>
-                <button>Remover</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="valor">
-        <h1>Valor total da compra:</h1>
-        <h1 id="valor">R$</h1>
-    </div>
-
-    <hr>
-<br><br>
-    <button id="finalizar">Finalizar Pedido</button>
-
-    
 </body>
 
-<script src="/js/botaoQuant.js"></script>
+
 
 <script>
-    function mais() {
-        var atual = document.getElementById("total").value;
-        var novo = atual - (-1); //Evitando Concatenacoes
+function mais() {
+    var atual = document.getElementById("total").value;
+    var novo = atual - (-1); //Evitando Concatenacoes
+    document.getElementById("total").value = novo;
+}
+
+function menos() {
+    var atual = document.getElementById("total").value;
+    if (atual > 0) { //evita números negativos
+        var novo = atual - 1;
         document.getElementById("total").value = novo;
     }
-
-    function menos() {
-        var atual = document.getElementById("total").value;
-        if (atual > 0) { //evita números negativos
-            var novo = atual - 1;
-            document.getElementById("total").value = novo;
-        }
-    }
+}
 </script>

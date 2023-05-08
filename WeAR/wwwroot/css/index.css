@@ -36,7 +36,7 @@
 h1 {
     font-family: "WeAR negrito";
     color: #144d83;
-    font-size: 5vh;
+    font-size: 250%;
     text-align: center;
     margin: 1%;
 }
@@ -49,10 +49,10 @@ h1 {
 }
 
 .nossosProds img {
-    border-width: 5vh;
+    border-width: 4vh;
     border-image: url(../img/molduras/moldura2.png) 140 stretch;
-    border-style: double;
-    width: 50vh;
+    border-style: double; 
+    width: 50%;
 }
 
 .nossosProds a:hover {
@@ -65,7 +65,7 @@ h1 {
 
 .nossosProds img:hover {
     cursor: pointer;
-    width: 53vh;
+    width: 53%;
     transition: all 0.2s ease 0s;
 }
 
@@ -73,13 +73,14 @@ h1 {
 .nossosProds h1 {
     font-family: "WeAR negrito";
     color: #144d83;
-    font-size: 4vh;
+    font-size: 220%;
 }
 
 .nossosProds p {
     font-family: "WeAR semi negrito";
     color: #8CA1C5;
-    font-size: x-large;
+    font-size: 150%;
+    padding: 0 3%;
 }
 
 .nossosProds a {
@@ -103,11 +104,14 @@ hr {
     justify-content: space-around;
 }
 
+
+
 .osMaisVend img {
-    border-width: 5vh;
+    border-width: 2vh;
     border-image: url(../img/molduras/moldura2.png) 140 stretch;
     border-style: double;
-    width: 43vh;
+    width: 50%;
+    vertical-align: top;
 }
 
 .osMaisVend h3 {
@@ -128,10 +132,11 @@ hr {
     transition: all 0.2s ease 0s;
     font-weight: bolder;
     cursor: pointer;
+    letter-spacing: 1px;
 }
 
 .osMaisVend img:hover {
     cursor: pointer;
-    width: 46vh;
+    width: 52%;
     transition: all 0.2s ease 0s;
 }

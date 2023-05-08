@@ -19,12 +19,14 @@
 .containerInformProduto .imagemProduto .moldura#moldura {
     margin-left: 2%;
     margin-top: 2%;
-    height: 70vh;
-    width: 30vw;
+    /* height: 800px;
+    max-width: 1100px; */
+    height: 45vh;
+    width: 38vw;
     z-index: 1000;
 
     border-image: url(../img/MolduraProdutos.png) 220 stretch;
-    border-width: 10vh;
+    border-width: 20vh;
     border-style: double;
 }
 
@@ -303,14 +305,14 @@
 /* Media | Responsividade da aba */
 @media (max-width: 1196px) {
     .containerInformProduto .imagemProduto .moldura#moldura {
-        height: 80vh;
-        width: 50vw;
+        height: 50vh;
+        width: 60vw;
         margin-right: 2%;
         margin-left: 2%;
         position: center;
     
         border-image: url(../img/MolduraProdutos.png) 220 stretch;
-        border-width: 4vh;
+        border-width: 18vh;
         border-style: double;
     }
 
@@ -353,7 +355,7 @@
 
 }
 
-@media (max-width: 850px) {
+@media (max-width: 900px) {
 
     #descricao {
         margin-left: 1rem;
@@ -361,40 +363,7 @@
     }
 
     .containerInformProduto .imagemProduto .moldura#moldura {
-        height: 60vh;
-        width: 80vw;
-    }
-
-
-
-
-    input[type="number"] {
-        -webkit-appearance: textfield;
-        -moz-appearance: textfield;
-        appearance: textfield;
-    }
-
-    input[type=number]::-webkit-inner-spin-button,
-    input[type=number]::-webkit-outer-spin-button {
-        -webkit-appearance: none;
-    }
-
-    input[type="number"] {
-        outline: none;
-        border-right: 0px;
-        border-top: 1px solid black;
-        border-left: 1px solid black;
-        border-bottom: 1px solid black;
-        height: 20px;
-        padding: 1%;
-        border-right: 0px solid black;
-    }
-
-    label, input, button {
-        font-size: inherit;
-        padding: 0.2em;
-        -moz-box-sizing: content-box;
-        -webkit-box-sizing: content-box;
-        box-sizing: content-box;
+        height: 40vh;
+        width: 50vw;
     }
 }

@@ -3,46 +3,123 @@
     src: url(../fonts/postnobillscolombo-bold.ttf);
 }
 
-*{
- margin: 0%;
- padding: 0%;
- box-sizing: border-box;   
-
+*{ 
+margin: 0; 
+padding: 0;
 }
 
-header{
-    width: auto;
-    height: 3%;
-    display: flex;
-    justify-content:space-between;
-    align-items: center;
-    padding: 10px 3%;
-    background: #144d8313;
-}
-
-.nav li{
-    display: inline-block;
-    list-style: none;
-    padding: 0px 20px;
-    font-family: "WeAR"; 
-    font-size: xx-large;   
-}
-
-.nav li a{
+a{
     color: #144d83;
     text-decoration: none;
+    transition: 0.3s;
 }
-
-a, button{
-    background: #144d8300;
-    border: none;
-}
-
-.nav li a:hover{
+a:hover{
     color: #c88c20;
-    transition: all 0.2s ease 0s;
-    text-decoration: underline;
+    text-decoration: underline #c88c20;
+
+}
+.logo{
+    margin: 1% 10% 0% 5%;
 }
 
-/* #navButton{
-} */
+.logo:hover{
+    opacity: 80%;
+    transition: 0.2s;
+}
+nav{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-family: "WeAR";
+    font-size: 200%;
+    text-decoration: underline #144d83;
+    background: #fff;
+    height: 12%;
+}
+
+nav:hover{
+    transition: 0.5s ease;
+    background: linear-gradient(to bottom, #e1ba7777, #e1ba772c, #fff );
+}
+
+.nav-list{
+    list-style: none;
+    display: flex;
+    margin-right: 40%;
+}
+.nav-list li{
+    white-space: nowrap;
+    letter-spacing: 5%;
+    margin-right: 19%;
+    justify-content: center;
+}
+.nav-list img:hover{
+    transition: 0.2s;
+    opacity: 70%;
+}
+.mobile-menu{
+    cursor: pointer;
+    display: none;
+}
+.mobile-menu div{
+    width: 200%;
+    height: 2px;
+    background: #144d83;
+    margin: 6%;
+    transition: 0.3s;
+}
+@media (max-width: 1500px){
+    body{
+        overflow-x: hidden; /* esconder o que fica pra fora do body */
+    }
+    .nav-list{
+        font-size: 90%;
+        position: absolute;
+        top: 12%;
+        right: 0;
+        width: 60%;
+        height: 150%;
+        background: linear-gradient(to bottom, #e1ba7777, #e1ba772c, #fff );
+        align-items: center;        
+        flex-direction: column;
+        justify-content: space-around;
+        transform: translateX(200%); /* mover o menu para fora da tela, enquanto não estiver sendo usado  */
+        transition: transform 0.3s ease-in;
+        text-decoration: underline #144d83;
+
+    }
+    .nav-list {
+        margin-left: 0;
+        opacity: 100;
+    }
+    .mobile-menu{
+        display: block;
+    }
+}
+
+.nav-list.active{
+    /* quando a nav-list estiver ativer ativa ela volta a sua posição normal no body */
+    transform: translateX(100%);
+}
+@keyframes navLinkFade {
+    from{
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.mobile-menu.active .line1{
+    transform: rotate(-45deg) translate(-8px, 8px);
+}
+
+.mobile-menu.active .line2{
+    opacity: 0;
+}
+
+.mobile-menu.active .line3{
+    transform: rotate(45deg) translate(-5px, -7px);
+}

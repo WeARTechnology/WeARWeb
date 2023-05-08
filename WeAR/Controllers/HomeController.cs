@@ -32,6 +32,10 @@ namespace WeAR.Controllers
         {
             return View();
         }
+        public IActionResult Faq()
+        {
+            return View();
+        }
         public IActionResult Carrinho()
         {
             return View();
