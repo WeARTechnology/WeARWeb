@@ -17,10 +17,8 @@ namespace WeAR.Models
         public int tamanho = 0;
         public int[] similaresid = new int[4];
         public bool modelo3d;
-        //Faz a conexão com o banco de dados
-        const string stringConexao2 = "Data Source=tcp:weardbserver.database.windows.net,1433;Initial Catalog=WeAR_db;User Id=WeARTech@weardbserver;Password=WearTec1234";
-        const string stringConexao = "Server=tcp:weardbserver.database.windows.net,1433;Initial Catalog=WeAR_db;Persist Security Info=False;User ID=WeARTech;Password=WearTec1234;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=10;";
-        SqlConnection conecta = new SqlConnection(stringConexao2); //Variavel que faz a conexão com o banco
+        public int id;
+        SqlConnection conecta = CreateConnection.getAzureConnection(); //Variavel que faz a conexão com o banco
         SqlCommand query; //Variavel que faz os comandos
 
 
@@ -98,7 +96,7 @@ namespace WeAR.Models
 
 
                     //Query que faz a leitura da tabela Oculos em busca de algum produto com o id inserido
-                    SqlConnection conecta2 = new SqlConnection(stringConexao); //Variavel que faaz a conexão com o banco
+                    SqlConnection conecta2 = CreateConnection.getAzureConnection(); //Variavel que faaz a conexão com o banco
                     conecta2.Open();
                     SqlCommand query2 = new SqlCommand("Select * from Oculos where fk_Produto_id=@id", conecta2);
                     query2.Parameters.AddWithValue("@id", id);
@@ -120,7 +118,7 @@ namespace WeAR.Models
                     else //Se não possui linhas, é um anel
                     {
                         //Query que faz a leitura da tabela Anel
-                        SqlConnection conecta3 = new SqlConnection(stringConexao); //Variavel que faaz a conexão com o banco
+                        SqlConnection conecta3 = CreateConnection.getAzureConnection(); //Variavel que faaz a conexão com o banco
                         conecta3.Open();
                         SqlCommand query3 = new SqlCommand("Select * from Anel where fk_Produto_id=@id", conecta3);
                         query3.Parameters.AddWithValue("@id", id);

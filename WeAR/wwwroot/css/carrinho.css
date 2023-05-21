@@ -71,7 +71,7 @@ h1 {
 }
 
 .prodCarrinho img{
-    width: 100%;
+    width: 50%;
     border-width: 3vh;
     border-image: url(../img/molduras/moldura10.png) 60 stretch;
     border-style: double;

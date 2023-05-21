@@ -10,17 +10,14 @@ namespace WeAR.Models
 {
     public class Imagem
     {
-
         //Faz a conexão com o banco de dados
-        const string stringConexao = "Server=tcp:weardbserver.database.windows.net,1433;Initial Catalog=WeAR_db;Persist Security Info=False;User ID=WeARTech;Password=WearTec1234;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-        const string stringConexao2 = "Data Source=tcp:weardbserver.database.windows.net,1433;Initial Catalog=WeAR_db;User Id=WeARTech@weardbserver;Password=WearTec1234";
-        SqlConnection conecta = new SqlConnection(stringConexao2); //Variavel que faaz a conexão com o banco
+        SqlConnection conecta = CreateConnection.getAzureConnection(); //Variavel que faaz a conexão com o banco
         SqlCommand query; //Variavel que faz os comandos
 
 
+        /*                                      Métodos                                     */
 
-        //Métodos
-        //Metodo que cadastra o cliente
+        //Metodo que adiciona uma imagem ao banco de dadosZ
         public string addImagem(int id, IFormFile arq)
         {
             String tipoArquivo = arq.ContentType;
@@ -35,10 +32,10 @@ namespace WeAR.Models
                     try
                     {
                         conecta.Open();
-                        query = new SqlCommand("Insert into Imagem(fk_Produto_id,imagem) VALUES (@id2,@imagem)", conecta); //Define o comando SQL
+                        query = new SqlCommand("Insert into Imagem(fk_Produto_id) VALUES (@id,@imagem)", conecta); //Define o comando SQL
                         //Parameters para evitar SQLInjection
                         query.Parameters.AddWithValue("@imagem", bytesArquivo);
-                        query.Parameters.AddWithValue("@id2", id);
+                        query.Parameters.AddWithValue("@id", id);
                        
 
                         query.ExecuteNonQuery(); //Executa o comando
@@ -60,7 +57,8 @@ namespace WeAR.Models
             return null;
         }
 
-        
+
+        //Método que pega todas as imagens do Banco de dados
         public List<String> PegarTudo()
         {
             List<String> listaImagens = new List<string>();
@@ -74,7 +72,7 @@ namespace WeAR.Models
                     byte[] bytesArquivo = (byte[])leitor["imagem"];
                     listaImagens.Add(Convert.ToBase64String(bytesArquivo));
                 }
-                
+
             }
             catch (Exception f) //Em caso de erro, retorna o erro
             {
@@ -89,13 +87,73 @@ namespace WeAR.Models
             return listaImagens;
         }
 
+        //Método que pega uma imagem específica através do seu ID
         public String PegarImagem(int id)
         {
             String imagem = null;
             try
             {
                 conecta.Open();
-                query = new SqlCommand("Select  * from Imagem where fk_Produto_id = @id", conecta); //Define o comando SQL
+                query = new SqlCommand("Select  * from Imagem where fk_Produto_id = @id and noStock = 0 and round_android = 0", conecta); //Define o comando SQL
+                query.Parameters.AddWithValue("@id", id);
+                SqlDataReader leitor = query.ExecuteReader();
+                while (leitor.Read())
+                {
+                    byte[] bytesArquivo = (byte[])leitor["imagem"];
+                    imagem = (Convert.ToBase64String(bytesArquivo));
+                }
+
+            }
+            catch (Exception f) //Em caso de erro, retorna o erro
+            {
+                throw;
+
+            }
+            finally
+            {
+                conecta.Close(); //Fecha a conexão independente do caso
+
+            }
+            return imagem;
+        }
+
+        //Método que pega uma imagem específica através do seu ID
+        public String PegarImagemNoStock(int id)
+        {
+            String imagem = null;
+            try
+            {
+                conecta.Open();
+                query = new SqlCommand("Select  * from Imagem where fk_Produto_id = @id and noStock = 1", conecta); //Define o comando SQL
+                query.Parameters.AddWithValue("@id", id);
+                SqlDataReader leitor = query.ExecuteReader();
+                while (leitor.Read())
+                {
+                    byte[] bytesArquivo = (byte[])leitor["imagem"];
+                    imagem = (Convert.ToBase64String(bytesArquivo));
+                }
+
+            }
+            catch (Exception f) //Em caso de erro, retorna o erro
+            {
+                throw;
+
+            }
+            finally
+            {
+                conecta.Close(); //Fecha a conexão independente do caso
+
+            }
+            return imagem;
+        }
+
+        public String PegarImagemRound(int id)
+        {
+            String imagem = null;
+            try
+            {
+                conecta.Open();
+                query = new SqlCommand("Select  * from Imagem where fk_Produto_id = @id and round_android = 1", conecta); //Define o comando SQL
                 query.Parameters.AddWithValue("@id", id);
                 SqlDataReader leitor = query.ExecuteReader();
                 while (leitor.Read())

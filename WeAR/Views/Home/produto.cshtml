@@ -10,7 +10,6 @@
       integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
       crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-
 <body>
     <!-- Criando o corpo da apresentação do produto -->
     <div class="containerInformProduto">
@@ -22,10 +21,8 @@
         <div class="detalhesProduto">
             <p id="titulo">@Model.nome</p> <!-- Define o nome como o valor que vem da classe produto -->
             <p id="descricao">@Model.desc</p> <!-- Define a descrição com o valor que vem da classe -->
-
-
             <!-- Se possuir algum valor para tamanho, ele adiciona o box de seleção de tamanhos -->
-            @if (Model.tamanho != 0) 
+            @if (Model.tamanho != 0)
             {
                 <p id="tamanho">Tamanho Desejado:</p>
                 <div class="tamanhoAnel">
@@ -36,7 +33,7 @@
 
                             <div class="containerOpcoes">
                                 <!-- Adiciona as opções de tamanho de acordo com os tamanhos disponíveis do produto no banco de dados -->
-                                @foreach (int tamanho in Model.pegarTamanhoAneis(Model.pegarID(Model.nome))) 
+                                @foreach (int tamanho in Model.pegarTamanhoAneis(Model.id))
                                 {
                                     if (tamanho != 0)
                                     {
@@ -57,15 +54,11 @@
                     <!-- Fim da área de seleção de tamanho do anél -->
                 </div>
             }
-            else
-            {
-
-            }
             <p id="estoque">Quantidade Disponível em Estoque: @Model.qntd</p>
             <p id="qtde">Quantidade Desejada:</p>
             <div>
 
-                <button onclick="menos()" class="a">-</button><input min=0 id="total" type="number"><button onclick="mais()" class="b">+</button>
+                <button id="minus">-</button><input min=1 max=@Model.qntd id="total" type="number" value="1"><button id="plus">+</button>
 
             </div>
 
@@ -76,10 +69,12 @@
 
             <div class="buttons">
                 <div class="buttonCarrinho">
-                    <a href=""><button class="btn" id="carrinho">Adicionar ao Carrinho</button></a>
+                    <form id="carrinhoForm" method="post" type="hidden">
+                        <button class="btn" id="btnCarrinho" onclick="submitCarrinhoForm(event)">Adicionar ao Carrinho</button>
+                    </form>
                 </div>
                 <!-- Se o viewbag retornar true, o que significa que possui Modelo 3d, ele adiciona o botão de Try ON -->
-                @if (ViewBag.modelo3D == false || Model.tipo == "Anel") 
+                @if (ViewBag.modelo3D == false || Model.tamanho != 0)
                 {
 
                 }
@@ -90,7 +85,7 @@
                     </div>
                 }
             </div>
-            
+
         </div>
 
     </div>
@@ -105,19 +100,19 @@
     <div class="produtosSimilares">
         <div class="owl-carousel owl-theme">
 
-                <!-- Função para sortear os produtos similares, e adicionar suas imagens no carrosel de recomendados -->
+            <!-- Função para sortear os produtos similares, e adicionar suas imagens no carrosel de recomendados -->
             @if (Model.similaresid.Length != 0) //Isto sempre retorna true, é usado apenas para iniciar a função Razor
             {
                 int i = 0;
                 //Para cada img, ele adiciona um item no carrosel
-                foreach (String img in Model.produtosSimilares(Model.tamanho == 0 ? "Oculos" : "Anel",Model.pegarID(Model.nome)))
+                foreach (String img in Model.produtosSimilares(Model.tamanho == 0 ? "Oculos" : "Anel", Model.id))
                 {
                     <div class="item">
-                            <a href=@Url.Action("Produto","Home",values: new{id=@Model.similaresid[i]})>
-                                <!--Adiciona o redirecionamento ao produto correto associado a imagem inserida-->
+                        <a href=@Url.Action("Produto","Home",values: new{id=@Model.similaresid[i]})>
+                            <!--Adiciona o redirecionamento ao produto correto associado a imagem inserida-->
                             <img src=@img alt="">
                             <div class="content">
-                                <ion-icon id="icone" name="eye-outline" style="color: #ffff;"><a href="#"></a></ion-icon>
+                                <ion-icon id="icone" name="eye-outline" style="color: #ffff;"><a href=@Url.Action("Produto","Home",values: new{id=@Model.similaresid[i]})></a></ion-icon>
                             </div>
                         </a>
                     </div>
@@ -140,38 +135,56 @@
     <!-- Linkando o JavaScript -->
     <script src="~/js/selecaoTamanho.js"></script>
     <script src="~/js/carouselProdutos.js"></script>
+    <script>
+        $(document).ready(function () {
+            document.getElementById("minus").addEventListener("click", menos);
+            document.getElementById("plus").addEventListener("click", mais);
+        })
+
+        document.getElementById("total").addEventListener("focusin", correctValue)
+        document.getElementById("total").addEventListener("focusout", correctValue)
+
+        function correctValue(){
+            if (document.getElementById("total").value > document.getElementById("total").max) {
+                document.getElementById("total").value = document.getElementById("total").max;
+            }
+            if (document.getElementById("total").value < document.getElementById("total").min) {
+                document.getElementById("total").value = document.getElementById("total").min;
+            }
+        }        
+
+        function submitCarrinhoForm(event) {
+            event.preventDefault();
+            var sqntd = document.getElementById("total").value;
+            var form = document.getElementById("carrinhoForm");
+
+            var actionUrl = '@Html.Raw(Url.Action("Carrinho", "Home", new { qntd = "_QTND_", id = "_ID_" }))'
+                .replace("_QTND_", sqntd)
+                .replace("_ID_", @Model.id);
+            form.action = actionUrl;
+            form.submit();
+        }        
+
+        function mais() {
+            var total = parseInt(document.getElementById("total").value);
+            if (total + 1 > document.getElementById("total").max) {
+
+            }else{
+                var novo = total + 1;
+                document.getElementById("total").value = novo;
+            }
+            
+        }
+
+        function menos() {
+            var total = parseInt(document.getElementById("total").value);
+            if (total - 1 > 0) {
+                var novo = total - 1;
+                document.getElementById("total").value = novo;
+            }
+
+        }
+
+    </script>
 </body>
 
-</html>
-<script>
-    function updateAddToCartUrl() {
-    var qntd = document.getElementById("total").value;
-    var preco = @Model.preco; // Use Razor syntax to get the value from the model
-
-    var addToCartLink = document.getElementById("addToCartLink");
-    addToCartLink.href = '@Url.Action("Carrinho", "Home")' + '?preco=' + encodeURIComponent(preco) + '&qntd=' + encodeURIComponent(qntd);
-    }
-
-    document.addEventListener("DOMContentLoaded", function () {
-        updateAddToCartUrl();
-        document.getElementById("total").addEventListener("change", updateAddToCartUrl);
-    });
-
-
-    function mais() {
-        var atual = document.getElementById("total").value;
-        var novo = atual - (-1); //Evitando Concatenacoes
-        document.getElementById("total").value = novo;
-        updateAddToCartUrl();
-    }
-
-    function menos() {
-        var atual = document.getElementById("total").value;
-        if (atual > 0) { //evita números negativos
-            var novo = atual - 1;
-            document.getElementById("total").value = novo;
-        }
-        updateAddToCartUrl();
-    }
-
-</script>

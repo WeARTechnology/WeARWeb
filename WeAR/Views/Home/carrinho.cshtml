@@ -1,104 +1,66 @@
+@model List<Produto>
+
 
 <head>
     <link rel="stylesheet" href="~/css/carrinho.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        var updateQuantityUrl = '@Url.Action("UpdateQuantity", "Home")';
+        var removeFromCartUrl = '@Url.Action("RemoveFromCart", "Home")';
+        var checkoutURL = '@Url.Action("Checkout","Home")';
+    </script>
+
     <title>Carrinho</title>
 </head>
 
 <body>
     <h1>Seu carrinho</h1>
     <div class="carrinho">
-        <div class="produtos">
-            <div class="prodCarrinho">
-                <div class="prod">
-                    <div class="imgProd">
-                        <img src="/img/anel The Pink Peach Tree.png" alt="">
-                    </div>
-                    <div class="textProd">
-                        <h2>Amendoeira em Flor</h2>
-                        <h3>R$ 60,00</h3>
-                        <div class="quant">
-                            <button onclick="menos()" class="a">-</button><input min=0 id="total" type="number"><button onclick="mais()" class="b">+</button>
+        @if (Model.Count == 0)
+        {
+            <h1>Não Há Produtos no Carrinho</h1>
+        }
+        else
+        {
+            <div class="produtos">
+                <div class="prodCarrinho">
+
+                    @foreach (Produto p in Model)
+                    {                        
+                        float subtotal = (float) (p.qntd * p.preco);
+                        Imagem img = new Imagem();
+                        string formatoImg = "data:image/jpeg;base64," + img.PegarImagem(p.id);
+
+                        <div class="prod">
+                            <div class="imgProd">
+                                <img src=@formatoImg alt="">
+                            </div>
+                            <div class="textProd">
+                                <h2 id ="nome_@p.id">@p.nome</h2>
+                                <h3 id="preco_@p.id">@p.preco</h3>
+                                <div class="quant">
+                                    <button id="minus" onclick="menos(@p.id)">-</button><input min=0 id="quantity_@p.id" type="number" value=@p.qntd><button id="plus" onclick="mais(@p.id)">+</button>
+                                </div>
+                                <h3 id="subtotal_@p.id">Subtotal:@subtotal </h3>
+                                <button onclick="removeProduct(@p.id)">Remover</button>
+                            </div>
                         </div>
-                        <button>Remover</button>
-                    </div>
+                    }
                 </div>
 
-                <div class="prod">
-                    <div class="imgProd">
-                        <img src="/img/anel The Pink Peach Tree.png" alt="">
+                <div class="valorFinalizacao">
+                    <div class="valor">
+                        <h1>Valor total da compra:</h1>
+                        <h1 id="valor"></h1>
                     </div>
-                    <div class="textProd">
-                        <h2>Amendoeira em Flor</h2>
-                        <h3>R$ 60,00</h3>
-                        <div class="quant">
-                            <button onclick="menos()" class="a">-</button><input min=0 id="total" type="number"><button onclick="mais()" class="b">+</button>
-                        </div>
-                        <button>Remover</button>
-                    </div>
+
+                    <hr>
+                    <br><br>
+                    <button id="finalizar">Finalizar Pedido</button>
                 </div>
+
             </div>
-
-            <div class="prodCarrinho">
-                <div class="prod">
-                    <div class="imgProd">
-                        <img src="/img/anel The Pink Peach Tree.png" alt="">
-                    </div>
-                    <div class="textProd">
-                        <h2>Amendoeira em Flor</h2>
-                        <h3>R$ 60,00</h3>
-                        <div class="quant">
-                            <button onclick="menos()" class="a">-</button><input min=0 id="total" type="number"><button onclick="mais()" class="b">+</button>
-                        </div>
-                        <button>Remover</button>
-                    </div>
-                </div>
-
-                <div class="prod">
-                    <div class="imgProd">
-                        <img src="/img/anel amendoeira em flor.png" alt="">
-                    </div>
-                    <div class="textProd">
-                        <h2>The Pink Peach Tree</h2>
-                        <h3>R$ 199,99</h3>
-                        <div class="quant">
-                            <button onclick="menos()" class="a">-</button><input min=0 id="total" type="number"><button onclick="mais()" class="b">+</button>
-                        </div>
-                        <button>Remover</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="valorFinalizacao">
-            <div class="valor">
-                <h1>Valor total da compra:</h1>
-                <h1 id="valor">R$79,90</h1>
-            </div>
-
-            <hr>
-            <br><br>
-            <button id="finalizar">Finalizar Pedido</button>
-        </div>
-
-    </div>
-
-
+        }
 </body>
+<script src="~/js/carrinho.js"></script>
 
-
-
-<script>
-function mais() {
-    var atual = document.getElementById("total").value;
-    var novo = atual - (-1); //Evitando Concatenacoes
-    document.getElementById("total").value = novo;
-}
-
-function menos() {
-    var atual = document.getElementById("total").value;
-    if (atual > 0) { //evita números negativos
-        var novo = atual - 1;
-        document.getElementById("total").value = novo;
-    }
-}
-</script>

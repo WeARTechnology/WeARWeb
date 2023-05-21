@@ -7,12 +7,21 @@
 <div class="produtos">
     @foreach (Produto p in  Model)
     {
+        int id = p.pegarID(p.nome);
         Imagem img = new Imagem();
-        string formatoImg = "data:image/jpeg;base64," + img.PegarImagem(p.pegarID(p.nome));
+        string formatoImg = null;
+        if (p.qntd > 0) 
+        { 
+            formatoImg = "data:image/jpeg;base64," + img.PegarImagem(id);
+        }
+        else
+        {
+             formatoImg = "data:image/jpeg;base64," + img.PegarImagemNoStock(id);
 
+        }
         <fieldset>
 
-            <a href=@Url.Action("produto","Home", values: new {id= p.pegarID(p.nome)})>
+            <a href=@Url.Action("produto","Home", values: new {id= id})>
                 <div class="imagem">
                     <img src=@formatoImg alt="">
                 </div>
@@ -23,7 +32,26 @@
             </a>
 
         </fieldset>
+        <form id="carrinhoForm" method="post" type="hidden">
+            <button class="btn" id="btnCarrinho" onclick="submitCarrinhoForm(event,@id)">Comprar</button>
+        </form>
     }
 
 </div>
+
+<script>  
+
+    function submitCarrinhoForm(event,ProductID) {
+        event.preventDefault();
+        var sqntd = 1;
+        var form = document.getElementById("carrinhoForm");
+
+        var actionUrl = '@Html.Raw(Url.Action("Carrinho", "Home", new { qntd = "_QTND_", id = "_ID_" }))'
+            .replace("_QTND_", sqntd)
+            .replace("_ID_", ProductID);
+        form.action = actionUrl;
+        form.submit();
+    }    
+
+</script>
 
