@@ -11,13 +11,16 @@ namespace WeAR.Models
     public class Produto
     {
         //Definição de atributos da classe
+        //Valores do objeto de Produto que é retornado do banco, como nome, quantidade, etc..
         public String desc, nome, tipo;
         public Double preco;
         public int qntd;
-        public int tamanho = 0;
-        public int[] similaresid = new int[4];
+        public int tamanho = 0;       
         public bool modelo3d;
         public int id;
+
+        //Array de inteiros com os ID's de produtos similares (Método produtosSimilares())
+        public int[] similaresid = new int[4];
         SqlConnection conecta = CreateConnection.getAzureConnection(); //Variavel que faz a conexão com o banco
         SqlCommand query; //Variavel que faz os comandos
 
@@ -57,25 +60,25 @@ namespace WeAR.Models
                 conecta.Open();
 
                 //Comando para pegar o id
-                query = new SqlCommand("SELECT id FROM Produto where nome=@nome", conecta);
-                query.Parameters.AddWithValue("@nome", nome);
-                SqlDataReader leitor = query.ExecuteReader();
+                query = new SqlCommand("SELECT id FROM Produto where nome=@nome", conecta);               
+                query.Parameters.AddWithValue("@nome", nome); //Parameters para evitar SQLInjection
+                SqlDataReader leitor = query.ExecuteReader(); //Cria um leitor que lê o retorno da requisição
 
                 leitor.Read(); //Faz a leitura dos dados
 
                 //Pega o ID
                 int id = int.Parse(leitor["id"].ToString());
 
+                //Retoran este ID
                 return id;
             }
-            catch (Exception)
+            catch (Exception) //Caso houver algum erro
             {
-
                 throw;
             }
             finally
             {
-                conecta.Close();
+                conecta.Close(); //Fecha a conexão independente
             }
         }
 
@@ -94,9 +97,8 @@ namespace WeAR.Models
                     Produto p = new Produto(); //Objeto da classe Produto
 
 
-
                     //Query que faz a leitura da tabela Oculos em busca de algum produto com o id inserido
-                    SqlConnection conecta2 = CreateConnection.getAzureConnection(); //Variavel que faaz a conexão com o banco
+                    SqlConnection conecta2 = CreateConnection.getAzureConnection(); //Variavel que faz a conexão com o banco
                     conecta2.Open();
                     SqlCommand query2 = new SqlCommand("Select * from Oculos where fk_Produto_id=@id", conecta2);
                     query2.Parameters.AddWithValue("@id", id);
@@ -105,20 +107,20 @@ namespace WeAR.Models
 
                     if (leitor2.HasRows) //Se possui linhas, significa que é um Óculos, e não um Anel, pois o query retornou algo
                     {
-                        if (leitor.Read() && leitor2.Read())
+                        if (leitor.Read() && leitor2.Read()) //Se eles lerem
                         {
                             //Constroi o objeto P de produto, com base nas informações retornadas da tabela Produto e da tabela Óculos
                             p = new Produto(leitor["descricao"].ToString(), leitor["nome"].ToString(),
                                 leitor2["categoria"].ToString(), Double.Parse(leitor["preco"].ToString()), (int)leitor["quantidade"]);
 
                         }
-                        conecta2.Close();
-                        return p;
+                        conecta2.Close(); //Fecha a conexão 2
+                        return p; //Retorna o produto P construído
                     }
                     else //Se não possui linhas, é um anel
                     {
                         //Query que faz a leitura da tabela Anel
-                        SqlConnection conecta3 = CreateConnection.getAzureConnection(); //Variavel que faaz a conexão com o banco
+                        SqlConnection conecta3 = CreateConnection.getAzureConnection(); //Variavel que faz a conexão com o banco
                         conecta3.Open();
                         SqlCommand query3 = new SqlCommand("Select * from Anel where fk_Produto_id=@id", conecta3);
                         query3.Parameters.AddWithValue("@id", id);
@@ -131,22 +133,24 @@ namespace WeAR.Models
                                  Double.Parse(leitor["preco"].ToString()), (int)leitor["quantidade"], int.Parse(leitor3["tamanho"].ToString()));
 
                         }
-                        conecta3.Close();
+
+                        //Fecha todas as conexões
+                        conecta3.Close(); 
                         conecta2.Close();
-                        return p;
+                        return p; //Retorna o produto P
                     }
 
                 }
-                else
+                else //Se o primeiro leitor não ler nada, significa que não há produto
                 {
                     return null;
                 }
 
 
             }
-            catch (Exception e)
+            catch (Exception e) //Caso dê erro na conexão
             {
-
+                return null;
                 throw;
             }
             finally //Independente do que ocorra, fecha a conexão
@@ -182,7 +186,7 @@ namespace WeAR.Models
             }
             catch (Exception e)
             {
-
+                return null;
                 throw;
             }
             finally //Independente do que ocorra, fecha a conexão
@@ -214,7 +218,7 @@ namespace WeAR.Models
 
 
 
-                while (leitor.Read())
+                while (leitor.Read()) //Enquanto houverem produtos para serem lidos, cria o objeto P
                 {
 
                     p = new Produto(leitor["descricao"].ToString(), leitor["nome"].ToString(),
@@ -222,12 +226,11 @@ namespace WeAR.Models
                     produtos.Add(p);
                 }
 
-                return produtos;
+                return produtos; //Retorna o objeto P
 
             }
-            catch (Exception e)
+            catch (Exception e) //Caso dê erro
             {
-                Console.WriteLine(e.Message + "---------------------------------------------------------------------");
                 return null;
                 throw;
             }
@@ -304,12 +307,12 @@ namespace WeAR.Models
 
                 return produtos;
             }
-            catch (Exception)
+            catch (Exception) //Caso dê erro
             {
                 return null;
                 throw;
             }
-            finally
+            finally //Fecha a conexão independente do que ocorra
             {
                 conecta.Close();
 
@@ -343,12 +346,12 @@ namespace WeAR.Models
                 return resposta; //return
 
             }
-            catch (Exception)
+            catch (Exception) //Caso dê erro
             {
-
+                return false;
                 throw;
             }
-            finally
+            finally //Fecha a conexão
             {
                 conecta.Close();
             }
@@ -446,12 +449,12 @@ namespace WeAR.Models
                 return similares; //return
 
             }
-            catch (Exception)
+            catch (Exception) //Caso dê erro
             {
 
                 throw;
             }
-            finally
+            finally //Fecha a conexão independente
             {
                 conecta.Close();
             }

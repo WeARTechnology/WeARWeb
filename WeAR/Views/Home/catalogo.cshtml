@@ -1,57 +1,72 @@
-@model List<Produto>
+@model List<Produto> //Define o modelo da View, sua tipagem, assim, pode-se usar os métodos e atributos de Produto dentro da view
 <head>
-    <link rel="stylesheet" href="~/css/catalogo.css">
+    <link rel="stylesheet" href="~/css/catalogo.css" />
+    
+
     <title>Catálogo</title>
 </head>
 
 <div class="produtos">
-    @foreach (Produto p in  Model)
+
+    @if (true)
     {
-        int id = p.pegarID(p.nome);
+        //Inicializa variaveis que serão utilizadas varias vezes, para não terem que ser criadas novamente a cada loop
         Imagem img = new Imagem();
         string formatoImg = null;
-        if (p.qntd > 0) 
-        { 
-            formatoImg = "data:image/jpeg;base64," + img.PegarImagem(id);
-        }
-        else
+        int id = 0;
+
+        foreach (Produto p in Model) //Para cada produto que existir no modelo
         {
-             formatoImg = "data:image/jpeg;base64," + img.PegarImagemNoStock(id);
+            id = p.pegarID(p.nome); //Descobre-se o ID do produto
 
+            if (p.qntd > 0) //Se a quantidade do produto, for maior que 0, pega-se a imagem normal
+            {
+                formatoImg = "data:image/jpeg;base64," + img.PegarImagem(id);
+            }
+            else //Se for menor, pega-se a imagem sem estoque
+            {
+                formatoImg = "data:image/jpeg;base64," + img.PegarImagemNoStock(id);
+
+            }
+            <fieldset>
+
+                <a href=@Url.Action("produto","Home", values: new {id= id})> <!--Define o href do click, chamando a função do controller que 
+                                                                            redireciona a página do produto, e define o id como o id passado -->
+                    <div class="imagem">
+                        <img src=@formatoImg alt=""> <!--Define a imagem como o formato definido anteriormente-->
+                    </div>
+                    <div class="descriaoProd">
+                        <h3>@p.nome</h3> <!--Define o nome do produto como o nome do objeto-->
+                        <p>R$ @p.preco</p> <!--Define o preço do produto como o preço do objeto-->
+                    </div>
+                </a>
+
+            </fieldset>
+            <form id="carrinhoForm" method="post" type="hidden">
+                <!--Quando se clica no botão de carrinho, se realiza um post para o controller, o método em JS modifica o action do form usando o id do produto-->
+                <button class="btn" id="btnCarrinho" onclick="submitCarrinhoForm(event,@id)">Comprar</button> 
+            </form>
         }
-        <fieldset>
-
-            <a href=@Url.Action("produto","Home", values: new {id= id})>
-                <div class="imagem">
-                    <img src=@formatoImg alt="">
-                </div>
-                <div class="descriaoProd">
-                    <h3>@p.nome</h3>
-                    <p>R$ @p.preco</p>
-                </div>
-            </a>
-
-        </fieldset>
-        <form id="carrinhoForm" method="post" type="hidden">
-            <button class="btn" id="btnCarrinho" onclick="submitCarrinhoForm(event,@id)">Comprar</button>
-        </form>
     }
 
 </div>
 
-<script>  
+<script>
+    //Função que muda a ação do form de acordo com o id do produto
 
-    function submitCarrinhoForm(event,ProductID) {
-        event.preventDefault();
-        var sqntd = 1;
-        var form = document.getElementById("carrinhoForm");
-
+    function submitCarrinhoForm(event, ProductID) { //É passado o id do produto e o evento que foi acionado
+        event.preventDefault(); //Ele naõ deixa que o evento default que iria acontecer aconteça
+        var sqntd = 1; //Define a quantidade padrão como 1
+        //Cria uma URL usando Razor, que redireciona ao método Carrinho do Controller, usando o ID e a quantidade passadas
         var actionUrl = '@Html.Raw(Url.Action("Carrinho", "Home", new { qntd = "_QTND_", id = "_ID_" }))'
-            .replace("_QTND_", sqntd)
-            .replace("_ID_", ProductID);
+        .replace("_QTND_", sqntd)
+        .replace("_ID_", ProductID);
+
+        //Pega o elemento da view que representa o form
+        var form = document.getElementById("carrinhoForm");            
+        //Define sua ação como a URl criada, e dá submit na ação
         form.action = actionUrl;
         form.submit();
-    }    
-
+    }
 </script>
 

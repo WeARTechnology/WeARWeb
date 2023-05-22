@@ -1,6 +1,7 @@
 @model Produto
 <!-- Import do CSS -->
 <link rel="stylesheet" href="~/css/produto.css">
+
 <!-- Import do diretório cdnjs utilizado para criar um owl carousel -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
       integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
@@ -10,181 +11,213 @@
       integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
       crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-<body>
-    <!-- Criando o corpo da apresentação do produto -->
-    <div class="containerInformProduto">
-        <!-- Moldura utilizada para apresentação dos produtos -->
-        <div class="imagemProduto">
-            <img class="moldura" id="moldura" src=@TempData["ImagemProduto"] alt=""> <!-- Pega a imagem do produto associada ao ID dele -->
-        </div>
+<!-- Criando o corpo da apresentação do produto -->
+<div class="containerInformProduto">
+    <!-- Moldura utilizada para apresentação dos produtos -->
+    <div class="imagemProduto">
+        <img class="moldura" id="moldura" src=@TempData["ImagemProduto"] alt=""> <!-- Pega a imagem do produto associada ao ID dele -->
+    </div>
 
-        <div class="detalhesProduto">
-            <p id="titulo">@Model.nome</p> <!-- Define o nome como o valor que vem da classe produto -->
-            <p id="descricao">@Model.desc</p> <!-- Define a descrição com o valor que vem da classe -->
-            <!-- Se possuir algum valor para tamanho, ele adiciona o box de seleção de tamanhos -->
-            @if (Model.tamanho != 0)
-            {
-                <p id="tamanho">Tamanho Desejado:</p>
-                <div class="tamanhoAnel">
-                    <!-- Seleção de tamanho do anél -->
-                    <div class="selecaoTamanho">
+    <div class="detalhesProduto">
+        <p id="titulo">@Model.nome</p> <!-- Define o nome como o valor que vem da classe produto -->
+        <p id="descricao">@Model.desc</p> <!-- Define a descrição com o valor que vem da classe -->
+        <!-- Se possuir algum valor para tamanho, ele adiciona o box de seleção de tamanhos -->
+        @if (ViewBag.anel == true)
+        {
 
-                        <div class="select-box">
+            <p id="tamanho">Tamanho Desejado:</p>
+            <div class="tamanhoAnel">
+                <!-- Seleção de tamanho do anél -->
+                <div class="selecaoTamanho">
 
-                            <div class="containerOpcoes">
-                                <!-- Adiciona as opções de tamanho de acordo com os tamanhos disponíveis do produto no banco de dados -->
-                                @foreach (int tamanho in Model.pegarTamanhoAneis(Model.id))
+                    <div class="select-box">
+
+                        <div class="containerOpcoes">
+                            <!-- Adiciona as opções de tamanho de acordo com os tamanhos disponíveis do produto no banco de dados -->
+                            @foreach (int tamanho in Model.pegarTamanhoAneis(Model.id))
+                            {
+                                if (tamanho != 0)
                                 {
-                                    if (tamanho != 0)
-                                    {
-                                        <div class="opcao">
-                                            <input type="radio" class="radio" id=@tamanho name="categoria">
-                                            <label for=@tamanho>@tamanho</label>
-                                        </div>
-                                    }
+                                    <div class="opcao">
+                                        <input type="radio" class="radio" id="tamanho_@tamanho" name="categoria">
+                                        <label for=@tamanho>@tamanho</label>
+                                    </div>
                                 }
-                            </div>
-
-                            <div class="selecionado">
-                                Tamanho Selecionado
-                            </div>
-
+                            }
                         </div>
+
+                        <div class="selecionado">
+                            Tamanho Selecionado
+                        </div>
+
                     </div>
-                    <!-- Fim da área de seleção de tamanho do anél -->
                 </div>
-            }
-            <p id="estoque">Quantidade Disponível em Estoque: @Model.qntd</p>
-            <p id="qtde">Quantidade Desejada:</p>
-            <div>
-
-                <button id="minus">-</button><input min=1 max=@Model.qntd id="total" type="number" value="1"><button id="plus">+</button>
-
+                <!-- Fim da área de seleção de tamanho do anél -->
             </div>
-
-
-            <div class="preco">
-                <p id="preco">R$ @Model.preco</p> <!--Define o preço de acordo com os valores da classe produto-->
-            </div>
-
-            <div class="buttons">
-                <div class="buttonCarrinho">
-                    <form id="carrinhoForm" method="post" type="hidden">
-                        <button class="btn" id="btnCarrinho" onclick="submitCarrinhoForm(event)">Adicionar ao Carrinho</button>
-                    </form>
-                </div>
-                <!-- Se o viewbag retornar true, o que significa que possui Modelo 3d, ele adiciona o botão de Try ON -->
-                @if (ViewBag.modelo3D == false || Model.tamanho != 0)
-                {
-
-                }
-                else
-                {
-                    <div class="buttonTryOn">
-                        <a href="@Url.Action("TryON","Home")"><button class="btn" id="try-on">Virtual Try-On </button></a>
-                    </div>
-                }
-            </div>
-
+        }
+        <p id="estoque">Quantidade Disponível em Estoque: @Model.qntd</p> <!-- Define a quantidade com o valor que vem da classe -->
+        <p id="qtde">Quantidade Desejada:</p>
+        <div>
+            <button id="minus">-</button>
+            <input min=1 max=@Model.qntd id="total" type="number" value="1"> <!--Define o valor máximo como o valor obtido da classe-->
+            <button id="plus">+</button>
         </div>
 
-    </div>
 
-    <div class="txtPdtSim">
-        <p>Produtos Similares/Indicados</p>
-    </div>
+        <div class="preco">
+            <p id="preco">R$ @Model.preco</p> <!--Define o preço de acordo com os valores da classe produto-->
+        </div>
 
-    <br>
-
-    <!-- Carousel com as indicações dos produtos similares -->
-    <div class="produtosSimilares">
-        <div class="owl-carousel owl-theme">
-
-            <!-- Função para sortear os produtos similares, e adicionar suas imagens no carrosel de recomendados -->
-            @if (Model.similaresid.Length != 0) //Isto sempre retorna true, é usado apenas para iniciar a função Razor
+        <div class="buttons">
+            <div class="buttonCarrinho">
+                <form id="carrinhoForm" method="post" type="hidden">
+                    <!--Quando se clica no botão de carrinho, se realiza um post para o controller, o método em JS modifica o action do form usando o id do produto-->
+                    <button class="btn" id="btnCarrinho" onclick="submitCarrinhoForm(event)">Adicionar ao Carrinho</button>
+                </form>
+            </div>
+            <!-- Se o viewbag retornar true, o que significa que possui Modelo 3d, ele adiciona o botão de Try ON
+                porém, se for true, mas possuir tamanho (é um anel) não tem TryON, pois no site aneis não tem tryON
+            -->
+            @if (ViewBag.modelo3D == false || Model.tamanho != 0)
             {
-                int i = 0;
-                //Para cada img, ele adiciona um item no carrosel
-                foreach (String img in Model.produtosSimilares(Model.tamanho == 0 ? "Oculos" : "Anel", Model.id))
-                {
-                    <div class="item">
-                        <a href=@Url.Action("Produto","Home",values: new{id=@Model.similaresid[i]})>
-                            <!--Adiciona o redirecionamento ao produto correto associado a imagem inserida-->
-                            <img src=@img alt="">
-                            <div class="content">
-                                <ion-icon id="icone" name="eye-outline" style="color: #ffff;"><a href=@Url.Action("Produto","Home",values: new{id=@Model.similaresid[i]})></a></ion-icon>
-                            </div>
-                        </a>
-                    </div>
-                    i++;
-                }
+
             }
-
-
+            else
+            {
+                <div class="buttonTryOn">
+                    <a href="@Url.Action("TryON","Home")"><button class="btn" id="try-on">Virtual Try-On </button></a>
+                </div>
+            }
         </div>
+
     </div>
-    <!-- Fim do carousel com as indicações dos produtos similares -->
-    <!-- Import do diretório cdnjs utilizado para criar um owl carousel -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
-            integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
-            integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <!-- Linkando o JavaScript -->
-    <script src="~/js/selecaoTamanho.js"></script>
-    <script src="~/js/carouselProdutos.js"></script>
-    <script>
-        $(document).ready(function () {
-            document.getElementById("minus").addEventListener("click", menos);
-            document.getElementById("plus").addEventListener("click", mais);
-        })
+</div>
 
-        document.getElementById("total").addEventListener("focusin", correctValue)
-        document.getElementById("total").addEventListener("focusout", correctValue)
+<div class="txtPdtSim">
+    <p>Produtos Similares/Indicados</p>
+</div>
+<br>
 
-        function correctValue(){
-            if (document.getElementById("total").value > document.getElementById("total").max) {
-                document.getElementById("total").value = document.getElementById("total").max;
+<!-- Carousel com as indicações dos produtos similares -->
+<div class="produtosSimilares">
+    <div class="owl-carousel owl-theme">
+
+        <!-- Função para sortear os produtos similares, e adicionar suas imagens no carrosel de recomendados -->
+        @if (Model.similaresid.Length != 0) //Isto sempre retorna true, é usado apenas para iniciar a função Razor
+        {
+            int i = 0;
+            //Para cada img, ele adiciona um item no carrosel
+            //Usa-se um operador ternário, se for um anel retorna um anel, se não, um oculos, aliado ao ID do item, para buscar no método
+            foreach (String img in Model.produtosSimilares(Model.tamanho == 0 ? "Oculos" : "Anel", Model.id))
+            {
+                <div class="item">
+                    <a href=@Url.Action("Produto","Home",values: new{id=@Model.similaresid[i]})>
+                        <!--Adiciona o redirecionamento ao produto correto associado a imagem inserida-->
+                        <img src=@img alt="">
+                        <div class="content">
+                            <ion-icon id="icone" name="eye-outline" style="color: #ffff;"><a href=@Url.Action("Produto","Home",values: new{id=@Model.similaresid[i]})></a></ion-icon>
+                        </div>
+                    </a>
+                </div>
+                i++;
             }
-            if (document.getElementById("total").value < document.getElementById("total").min) {
-                document.getElementById("total").value = document.getElementById("total").min;
-            }
-        }        
+        }
 
-        function submitCarrinhoForm(event) {
-            event.preventDefault();
-            var sqntd = document.getElementById("total").value;
-            var form = document.getElementById("carrinhoForm");
 
-            var actionUrl = '@Html.Raw(Url.Action("Carrinho", "Home", new { qntd = "_QTND_", id = "_ID_" }))'
+    </div>
+</div>
+<!-- Fim do carousel com as indicações dos produtos similares -->
+<!-- Import do diretório cdnjs utilizado para criar um owl carousel -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
+        integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+        integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<!-- Importando os javascripts locais -->
+<script src="~/js/selecaoTamanho.js"></script>
+<script src="~/js/carouselProdutos.js"></script>
+
+<script>
+    //Usando JQuery, se define que, quando a página estiver pronta, ele adiciona um listener ao elemento mais e menos, que, quando clicados
+    // eles chamarão a função mais e menos, respectivamente
+    $(document).ready(function () {
+        document.getElementById("minus").addEventListener("click", menos);
+        document.getElementById("plus").addEventListener("click", mais);
+    })
+
+    //Na caixa de total de itens, se adiciona um listener, toda vez que ela receber foco, ou perder foco, ele chama o método para verificar se o valor está correto
+    document.getElementById("total").addEventListener("focusin", correctValue)
+    document.getElementById("total").addEventListener("focusout", correctValue)
+
+    //Função que corrige o valor do campo "total"
+    function correctValue() {
+        //Se o valor inserido for maior que o valor máximo disponivel, define-se o valor como o valor máximo
+        if (document.getElementById("total").value > document.getElementById("total").max) {
+            document.getElementById("total").value = document.getElementById("total").max;
+            alert("O valor desejado era maior do que o disponível em estoque");
+        }
+
+        //Se o valor inserido for menor que o valor mínimo disponivel, define-se o valor como o valor mínimo
+        if (document.getElementById("total").value < document.getElementById("total").min) {
+            document.getElementById("total").value = document.getElementById("total").min;
+            alert("Não é possível comprar menos de 1 item!")
+        }
+    }
+
+    //Função que muda a ação do Form
+    function submitCarrinhoForm(event) {
+        event.preventDefault(); //Pausa o evento que iria acontecer como padrão
+        var sqntd = document.getElementById("total").value; //Pega a quantidade de produtos desejada
+        var form = document.getElementById("carrinhoForm"); //´Pega o formulário
+
+        console.log("em cima");
+
+        if (@(ViewBag.anel.ToString().ToLower()) == true) {
+            console.log("entrou");            
+            const selecionado = document.querySelector(".selecionado");
+            console.log("valor = " + selecionado.innerHTML);
+            var actionUrl = '@Html.Raw(Url.Action("Carrinho", "Home", new { qntd = "_QTND_", id = "_ID_", tamanho = "_Tamanho_" }))'
+                .replace("_QTND_", sqntd)
+                .replace("_ID_", @Model.id)
+                .replace("_Tamanho_", selecionado.innerHTML);
+        }
+        else
+        {
+            var actionUrl = '@Html.Raw(Url.Action("Carrinho", "Home", new { qntd = "_QTND_", id = "_ID_"}))'
                 .replace("_QTND_", sqntd)
                 .replace("_ID_", @Model.id);
-            form.action = actionUrl;
-            form.submit();
-        }        
+        }
+        console.log("veio p action");
 
-        function mais() {
-            var total = parseInt(document.getElementById("total").value);
-            if (total + 1 > document.getElementById("total").max) {
+        form.action = actionUrl; //Define a ação do formulário sendo a chamada do método no controller
+        form.submit(); //Envia o formulário
+    }
 
-            }else{
-                var novo = total + 1;
-                document.getElementById("total").value = novo;
-            }
-            
+    //Função que adiciona os valores no total
+    function mais() {
+        var total = parseInt(document.getElementById("total").value); //Pega o valor já existente no total
+        if (total + 1 > document.getElementById("total").max) { //Se, quando ele somar +1, o valor for ser maior que o máximo do total
+            //Não faz nada
+        }
+        else { //Caso contrário, define o valor do total como o novo valor
+            var novo = total + 1;
+            document.getElementById("total").value = novo;
         }
 
-        function menos() {
-            var total = parseInt(document.getElementById("total").value);
-            if (total - 1 > 0) {
-                var novo = total - 1;
-                document.getElementById("total").value = novo;
-            }
+    }
 
+    //Função que diminui os valores do total
+    function menos() {
+        var total = parseInt(document.getElementById("total").value); //Pega o total
+        if (total - 1 > 0) { //Se, quando eu diminuir 1 do total, o valor for maior do que 0, ele executa a função de diminuir 1 do total
+            var novo = total - 1;
+            document.getElementById("total").value = novo;
         }
 
-    </script>
-</body>
+    }
+
+</script>
 
