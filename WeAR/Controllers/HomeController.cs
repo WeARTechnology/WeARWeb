@@ -228,7 +228,7 @@ namespace WeAR.Controllers
 
         /*              Métodos que modificam o Banco, usa-se [Authorize] para não permitir que sejam acessados                 */
 
-        //[Authorize]
+        [Authorize]
         //Método que lista todas as imagens contidas no banco
         public IActionResult ListarImagens()
         {
@@ -240,7 +240,7 @@ namespace WeAR.Controllers
             return View(imagens);
         }
 
-        //[Authorize]
+        [Authorize]
         //Método que Envia as imagens para o banco
         public String EnviarImagem(IFormCollection form)
         {
