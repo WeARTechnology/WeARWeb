@@ -1,168 +1,178 @@
+/* Import da fonte utilizada no site */
 @font-face {
-    font-family: "WeAR extra negrito";
-    src: url(../fonts/postnobillscolombo-extrabold.ttf);
+  font-family: "WeAR extra negrito";
+  src: url(../fonts/postnobillscolombo-extrabold.ttf);
 }
 
 @font-face {
-    font-family: "WeAR negrito";
-    src: url(../fonts/postnobillscolombo-bold.ttf);
+  font-family: "WeAR negrito";
+  src: url(../fonts/postnobillscolombo-bold.ttf);
 }
 
 @font-face {
-    font-family: "WeAR semi negrito";
-    src: url(../fonts/postnobillscolombo-semibold.ttf);
+  font-family: "WeAR semi negrito";
+  src: url(../fonts/postnobillscolombo-semibold.ttf);
 }
 
 @font-face {
-    font-family: "WeAR regular";
-    src: url(../fonts/postnobillscolombo-regular.ttf);
+  font-family: "WeAR regular";
+  src: url(../fonts/postnobillscolombo-regular.ttf);
 }
 
 @font-face {
-    font-family: "WeAR médio";
-    src: url(../fonts/postnobillscolombo-medium.ttf);
+  font-family: "WeAR médio";
+  src: url(../fonts/postnobillscolombo-medium.ttf);
 }
 
 @font-face {
-    font-family: "WeAR light";
-    src: url(../fonts/postnobillscolombo-light.ttf);
+  font-family: "WeAR light";
+  src: url(../fonts/postnobillscolombo-light.ttf);
 }
 
+/* Configuração geral da tela */
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0; /* Margem */
+  padding: 0;
 }
 
-
-
+/* Título */
 h1 {
-    font-family: "Wear semi negrito";
-    color: #144d83;
-    text-align: center;
+  font-family: "Wear semi negrito"; /* Fonte */
+  color: #144d83; /* Cor */
+  text-align: center; /* Alinhamento do texto */
 }
 
-
-
+/* Parágrafo */
 p {
-    font-family: "Wear regular";
-    font-size: medium;
-    color: #8CA1C5;
-    justify-content: space-around;
-    text-align: center;
+  font-family: "Wear regular";
+  font-size: medium; /* Tamanho da fonte */
+  color: #8ca1c5;
+  justify-content: space-around; /* Formatação */
+  text-align: center;
 }
 
+/* Formulário */
 fieldset {
-    border-width: 50px;
-    border-style: solid;
-    border-image: url(../img/backgroundcontato.jpg) 30 stretch;
-    height: 30%;
-    width: 70%;
-    background-color: #ffffff;
-    padding: 2% 4% 1% 2%;
-    border-color: #8CA1C5;
-    border-style: double;
-    box-shadow: #8CA1C5;
-    justify-content: start;
-    margin: 0 auto;
+  border-width: 50px; /* Comprimento da borda */
+  border-style: solid; /* Estilo da borda */
+  border-image: url(../img/backgroundcontato.jpg) 30 stretch; /* Adicionando uma imagem para servir de borda para o formulário */
+  height: 30%; /* Altura */
+  width: 70%; /* Comprimento */
+  background-color: #ffffff; /* Cor de fundo */
+  padding: 2% 4% 1% 2%; /* Distância entre elemento e borda */
+  border-color: #8ca1c5; /* Cor da borda */
+  border-style: double; 
+  box-shadow: #8ca1c5; /* Adicionando sombra a caixa referente ao formulário e borda */
+  justify-content: start;
+  margin: 0 auto;
 }
 
+/* Botões */
 .buttons {
-    text-align: center;
+  text-align: center;
 }
 
+/* Botõa submit - envia o form | botão reset - apaga os dados do form */
 input[type="submit"],
 input[type="reset"] {
-    margin-left: 1%;
-    margin-right: 1%;
-    margin-top: 1%;
-    padding: 1% 2%;
-    background-color: #8ca1c56c;
-    border: #144d83;
-    border-radius: 5%;
-    color: #144D83;
-    transition: 0.3s all ease-in-out;
-    font-family: "WeAR semi negrito";
-    font-size: 100%;
+  margin-left: 1%;
+  margin-right: 1%;
+  margin-top: 1%;
+  padding: 1% 2%;
+  background-color: #8ca1c56c;
+  border: #144d83;
+  border-radius: 5%;
+  color: #144d83;
+  transition: 0.3s all ease-in-out; /* Transição */
+  font-family: "WeAR semi negrito";
+  font-size: 100%;
 }
 
-    input[type="submit"]:hover,
-    input[type="reset"]:hover {
-        transform: scale(1.4);
-    }
+/* Hover é aquele usado quando passamos o cursor do mouse por cima de algum elemento na página html */
+input[type="submit"]:hover,
+input[type="reset"]:hover {
+  transform: scale(1.4);
+}
 
+/* Campos de digitação de dados */
 input {
-    padding: 1%;
-    outline: none;
+  padding: 1%;
+  outline: none;
 }
 
-    input[id="nomeEmpresa"],
-    input[id="nomeResponsavel"],
-    input[id="email"],
-    input[id="telefone"],
-    input[id="cnpj"],
-    input[id="ramo"],
-    input[id="descricao"] {
-        width: 100%;
-        margin-bottom: 2%;
-        color: #144D83;
-    }
+input[id="nomeEmpresa"], /* Área para o nome da empresa */
+input[id="nomeResponsavel"], /* Área para o nome do responsável */
+input[id="email"], /* Área para o email */
+input[id="telefone"], /* Área para o telefone */
+input[id="cnpj"], /* Área para o CNPJ */
+input[id="ramo"], /* Área para o ramo da empresa */
+input[id="descricao"] /* Área para a descrição do que o cliente desejar */ { 
+  width: 100%;
+  margin-bottom: 2%;
+  color: #144d83;
+}
 
-    input[type="text"],
-    input[type="email"] {
-        border: none;
-        border-bottom: 2px solid #8CA1C5;
-        transition: 0.3s all ease-in-out;
-        font-family: "WeAR light"
-    }
+input[type="text"], /* Para receber textos */
+input[type="email"] /* Para receber emails */ { 
+  border: none;
+  border-bottom: 2px solid #8ca1c5;
+  transition: 0.3s all ease-in-out;
+  font-family: "WeAR light";
+}
 
-        input[type="text"]:focus,
-        input[type="email"]:focus {
-            color: #144D83;
-            font-weight: 600;
-            letter-spacing: 1px;
-            border-color: #144D83;
-        }
+/* O focus é um recurso visual para mostrar qual elemento está sendo utilizado, ou o mais importante no momento */
+/* Adicionando a opção de foco para a área de input selecionada */
+input[type="text"]:focus,
+input[type="email"]:focus {
+  color: #144d83;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border-color: #144d83;
+}
 
+/* Área que receberá os inputs de texto */
 textarea {
-    padding: 2%;
-    outline: none;
-    width: 98%;
-    resize: none;
-    font-family: "WeAR light";
-    letter-spacing: 1px;
-    font-size: 110%;
-    border-color: #8CA1C5;
+  padding: 2%;
+  outline: none;
+  width: 98%;
+  resize: none;
+  font-family: "WeAR light";
+  letter-spacing: 1px;
+  font-size: 110%;
+  border-color: #8ca1c5;
 }
-
-    textarea:focus {
-        font-family: "WeAR regular";
-    }
+textarea:focus {
+  font-family: "WeAR regular";
+}
 
 .form-label {
-    color: #144d83;
-    font-family: "WeAR médio";
-    font-size: 145%;
+  color: #144d83;
+  font-family: "WeAR médio";
+  font-size: 145%;
 }
+
 /*Estilização do botão de enviar arquivos*/
-input[type=file] {
-    width: 350px;
-    max-width: 100%;
-    color: #444;
-    padding: 5px;
-    background: #fff;
-    border-radius: 10px;
-    border: 1px solid #555;
+input[type="file"] {
+  width: 350px;
+  max-width: 100%;
+  color: #444;
+  padding: 5px;
+  background: #fff;
+  border-radius: 5%;
+  border: 1px solid #555;
 }
-    input[type=file]::-webkit-file-upload-button {
-        margin-right: 20px;
-        border: none;
-        background: #144D83;
-        padding: 10px 20px;
-        border-radius: 10px;
-        color: #fff;
-        cursor: pointer;
-        transition: background .2s ease-in-out;
-    }
-input[type=file]::-webkit-file-upload-button:hover {
-    background: #144083;
+
+/* Botão para subir um arquivo */
+input[type="file"]::-webkit-file-upload-button {
+  margin-right: 20px;
+  border: none;
+  background: #144d83;
+  padding: 10px 20px;
+  border-radius: 5%;
+  color: #fff;
+  cursor: pointer;
+}
+
+input[type="file"]::-webkit-file-upload-button:hover {
+  background: #144083;
 }

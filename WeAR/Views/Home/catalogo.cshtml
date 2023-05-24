@@ -42,10 +42,21 @@
                 </a>
 
             </fieldset>
-            <form id="carrinhoForm" method="post" type="hidden">
-                <!--Quando se clica no botão de carrinho, se realiza um post para o controller, o método em JS modifica o action do form usando o id do produto-->
+            @if (p.tamanho == 0)
+            {
+                <form id="carrinhoForm" method="post" type="hidden">
+                    <!--Quando se clica no botão de carrinho, se realiza um post para o controller, o método em JS modifica o action do form usando o id do produto-->
                 <button class="btn" id="btnCarrinho" onclick="submitCarrinhoForm(event,@id)">Comprar</button> 
-            </form>
+                </form>
+            }
+            else
+            {
+                <form id="carrinhoForm" method="post" type="hidden">
+                    <!--Quando se clica no botão de carrinho, se realiza um post para o controller, o método em JS modifica o action do form usando o id do produto-->
+                    <button class="btn" id="btnCarrinho" ><a href=@Url.Action("produto","Home", values: new {id= id})> <!--Define o href do click, chamando a função do controller que 
+                                                                            redireciona a página do produto, e define o id como o id passado -->Comprar</a></button>
+                </form>
+            }
         }
     }
 
@@ -58,7 +69,7 @@
         event.preventDefault(); //Ele naõ deixa que o evento default que iria acontecer aconteça
         var sqntd = 1; //Define a quantidade padrão como 1
         //Cria uma URL usando Razor, que redireciona ao método Carrinho do Controller, usando o ID e a quantidade passadas
-        var actionUrl = '@Html.Raw(Url.Action("Carrinho", "Home", new { qntd = "_QTND_", id = "_ID_" }))'
+        var actionUrl = '@Html.Raw(Url.Action("Carrinho", "Cart", new { qntd = "_QTND_", id = "_ID_" }))'
         .replace("_QTND_", sqntd)
         .replace("_ID_", ProductID);
 

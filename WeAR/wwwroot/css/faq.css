@@ -1,3 +1,4 @@
+/* Import da fonte utilizada na página */
 @font-face {
     font-family: "WeAR extra negrito";
     src: url(../fonts/postnobillscolombo-extrabold.ttf);
@@ -28,17 +29,28 @@
     src: url(../fonts/postnobillscolombo-light.ttf);
 }
 
+/* Configurando a página como um todo */
 *{
     margin: 0;
     padding: 0;
 }
 
+/* Pesquisa */
 .pesquisa{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 3%;
+    display: flex; /* Layout */
+    flex-direction: column; /* Direção do display:flex */
+    align-items: center; /* Alinhamento */
+    justify-content: center; /* Formatação */
+    margin: 3%; /* Margem */
+}
+
+.pesquisa button{
+    background: none;
+    border: none;
+}
+
+.pesquisa button:hover{
+   opacity: 70%;
 }
 
 #divBusca{
@@ -48,28 +60,28 @@
     display: flex;
 }
   
- #txtBusca{
+#txtBusca{
     padding-left:1%;
-    font-family: "WeAR semi negrito";
-    font-style:italic;
-    font-size: 140%;
-    border:none;
-    height:18%;
-    width: 95%;
+    font-family: "WeAR semi negrito"; /* Fonte */
+    font-style: italic; /* Estilo da fonte */
+    font-size: 140%; /* Tamanho da fonte */
+    border: none; /* Borda */
+    height: 18%; /* Altura */
+    width: 95%; /* Comprimento */
 }
 
+/* O focus é um recurso visual para mostrar qual elemento está sendo utilizado, ou o mais importante no momento */
 input:focus{
     outline: 0;
 }
 
 input:focus img{
     transition: all 0.2s ease 0s;
-    
 }
 
 #divBusca img{
-padding-right: 1%;
-padding-bottom: 1%;
+    padding-right: 1%;
+    padding-bottom: 1%;
 }
 
 .pesquisa hr{
@@ -78,8 +90,38 @@ padding-bottom: 1%;
     width: 70%;
 }
 
+/* Seções */
+section{
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+section details{
+    width: 60%;
+    margin-left: 20%;
+    padding: 1.5%;
+    
+}
+section details hr{
+    border-color: #144d83;
+    border-top: none;
 
-.faqDropdown{
+}
+section details summary{
+    font-size: 175%;
+    font-family: "WeAR negrito";
+    color: #144d83;
+    cursor: pointer;
+}
+section details p{
+    font-size: 125%;
+    font-family: "WeAR semi negrito";
+    color: #8CA1C5;
+    margin-top: 1%;
+}
+
+
+/* .faqDropdown{
     width: 95%;
     margin: 1% 5% 1% 5%;
 }
@@ -140,4 +182,4 @@ button{
     .faqDropdown h2{
     white-space: normal;
     }
-}
+} */

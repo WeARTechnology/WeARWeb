@@ -4,104 +4,93 @@
     <title>FAQ</title>
 </head>
 
-    <div class="pesquisa">
-        <div id="divBusca">
-            <input type="text" id="txtBusca" placeholder="Digite o que procura" />
-            <img src="/img/fechar.png" id="btnBusca" alt="Buscar" />
-        </div>
-        <hr>
+<!-- Área de pesquisa -->
+<div class="pesquisa">
+    <div id="divBusca">
+        <input type="text" id="txtBusca" placeholder="Digite o que procura" />
+        <!-- Campo de entrada para receber textos do usuário -->
+        <button><img src="~/img/fechar.png" id="btnBusca" alt="Buscar" /></button>
+        <!-- Botão para que o usuário realize a busca da dúvida que escreveu -->
     </div>
+</div>
+<!-- Fim da área de pesquisa -->
+<!-- Seção de dúvidas frequentes e suas respostas -->
+<section>
+    <!-- Cada bloco <details> contém uma pergunta e sua respectiva resposta -->
+    <details>
+        <!-- Guardar detalhes -->
+        <!-- Pergunta -->
+        <summary>O que é um Virtual Try-on?</summary> <!-- Título dos detalhes -->
+        <hr>
+        <!-- Resposta -->
+        <p>
+            Um virtual try-on é uma tecnologia que permite que você experimente diferentes modelos de
+            produtos
+            (nesse caso, especificamente óculos) virtualmente antes de fazer uma compra. A tecnologia
+            utiliza a
+            câmera do seu dispositivo para projetar um modelo 3D do produto em você, permitindo que você
+            veja
+            como eles ficam em tempo real.
+        </p>
+    </details>
 
+    <details>
+        <!-- Guardar detalhes -->
+        <!-- Pergunta -->
+        <summary>Quais são os benefícios de usar um virtual try-on?</summary> <!-- Título dos detalhes -->
+        <hr>
+        <!-- Resposta -->
+        <p>
+            Existem vários benefícios em usar um virtual try-on. Ele permite que você experimente uma ampla
+            variedade de modelos de produtos sem ter que visitar uma loja física, economizando tempo e
+            esforço. Além disso, ele permite que você veja como os modelos ficam em seu rosto antes de fazer
+            uma compra, o que pode ajudá-lo a escolher o modelo certo para você.
+        </p>
+    </details>
 
-    <ul class="faqDropdown">
-        <li class="faqItem">
-            <div class="buttonPergunta">
-                <button id="pergunta">
-                    <h2 class="faqPergunta">O que é um Virtual Try-on?</h2>
-                    <img src="/img/setas-para-baixo.png" alt="">
-                </button>
-            </div>
-            <hr>
-            <div class="faqResposta" id="faqResposta">
-                <ul>
-                    <p>Um virtual try-on é uma tecnologia que permite que você experimente diferentes modelos de
-                        produtos
-                        (nesse caso, especificamente óculos) virtualmente antes de fazer uma compra. A tecnologia
-                        utiliza a
-                        câmera do seu dispositivo para projetar um modelo 3D do produto em você, permitindo que você
-                        veja
-                        como eles ficam em tempo real.</p>
-                </ul>
-            </div>
-        </li>
+    <details>
+        <!-- Guardar detalhes -->
+        <!-- Pergunta -->
+        <summary>Como faço para usar um virtual try-on?</summary> <!-- Título dos detalhes -->
+        <hr>
+        <!-- Resposta -->
+        <p>
+            Para usar um virtual try-on, você precisará de um dispositivo com uma câmera, como um smartphone
+            ou um computador com webcam. Em seguida, visite o nosso site ou aplicativo do onde oferecemos a
+            tecnologia de try-on virtual e siga as instruções na tela para que o software de try-on virtual,
+            então, projete o modelo 3D dos óculos em seu rosto para que você possa experimentá-los.
+        </p>
+    </details>
 
-        <li class="faqItem">
-            <div class="buttonPergunta">
-                <button>
-                    <h2 class="faqPergunta">Quais são os benefícios de usar um virtual try-on?</h2>
-                    <img src="/img/setas-para-baixo.png" alt="">
-                </button>
-            </div>
-            <hr>
-            <div class="faqResposta">
-                <ul>
-                    <p>Existem vários benefícios em usar um virtual try-on. Ele permite que você experimente uma ampla
-                        variedade de modelos de produtos sem ter que visitar uma loja física, economizando tempo e
-                        esforço. Além disso, ele permite que você veja como os modelos ficam em seu rosto antes de fazer
-                        uma compra, o que pode ajudá-lo a escolher o modelo certo para você.</p>
-                </ul>
-            </div>
-        </li>
+    <details>
+        <!-- Guardar detalhes -->
+        <!-- Pergunta -->
+        <summary>A precisão do virtual try-on é confiável?</summary> <!-- Título dos detalhes -->
+        <hr>
+        <!-- Resposta -->
+        <p>
+            Em geral, a tecnologia tem melhorado significativamente nos últimos anos. É importante lembrar
+            que, embora o try-on virtual possa ser útil para ajudá-lo a escolher um modelo de óculos, ele
+            não substitui uma consulta com um profissional de oftalmologia.
+        </p>
+    </details>
 
-        <li class="faqItem">
-            <div class="buttonPergunta">
-                <button>
-                    <h2 class="faqPergunta">Como faço para usar um virtual try-on?</h2>
-                    <img src="/img/setas-para-baixo.png" alt="">
-                </button>
-            </div>
-            <hr>
-            <div class="faqResposta">
-                <ul>
-                    <p>Para usar um virtual try-on, você precisará de um dispositivo com uma câmera, como um smartphone
-                        ou um computador com webcam. Em seguida, visite o nosso site ou aplicativo do onde oferecemos a
-                        tecnologia de try-on virtual e siga as instruções na tela para que o software de try-on virtual,
-                        então, projete o modelo 3D dos óculos em seu rosto para que você possa experimentá-los.</p>
-                </ul>
-            </div>
-        </li>
-
-        <li class="faqItem">
-            <div class="buttonPergunta">
-                <button>
-                    <h2 class="faqPergunta">A precisão do virtual try-on é confiável?</h2>
-                    <img src="/img/setas-para-baixo.png" alt="">
-                </button>
-            </div>
-            <hr>
-            <div class="faqResposta">
-                <ul>
-                    <p>Em geral, a tecnologia tem melhorado significativamente nos últimos anos. É importante lembrar
-                        que, embora o try-on virtual possa ser útil para ajudá-lo a escolher um modelo de óculos, ele
-                        não substitui uma consulta com um profissional de oftalmologia.</p>
-                </ul>
-            </div>
-        </li>
-
-        <li class="faqItem">
-            <div class="buttonPergunta">
-                <button>
-                    <h2 class="faqPergunta">Posso compartilhar minha imagem de virtual try-on de óculos nas redes
-                        sociais?</h2>
-                    <img src="/img/setas-para-baixo.png" alt="">
-                </button>
-            </div>
-            <hr>
-            <div class="faqResposta">
-                <ul>
-                    <p>Seguindo nossas politicas de privacidade, não é permitido o compartilhamento de imagens gerados pelo try-on WeAR.</p>
-                </ul>
-            </div>
-        </li>
-    </ul>
-
+    <details>
+        <!-- Guardar detalhes -->
+        <!-- Pergunta -->
+        <summary>Posso compartilhar minha imagem de virtual try-on de óculos nas redessociais?</summary>
+        <!-- Título dos detalhes -->
+        <hr>
+        <!-- Resposta -->
+        <p>
+            Seguindo nossas politicas de privacidade, não é permitido o compartilhamento de imagens gerados pelo
+            try-on WeAR.
+        </p>
+    </details>
+    <br><br>
+    <!-- paragrafo de redirecionamento para a pagina de contato, para caso de mais duvidas -->
+    <div class="contatoDuvidas">
+        <h2>Se ainda estiver com dúvidas, entre em <a href="/Home/Contato">contato</a> conosco!</h2>
+    </div>
+    <br><br>
+</section>

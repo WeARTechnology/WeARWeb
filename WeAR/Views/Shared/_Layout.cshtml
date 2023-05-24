@@ -5,37 +5,51 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <!--Importa Jquery, o icone da página , o css da navbar e do footer-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="shortcut icon" type="image/png" href="~/img/icon.png">
-    <link rel="stylesheet" href="~/css/navbar.css">
-    <link rel="stylesheet" href="~/css/footer.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/footer.css">
 </head>
 
 <body>
-    <!-- inicio navbar -->
+    <!-- Início navbar -->
     <header>
+        <!-- Cabaçalho do site -->
         <nav>
-            <a href="/Home/Index" class="logo"><img src="img/icon3.png" alt=""></a>
-            <!-- menu responsivo -->
+            <!-- Seção de navagação do cabeçalho -->
+            <a href="/Home/Index" class="logo"><img src="~/img/icon3.png" alt="" /></a>
+            <!-- Logotipo e redirecionamento para a página home -->
+            <!-- Menu responsivo/hambúrguer -->
             <div class="mobile-menu">
                 <div class="line1"></div>
                 <div class="line2"></div>
                 <div class="line3"></div>
             </div>
-            <ul class="nav-list">
+
+            <!-- Lista de itens de navegação -->
+            <ul class="nav-list" id="nav-list">
+                <!-- 'li' representa cada item e cada 'a' um redirecionamento para uma página diferente -->
                 <li><a>@Html.ActionLink("Óculos de grau", "catalogo", "Home", routeValues: new { categoria = "Oculos Grau" })</a></li>
                 <li><a>@Html.ActionLink("Óculos de sol", "catalogo", "Home", routeValues: new { categoria = "Oculos Sol" })</a></li>
                 <li><a>@Html.ActionLink("Anéis", "catalogo", "Home", routeValues: new { categoria = "Anel" })</a></li>
-                <li><a href="/Home/Carrinho"><img src="/img/compras.png" alt="Carrinho"></a></li>
+                <li><a href="/Cart/Carrinho"><img src="/img/compras.png" alt="Carrinho"></a></li>
                 <li><a href="/Home/Contato"><img src="/img/telefone.png" alt="Contato"></a></li>
                 <li><a href=""><img src="/img/pesquisar.png" alt="Pesquisar"></a></li>
             </ul>
         </nav>
     </header>
-    <!-- fim navbar -->
+    <!-- Fim navbar -->
+    <!-- inicio searchBar -->
+    <div class="pesquisa">
+        <div id="divBusca">
+            <input type="text" id="txtBusca" placeholder="Digite o que procura" />
+            <button><img src="~/img/fechar.png" id="btnFecharBusca" alt="Buscar" /></button>
+            <hr>
+        </div>
+    </div>
+    <!-- Fim searchBar -->
     @RenderBody()
     <!-- Footer -->
     <div class="footer">
@@ -49,8 +63,16 @@
 
             <!-- Adicionando os ícones das redes sociais - no caso, gitHub e Instagram -->
             <ul class="social_icon">
-                <li><a href="#"><ion-icon name="logo-instagram"></ion-icon></a></li>
-                <li><a href="#"><ion-icon name="logo-github"></ion-icon></a></li>
+                <li>
+                    <a href="#">
+                        <ion-icon name="logo-instagram"></ion-icon>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <ion-icon name="logo-github"></ion-icon>
+                    </a>
+                </li>
             </ul>
 
             <!-- Redirecionamentos -->
@@ -63,7 +85,10 @@
 
             <!-- Marca d'água -->
             <ul class="marca_dagua">
-                <li>WeAr Technology | Trabalho de Conclusão de Curso | ₢ All Rights Reserved</li>
+                <li>
+                    WeAr Technology | Trabalho de Conclusão de Curso | All Rights
+                    Reserved
+                </li>
             </ul>
         </footer>
     </div>
@@ -71,8 +96,9 @@
     <!-- Instalação do material necessário para usar os ícones do ionicons -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script src="~/js/navbar.js"></script>
     <!-- Fim do Footer -->
 </body>
-
+<!-- Importando o JavaScript -->
+<script src="~/js/navbar.js"></script>
+<script src="~/js/searchBar.js"></script>
 </html>

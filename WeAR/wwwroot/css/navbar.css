@@ -1,125 +1,155 @@
+/* Import da fonte utilizada no site */
 @font-face {
-    font-family: "WeAR";
-    src: url(../fonts/postnobillscolombo-bold.ttf);
+  font-family: "WeAR";
+  src: url(../fonts/postnobillscolombo-bold.ttf);
 }
 
-*{ 
-margin: 0; 
-padding: 0;
+/* Configuração do todo */
+* {
+  margin: 0; /* Margem */
+  padding: 0; /* Distância entre elemento e borda */
 }
 
-a{
-    color: #144d83;
-    text-decoration: none;
-    transition: 0.3s;
-}
-a:hover{
-    color: #c88c20;
-    text-decoration: underline #c88c20;
-
-}
-.logo{
-    margin: 0.7% 10% 0% 5%;
+/* Links/Redirecionamentos */
+a {
+  color: #144d83; /* Cor */
+  text-decoration: none; /* Decoração do texto */
+  transition: 0.3s; /* Transição */
 }
 
-.logo:hover{
-    opacity: 80%;
-    transition: 0.2s;
+/* Quando há posicionamento do cursor encima do elemento */
+a:hover {
+  color: #c88c20;
+  text-decoration: underline #c88c20;
 }
-nav{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    font-family: "WeAR";
-    font-size: 200%;
-    text-decoration: underline #144d83;
+
+/* Logo do WeAr */
+.logo {
+  margin: 1% 10% 0% 5%;
+}
+
+.logo:hover {
+  opacity: 80%; /* Opacidade */
+  transition: 0.2s;
+}
+
+/* NavBar */
+nav {
+  display: flex; /* Layout */
+  justify-content: space-around; /* Formatação */
+  align-items: center; /* Alinhamento */
+  font-family: "WeAR"; /* Fonte */
+  font-size: 200%; /* Tamanho da fonte */
+  text-decoration: underline #144d83;
+  background: #fff; /* Cor do fundo */
+  height: 12%; /* Altura */
+}
+
+nav:hover {
+  transition: 0.5s ease;
+  background: linear-gradient(to bottom, #e1ba7777, #e1ba772c, #ffffff00);
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  margin-right: 40%;
+}
+
+.nav-list li {
+  white-space: nowrap; /* Espaços em branco */
+  letter-spacing: 5%; /* Espaçamento entre linhas */
+  margin-right: 19%;
+  justify-content: center;
+}
+
+.nav-list img:hover {
+  transition: 0.2s;
+  opacity: 70%;
+}
+.mobile-menu {
+  cursor: pointer; /* Cursor do mouse */
+  display: none;
+  width: 30px; /* Comprimento */
+  height: 20px; /* Altura */
+  position: relative;
+}
+.mobile-menu div {
+  width: 100%;
+  height: 2px;
+  background: #144d83;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%); /* Transforma o objeto, no caso girando o mesmo */
+  transition: 0.3s;
+}
+/*Dispondo o menu em uma coluna vertical*/
+.mobile-menu div:nth-child(2) {
+  top: 45%;
+}
+.mobile-menu div:nth-child(3) {
+  top: 55%;
+}
+
+/* Responsividade da página em 1500px */
+@media (max-width: 1500px) {
+  body {
+    overflow-x: hidden; /* Esconder o que fica pra fora do body */
+  }
+  .nav-list {
+    font-size: 75%;
+    position: absolute;
+    top: 11.5%;
+    right: 0;
+    width: 60%;
+    height: 128%;
+    margin-right: 47%;
     background: #fff;
-    height: 12%;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    transform: translateX(
+      200%
+    ); /* Mover o menu para fora da tela, enquanto não estiver sendo usado */
+    transition: transform 0.3s ease-in;
+    text-decoration: underline #144d83;
+  }
+  .mobile-menu {
+    display: block;
+    padding: 0% 0% 10% 0%;
+  }
 }
 
-nav:hover{
-    transition: 0.5s ease;
-    background: linear-gradient(to bottom, #e1ba7777, #e1ba772c, #fff );
-}
-
-.nav-list{
-    list-style: none;
-    display: flex;
-    margin-right: 40%;
-}
-.nav-list li{
-    white-space: nowrap;
-    letter-spacing: 5%;
-    margin-right: 19%;
-    justify-content: center;
-}
-.nav-list img:hover{
-    transition: 0.2s;
-    opacity: 70%;
-}
-.mobile-menu{
-    cursor: pointer;
-    display: none;
-}
-.mobile-menu div{
-    width: 200%;
-    height: 2px;
-    background: #144d83;
-    margin: 6%;
-    transition: 0.3s;
-}
-@media (max-width: 1500px){
-    body{
-        overflow-x: hidden; /* esconder o que fica pra fora do body */
-    }
-    .nav-list{
-        font-size: 90%;
-        position: absolute;
-        top: 12%;
-        right: 0;
-        width: 60%;
-        height: 150%;
-        background: linear-gradient(to bottom, #e1ba7777, #e1ba772c, #fff );
-        align-items: center;        
-        flex-direction: column;
-        justify-content: space-around;
-        transform: translateX(200%); /* mover o menu para fora da tela, enquanto não estiver sendo usado  */
-        transition: transform 0.3s ease-in;
-        text-decoration: underline #144d83;
-
-    }
-    .nav-list {
-        margin-left: 0;
-        opacity: 100;
-    }
-    .mobile-menu{
-        display: block;
-    }
-}
-
-.nav-list.active{
-    /* quando a nav-list estiver ativer ativa ela volta a sua posição normal no body */
-    transform: translateX(100%);
+.nav-list.active {
+  /* Quando a nav-list estiver ativer ativa ela volta a sua posição normal no body */
+  transform: translateX(100%);
 }
 @keyframes navLinkFade {
-    from{
-        opacity: 0;
-        transform: translateX(50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-.mobile-menu.active .line1{
-    transform: rotate(-45deg) translate(-8px, 8px);
-}
-
-.mobile-menu.active .line2{
+  /* From - to, represente de algo para algo diferente */
+  from { /* Antes da função ser ativada, o elemento não possui opacidade e é translado 50px no eixo X */
     opacity: 0;
+    transform: translateX(50px);
+  }
+  to { /* Depois qua ativada a função, o elemento se torna vísivel e retorna a posição original do eixo X */
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
-.mobile-menu.active .line3{
-    transform: rotate(45deg) translate(-5px, -7px);
+/* Rotacionar o elemento -45 graus e transladá-lo -8 pixels no eixo X e 8 pixels no eixo Y */
+.mobile-menu.active .line1 {
+  transform: rotate(-45deg) translate(-8px, 8px);
+  width: 78%;
+}
+
+/* Faz com que o elemento desapareça */
+.mobile-menu.active .line2 {
+  opacity: 0;
+}
+
+/* Rotacionar o elemento 45 graus e transladá-lo -5 pixels no eixo X e -7 pixels no eixo Y */
+.mobile-menu.active .line3 {
+  transform: rotate(45deg) translate(-5px, -7px);
+  width: 71%;
 }

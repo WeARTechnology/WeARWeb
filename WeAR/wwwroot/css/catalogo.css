@@ -1,3 +1,4 @@
+/* Import das fontes utilizadas no site */
 @font-face {
     font-family: "WeAR extra negrito";
     src: url(../fonts/postnobillscolombo-extrabold.ttf);
@@ -28,32 +29,37 @@
     src: url(../fonts/postnobillscolombo-light.ttf);
 }
 
+/* Configuração geral */
 * {
-    margin: 0%;
-    padding: 0%;
+    margin: 0%; /* Margem */
+    padding: 0%; /* Distância entre elemento e borda */
 }
 
+/* Área dos produtos */
 .produtos {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    display: flex; /* Layout */
+    flex-direction: row; /* Diração do display:flex */
+    flex-wrap: wrap; /* Define se os itens flexíveis são forçados a ficarem na mesma linha ou se podem ser quebradas em varias linhas */
+    justify-content: space-around; /* Formatação */
     margin: 3%;
 }
 
+/* Imagens dos produtos */
 .produtos img {
-    width: 98%;
-    border-width: 3vh;
-    border-image: url(../img/molduras/moldura7.png) 50 stretch;
-    border-style: double;
+    width: 98%; /* Comprimento */
+    border-width: 3vh; /* Grossura da borda */
+    border-image: url(../img/molduras/moldura7.png) 50 stretch; /* Adicionando as imagens dos produtos um padrão de borda */
+    border-style: double; /* Estilo da borda */
 }
 
+/* Hover é aquele usado quando passamos o cursor do mouse por cima de algum elemento na página html */
 .produtos img:hover {
-    cursor: pointer;
+    cursor: pointer; /* Cursor do mouse */
     width: 100%;
-    transition: all 0.2s ease 0s;
+    transition: all 0.2s ease 0s; /* Transição */
 }
 
+/* Agrupamento dos itens */
 .produtos fieldset {
     width: 22%;
     border: none;
@@ -62,9 +68,9 @@
 }
 
 fieldset h3 {
-    font-family: "WeAR semi negrito";
-    color: #144d83;
-    font-size: x-large;
+    font-family: "WeAR semi negrito"; /* Fonte */
+    color: #144d83; /* Cor da fonte */
+    font-size: x-large; /* Tamanho da fonte */
 }
 
 fieldset p {
@@ -83,5 +89,4 @@ fieldset a:hover {
     letter-spacing: 0.5px;
     transition: all 0.2s ease 0s;
     font-weight: bolder;
-
 }

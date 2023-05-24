@@ -1,0 +1,83 @@
+@model List<Produto> //Define o modelo da View, sua tipagem, assim, pode-se usar os métodos e atributos de Produto dentro da view
+
+
+<head>
+    <link rel="stylesheet" href="~/css/carrinho.css">
+
+    <!-- Definem variáveis globais do Js, que são as Url's para chamar o controller, feitas usando razor-->
+    <script>
+        var updateQuantityUrl = '@Url.Action("UpdateQuantity", "Cart")';
+        var removeFromCartUrl = '@Url.Action("RemoveFromCart", "Cart")';
+        var checkoutURL = '@Url.Action("Checkout","Cart")';
+    </script>
+
+    <title>Carrinho</title>
+</head>
+
+<h1>Seu carrinho</h1>
+<div class="carrinho">
+    @if (Model.Count == 0) //Se, o modelo retornado, possuir 0 valores, então não há produtos no carrinho
+    {
+        <h1>Não Há Produtos no Carrinho</h1>
+    }
+    else
+    {
+        float total = 0; //Inicializa-se a variável total que será utilizada depois
+        bool anel = false; //Inicializa - se a variável anel que será utilizada depois
+        <div class="produtos">
+            <div class="prodCarrinho">
+
+                @foreach (Produto p in Model) //Para cada produto que houver na lista do modelo
+                {
+
+                    float subtotal = (float)(p.qntd * p.preco); //Define o subtotal inicial como a multiplicação dos valores
+                    total += subtotal; //Define o total como a soma dos subtotais
+
+                    Imagem img = new Imagem(); //Cria-se um novo objeto de imagem e pega a imagem com o id especificado do banco
+                    string formatoImg = "data:image/jpeg;base64," + img.PegarImagem(p.id);
+
+                    <div class="prod">
+                        <div class="imgProd">
+                            <a href=@Url.Action("produto","Home", values: new {id= p.id})> <!--Define o href do click, chamando a função do controller que
+                                                                                            redireciona a página do produto, e define o id como o id passado -->
+                                <img src=@formatoImg alt=""> <!--Define o src da imagem como a Strig criada acima-->
+                            </a>
+                        </div>
+                        <div class="textProd">
+                            <a href=@Url.Action("produto","Home", values: new {id= p.id})><!--Define o href do click, chamando a função do controller que
+                                                                                             redireciona a página do produto, e define o id como o id passado -->
+                                <h2 class="nome_@p.id">@p.nome</h2> <!--o id, é nome_ID, e o nome é o nome que vem da classe-->
+                            </a>
+                            <h3 class="preco_@p.id">@p.preco</h3> <!--O id é preco_ID, e o preco é o preco que vem da classe-->
+                            <div class="quant">
+                                <button id="minus" onclick="menos(@p.id,@p.tamanho)" data-tamanho="@p.tamanho">-</button> <!--No método do OnClick, se passa o id do produto p-->
+                                <input min=0 class="quantity_@p.id" type="number" value=@p.qntd data-tamanho="@p.tamanho"> <!--O id é quantity_ID, e o valor atual, é o valor que vem da clase-->
+                                <button id="plus" onclick="mais(@p.id,@p.tamanho)" data-tamanho="@p.tamanho">+</button> <!--No método do OnClick, se passa o id do produto p-->
+                            </div>
+                            @if (p.tamanho != 0)
+                            {
+                                anel = true;
+                                <p id="tamanho">Tamanho: @p.tamanho</p>
+                            }
+                            <h3 class="subtotal_@p.id" data-tamanho="@p.tamanho">Subtotal:@subtotal </h3> <!--O id é subtotal_ID, e o valor do subtotal, usa a variável criada anterirmente-->
+                            <button onclick="removeProduct(@p.id,@p.tamanho)">Remover</button> <!--No método do OnClick, se passa o id do produto p-->
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div class="valorFinalizacao">
+                <div class="valor">
+                    <h1>Valor total da compra:</h1>
+                    <h1 id="valor">@total</h1>
+                </div>
+
+                <hr>
+                <br><br>
+                <button id="finalizar">Finalizar Pedido</button>
+            </div>
+
+        </div>
+    }
+</div>
+<script src="~/js/carrinho.js"></script> <!--Importando o JavaScript local-->

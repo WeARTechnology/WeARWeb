@@ -1,64 +1,62 @@
+@model List<String>
 <head>
     <link rel="stylesheet" href="~/css/index.css">
     <title>Index</title>
 </head>
-    <br>
-
-    <h1>Conheça nossos produtos!</h1>
-    <div class="nossosProds">
-        <div class="oculos">
-            <a href="catalogo.html"><img src="/img/Oculos cravos brancos e vermelhos.jpg" alt="">
-                <div class="textoOculos">
-                    <h1>Óculos</h1>
-                    <p>Diversas opções de óculos de grau e de sol, possuindo Try On diponível, tanto na web quanto no
-                        app.
-                    </p>
-                </div>
-            </a>
-        </div>
-        <div class="aneis">
-            <a href="catalogo.html"><img src="/img/Anel mulher Andando no Jardim.jpg" alt="">
-                <div class="textoAneis">
-                    <h1>Anéis</h1>
-                    <p>Anéis para todos os gostos e de todos os tamanhos, com Try On disponivel apenas na versão do
-                        app.
-                    </p>
-                </div>
-            </a>
-        </div>
+<!-- Início da área destinada "Nossos Produtos" -->
+<h1>Conheça nossos produtos!</h1>
+<div class="nossosProds">
+    <!-- Categoria dos óculos -->
+    <div class="oculos">
+        <!-- A tag 'a' é um redirecionamento para a página de catálogo -->
+        <a href="/Home/Produto/4">
+            <img src="~/img/Oculos cravos brancos e vermelhos.jpg" alt="" /> <!-- Imagem -->
+            <div class="textoOculos">
+                <h1>Óculos</h1> <!-- Título -->
+                <!-- Parágrafo -->
+                <p>
+                    Diversas opções de óculos de grau e de sol, possuindo Try On
+                    diponível, tanto na web quanto no app.
+                </p>
+            </div>
+        </a>
     </div>
 
-    <hr>
-    <h1>Os mais vendidos</h1>
-    <div class="osMaisVend">
-        <div class="prod1">
-            <a href="produto.html">
-                <img src="/img/Oculos paisagem sob um céu tempestuoso.jpg" alt="">
-                <h3>Paisagem sob um céu Tempestuoso</h3>
-                <p>R$ 129,99</p>
-            </a>
-        </div>
-        <div class="prod2">
-            <a href="produto.html">
-                <img src="/img/Anel Two Rats.jpg" alt="">
-                <h3>Two Rats</h3>
-                <p>R$ 34,90</p>
-            </a>
-        </div>
-        <div class="prod3">
-            <a href="produto.html">
-                <img src="/img/Oculos noite estrelada sobre o rodano.jpg" alt="">
-                <h3>Noite Estrelada sobre o Ródano</h3>
-                <p>R$ 99,99</p>
-            </a>
-        </div>
-        <div class="prod4">
-            <a href="produto.html">
-                <img src="/img/anel amendoeira em flor.png" alt="">
-                <h3>Amendoeira em Flor</h3>
-                <p>R$ 59,99</p>
-            </a>
-        </div>
+    <!-- Categoria dos anéis -->
+    <div class="aneis">
+        <!-- A tag 'a' é um redirecionamento para a página de catálogo -->
+        <a href="/Home/Produto/14">
+            <img src="~/img/anel The Pink Peach Tree.png" alt="" /> <!-- Imagem -->
+            <div class="textoAneis">
+                <h1>Anéis</h1> <!-- Título -->
+                <!-- Parágrafo -->
+                <p>
+                    Anéis para todos os gostos e de todos os tamanhos, com Try On
+                    disponivel apenas na versão do app.
+                </p>
+            </div>
+        </a>
     </div>
-
-<script src="js/navbar.js"></script>
+</div>
+<!-- Fim "Nossos Produtos" -->
+<!-- Início da área destinada "Mais Vendidos" -->
+<h1>Produtos Recomendados</h1> <!-- Título -->
+<div class="osMaisVend">
+    @if (ViewBag.ids.Length != 0) //Isto sempre retorna true, é usado apenas para iniciar a função Razor
+    {
+        int i = 0;
+        //Para cada img, ele adiciona um item no carrosel
+        //Usa-se um operador ternário, se for um anel retorna um anel, se não, um oculos, aliado ao ID do item, para buscar no método
+        foreach (String img in Model)
+        {
+            <div class="item">
+                <a href=@Url.Action("Produto","Home",values: new{id=@ViewBag.ids[i]})>
+                    <!--Adiciona o redirecionamento ao produto correto associado a imagem inserida-->
+                    <img src=@img alt="">
+                </a>
+            </div>
+            i++;
+        }
+    }
+</div>
+<!-- Fim "Mais Vendidos" -->

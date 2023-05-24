@@ -1,0 +1,64 @@
+@font-face {
+    font-family: "WeAR extra negrito";
+    src: url(../fonts/postnobillscolombo-extrabold.ttf);
+}
+
+@font-face {
+    font-family: "WeAR negrito";
+    src: url(../fonts/postnobillscolombo-bold.ttf);
+}
+
+@font-face {
+    font-family: "WeAR semi negrito";
+    src: url(../fonts/postnobillscolombo-semibold.ttf);
+}
+
+@font-face {
+    font-family: "WeAR regular";
+    src: url(../fonts/postnobillscolombo-regular.ttf);
+}
+
+@font-face {
+    font-family: "WeAR médio";
+    src: url(../fonts/postnobillscolombo-medium.ttf);
+}
+
+@font-face {
+    font-family: "WeAR light";
+    src: url(../fonts/postnobillscolombo-light.ttf);
+}
+
+button {
+    background: none;
+    border: none;
+}
+button:hover{
+   opacity: 70%;
+}
+hr{
+    width: 74%;
+    margin-left: 0;
+}
+#divBusca{
+    width:70%;
+    display: flex;
+    margin-bottom: 0;
+}
+  
+ #txtBusca{
+    margin-left: 0.3%;
+    font-family: "WeAR semi negrito";
+    font-size: 70%;
+    border:none;
+    width: 70%;
+    background-color: #0687ff00;
+}
+
+input:focus{
+    outline: 0;
+}
+
+input:focus img{
+    transition: all 0.2s ease 0s;
+    
+}

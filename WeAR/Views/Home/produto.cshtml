@@ -173,25 +173,20 @@
         var sqntd = document.getElementById("total").value; //Pega a quantidade de produtos desejada
         var form = document.getElementById("carrinhoForm"); //´Pega o formulário
 
-        console.log("em cima");
-
         if (@(ViewBag.anel.ToString().ToLower()) == true) {
-            console.log("entrou");            
             const selecionado = document.querySelector(".selecionado");
             console.log("valor = " + selecionado.innerHTML);
-            var actionUrl = '@Html.Raw(Url.Action("Carrinho", "Home", new { qntd = "_QTND_", id = "_ID_", tamanho = "_Tamanho_" }))'
+            var actionUrl = '@Html.Raw(Url.Action("Carrinho", "Cart", new { qntd = "_QTND_", id = "_ID_", tamanho = "_Tamanho_" }))'
                 .replace("_QTND_", sqntd)
                 .replace("_ID_", @Model.id)
                 .replace("_Tamanho_", selecionado.innerHTML);
         }
         else
         {
-            var actionUrl = '@Html.Raw(Url.Action("Carrinho", "Home", new { qntd = "_QTND_", id = "_ID_"}))'
+            var actionUrl = '@Html.Raw(Url.Action("Carrinho", "Cart", new { qntd = "_QTND_", id = "_ID_"}))'
                 .replace("_QTND_", sqntd)
                 .replace("_ID_", @Model.id);
         }
-        console.log("veio p action");
-
         form.action = actionUrl; //Define a ação do formulário sendo a chamada do método no controller
         form.submit(); //Envia o formulário
     }

@@ -1,3 +1,4 @@
+/* Import das fontes utilizadas no site */
 @font-face {
     font-family: "WeAR extra negrito";
     src: url(../fonts/postnobillscolombo-extrabold.ttf);
@@ -28,20 +29,22 @@
     src: url(../fonts/postnobillscolombo-light.ttf);
 }
 
+/* Configuração geral dos elementos do site */
 *{
-    margin: 0;
-    padding: 0;
+    margin: 0; /* Margem */
+    padding: 0; /* Distância entre elementos e borda */
 }
 
+/* Texto introdutório/apresentação */
 .apresentacao{
-    display: flex;
-    align-items: center;
-    text-align: center;
-    margin-left: 10%;
+    display: flex; /* Layout */
+    align-items: center; /* Alinhamento dos itens */
+    text-align: center; /* Alinhamento do texto */
+    margin-left: 10%; 
     margin-right: 10%;
     margin: 1% 11% 4% 11%;
-    height: 75%;
-    width: 80%;
+    height: 75%; /* Altura */
+    width: 80%; /* Comprimento */
 }
 
 .apresentacao .texto{
@@ -49,33 +52,71 @@
     width: 40%;
 }
 
+/* Título */
 .apresentacao h1{
-    font-family: "WeAR negrito";
-    color: #144d83;
-    font-size: 8vh;
+    font-family: "WeAR negrito"; /* Fonte */
+    color: #144d83; /* Cor da fonte */
+    font-size: 8vh; /* Tamanho da fonte */
 }
 
+/* Parágrafo */
 .apresentacao p {
     font-family: "WeAR semi negrito";
     color: #8ca1c5;
     font-size: 3vh;
 }
 
+/* Imagem */
 .apresentacao img{
     height: 60vh;
     width: 100%;    
 }
 
 hr{
-    background-color: #144d83;
+    background-color: #144d83; /* Cor do fundo */
     width: 90%;
-    border: none; 
+    border: none; /* Sem borda */
 	height: 1px;
     margin-left: 5%;
     margin-right: 5%;
     /* text-align: center; */
 }
 
+/* Informações */
+.containerInforms {
+    display: flex;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    justify-content: center;
+    text-align: justify;
+}
+
+.containerInforms .questoes {
+    width: 80%;
+}
+
+/* Títulos */
+.containerInforms h2 {
+    font-family: "WeAR negrito";
+    color: #144d83;
+    font-size: 3.4vh;
+    transition: .4s;
+}
+
+.containerInforms h2:hover {
+    color: #8ca1c5;
+    cursor: default;
+}
+
+/* Parágrafos */
+.containerInforms p {
+    font-family: "WeAR semi negrito";
+    color: #8ca1c5;
+    font-size: 2.4vh;
+}
+/* Fim das Informações */
+
+/* Redirecionamentos */
 .direcoes{
     align-items: center;
     text-align: center;    
@@ -83,25 +124,27 @@ hr{
     padding: 1%;
 }
 
+/* Botão */
 .direcoes button{
-    border-width: 3vh;
-    border-image: url(../img/molduras/moldura\ retangular\ horizontal.png) 40 stretch;
-    border-style: double;
+    border-width: 3vh; /* Grossura da borda */
+    border-image: url(../img/molduras/moldura\ retangular\ horizontal.png) 40 stretch; /* Adicionando uma borda aos botões de redirecionamento */
+    border-style: double; /* Estilo da borda */
     width: 37%;
     margin: 1% 5% 1% 5%;
-    background: #fff;
+    background: #fff; /* Cor do fundo */
 }
 
+/* Hover é aquele usado quando passamos o cursor do mouse por cima de algum elemento na página html */
 .direcoes button:hover{
-    cursor: pointer;
+    cursor: pointer; /* Cursor do mouse */
     width: 39%;
-    transition: all 0.2s ease 0s;
-    letter-spacing: 0.5px;
-    white-space: nowrap;
+    transition: all 0.2s ease 0s; /* Transição */
+    letter-spacing: 0.5px; /* Espaçamento entre as letras */
+    white-space: nowrap; /* Espaço em branco */
 }
 
 .direcoes button a{
-    text-decoration: none;
+    text-decoration: none; /* Decoração do texto */
 }
 
 .direcoes button a h2{
@@ -116,4 +159,3 @@ hr{
     padding: 2%;
     font-size: large;
 }
-

@@ -1,142 +1,145 @@
+/* Importando as fontes que serão utilizadas na página */
 @font-face {
     font-family: "WeAR extra negrito";
     src: url(../fonts/postnobillscolombo-extrabold.ttf);
-}
-
-@font-face {
+  }
+  
+  @font-face {
     font-family: "WeAR negrito";
     src: url(../fonts/postnobillscolombo-bold.ttf);
-}
-
-@font-face {
+  }
+  
+  @font-face {
     font-family: "WeAR semi negrito";
     src: url(../fonts/postnobillscolombo-semibold.ttf);
-}
-
-@font-face {
+  }
+  
+  @font-face {
     font-family: "WeAR regular";
     src: url(../fonts/postnobillscolombo-regular.ttf);
-}
-
-@font-face {
+  }
+  
+  @font-face {
     font-family: "WeAR médio";
     src: url(../fonts/postnobillscolombo-medium.ttf);
-}
-
-@font-face {
+  }
+  
+  @font-face {
     font-family: "WeAR light";
     src: url(../fonts/postnobillscolombo-light.ttf);
-}
-
-* {
-    margin: 0;
-    padding: 0;
-}
-
-h1 {
-    font-family: "WeAR negrito";
-    color: #144d83;
-    font-size: 250%;
-    text-align: center;
+  }
+  
+  /* Configurando a página como um todo */
+  * {
+    margin: 0; /* Margem */
+    padding: 0; /* Distância entre elemento e borda */
+  }
+  
+  h1 {
+    font-family: "WeAR negrito"; /* Fonte */
+    color: #144d83; /* Cor */
+    font-size: 250%; /* Tamanho da fonte */
+    text-align: center; /* Alinhamento do texto */
     margin: 1%;
-}
-
-.nossosProds {
-    display: flex;
+  }
+  
+  /* Área dentinada aos "Nossos Produtos" */
+  .nossosProds {
+    display: flex; /* Controla o layout */
     text-align: center;
-    align-items: center;
+    align-items: center; /* Alinhamento dos itens */
     margin: 0% 10% 3% 10%;
-}
-
-.nossosProds img {
-    border-width: 4vh;
-    border-image: url(../img/molduras/moldura2.png) 140 stretch;
-    border-style: double; 
+  }
+  
+  /* Trabalhando com as imagens da página index */
+  .nossosProds img {
+    border-width: 4vh; /* Comprimento da borda */
+    border-image: url(../img/molduras/moldura2.png) 140 stretch; /* Borda da imagem trabalhada */
+    border-style: double;
     width: 50%;
-}
-
-.nossosProds a:hover {
-    text-decoration: underline #144d83;
-    transform: scale(1.4);
-    transition: all 0.2s ease 0s;
+  }
+  
+  /* A função de hover ocorre quando o cursor passa por cima do item */
+  .nossosProds a:hover {
+    text-decoration: underline #144d83; /* Decoração do texto */
+    transform: scale(1.4); /* Transformação */
+    transition: all 0.2s ease 0s; /* Transição */
     font-weight: bolder;
-    cursor: pointer;
-}
-
-.nossosProds img:hover {
+    cursor: pointer; /* Tipo de cursor */
+  }
+  
+  .nossosProds img:hover {
     cursor: pointer;
     width: 53%;
     transition: all 0.2s ease 0s;
-}
-
-
-.nossosProds h1 {
+  }
+  
+  .nossosProds h1 {
     font-family: "WeAR negrito";
     color: #144d83;
     font-size: 220%;
-}
-
-.nossosProds p {
+  }
+  
+  .nossosProds p {
     font-family: "WeAR semi negrito";
-    color: #8CA1C5;
+    color: #8ca1c5;
     font-size: 150%;
     padding: 0 3%;
-}
-
-.nossosProds a {
+  }
+  
+  .nossosProds a {
     text-decoration: none;
-}
-
-hr {
-    background-color: #144d83;
+  }
+  
+  hr {
+    background-color: #144d83; /* Cor de fundo */
     width: 90%;
     border: none;
-    height: 1px;
+    height: 1px; /* Altura */
     margin-left: 5%;
     margin-right: 5%;
-}
-
-.osMaisVend {
+  }
+  
+  /* Área destinada aos "Mais Vendidos" */
+  .osMaisVend {
     display: flex;
     text-align: center;
     align-items: center;
     margin: 0 2% 0 2%;
-    justify-content: space-around;
-}
-
-
-
-.osMaisVend img {
+  }
+  
+  .osMaisVend img {
     border-width: 2vh;
     border-image: url(../img/molduras/moldura2.png) 140 stretch;
     border-style: double;
     width: 50%;
-    vertical-align: top;
-}
-
-.osMaisVend h3 {
+  }
+  
+  .osMaisVend h3 {
     font-family: "WeAR negrito";
     color: #144d83;
     font-size: 3vh;
-}
-
-.osMaisVend p {
+    white-space: break-spacessss; /* Espaçamento */
+  }
+  
+  .osMaisVend p {
     font-family: "WeAR semi negrito";
-    color: #8CA1C5;
+    color: #8ca1c5;
     font-size: x-large;
-}
-
-.osMaisVend a:hover {
+  }
+  
+  .osMaisVend a:hover {
     text-decoration: underline #144d83;
     transform: scale(1.4);
     transition: all 0.2s ease 0s;
     font-weight: bolder;
     cursor: pointer;
-    letter-spacing: 1px;
-}
-
-.osMaisVend img:hover {
+    letter-spacing: 1px; /* Espaçamento entre as letras */
+  }
+  
+  .osMaisVend img:hover {
     cursor: pointer;
     width: 52%;
     transition: all 0.2s ease 0s;
-}
+  }
+  
