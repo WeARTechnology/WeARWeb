@@ -21,7 +21,7 @@ namespace WeAR.Models
 
         //Array de inteiros com os ID's de produtos similares (Método produtosSimilares())
         public int[] similaresid = new int[4];
-        SqlConnection conecta = CreateConnection.getAzureConnection(); //Variavel que faz a conexão com o banco
+        readonly SqlConnection conecta = CreateConnection.getAzureConnection(); //Variavel que faz a conexão com o banco
         SqlCommand query; //Variavel que faz os comandos
 
 

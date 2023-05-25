@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
+using System;
 using System.Collections.Generic;
 using WeAR.Models;
 
@@ -154,10 +155,7 @@ namespace WeAR.Controllers
             }
         }
 
-        [HttpGet]
-        [Route("api/[controller]/similares")]
-        public List<Produto> Similares() { 
-        }
+        
 
 
     }
