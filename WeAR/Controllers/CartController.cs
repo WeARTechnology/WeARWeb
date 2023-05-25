@@ -38,7 +38,7 @@ namespace WeAR.Controllers
         {
             //Cria um objeto da classe Produto, e busca todos os dados no banco com base no ID
             Produto p = new Produto();
-            p = p.buscaProduto(id);
+            p = p.BuscaProduto(id);
             p.id = id;
 
             if (tamanho.HasValue)

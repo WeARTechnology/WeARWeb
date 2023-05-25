@@ -34,7 +34,7 @@
 
                         <div class="containerOpcoes">
                             <!-- Adiciona as opções de tamanho de acordo com os tamanhos disponíveis do produto no banco de dados -->
-                            @foreach (int tamanho in Model.pegarTamanhoAneis(Model.id))
+                            @foreach (int tamanho in Model.PegarTamanhoAneis(Model.id))
                             {
                                 if (tamanho != 0)
                                 {
@@ -109,7 +109,7 @@
             int i = 0;
             //Para cada img, ele adiciona um item no carrosel
             //Usa-se um operador ternário, se for um anel retorna um anel, se não, um oculos, aliado ao ID do item, para buscar no método
-            foreach (String img in Model.produtosSimilares(Model.tamanho == 0 ? "Oculos" : "Anel", Model.id))
+            foreach (String img in Model.ProdutosSimilares(Model.tamanho == 0 ? "Oculos" : "Anel", Model.id))
             {
                 <div class="item">
                     <a href=@Url.Action("Produto","Home",values: new{id=@Model.similaresid[i]})>

@@ -53,7 +53,7 @@ namespace WeAR.Models
         }
 
         //Pega id do produto com base no seu nome
-        public int pegarID(string nome)
+        public int PegarID(string nome)
         {
             try
             {
@@ -83,7 +83,7 @@ namespace WeAR.Models
         }
 
         //Busca um produto específico através do  ID
-        public Produto buscaProduto(int id)
+        public Produto BuscaProduto(int id)
         {
             try
             {
@@ -163,7 +163,7 @@ namespace WeAR.Models
 
 
         //Método para pegar todos os valores de tamanho do anel
-        public int[] pegarTamanhoAneis(int id)
+        public int[] PegarTamanhoAneis(int id)
         {
             try
             {
@@ -199,7 +199,7 @@ namespace WeAR.Models
 
         //Método que pega todas as informações de todos os óculos
 
-        public List<Produto> pegarTodosOculos(String categoria)
+        public List<Produto> PegarTodosOculos(String categoria)
         {
             try
             {
@@ -244,7 +244,7 @@ namespace WeAR.Models
         }
 
         //Método que pega todas as informações de todos os aneis 
-        public List<Produto> pegarTodosAneis()
+        public List<Produto> PegarTodosAneis()
         {
             try
             {
@@ -284,7 +284,7 @@ namespace WeAR.Models
         }
 
         //Método que pega todos os produtos para fazer o catálogo geral
-        public List<Produto> pegarTodosProdutos()
+        public List<Produto> PegarTodosProdutos()
         {
             try
             {
@@ -322,7 +322,7 @@ namespace WeAR.Models
         }
 
         //Metodo que devolve true or false, dependendo se o produto possui ou não modelo3d, usado para ativar ou desativar botão de tryon
-        public bool valorModelo3d(int id)
+        public bool ValorModelo3D(int id)
         {
             try
             {
@@ -363,7 +363,7 @@ namespace WeAR.Models
          e retorna a lista de imagens desses produtos, em ordem crescente de acordo com o ID, alem de definir a variavel int[] similaresid com os valores que foram
         sorteados pelo método
          */
-        public List<String> produtosSimilares(string tabela, int id)
+        public List<String> ProdutosSimilares(string tabela, int id)
         {
             try
             {

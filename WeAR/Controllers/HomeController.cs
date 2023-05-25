@@ -40,20 +40,20 @@ namespace WeAR.Controllers
                 List<Produto> lista = new List<Produto>();
 
                 //Pega todos os produtos existentes
-                lista = p.pegarTodosProdutos();
+                lista = p.PegarTodosProdutos();
 
                 //Sorteia um numero aleatório com base na quantidade de produtos
                 Random rnd = new Random();
                 int value = rnd.Next(lista.Count());
 
                 //Busca o produto com o id sorteado
-                p = p.buscaProduto(value);
+                p = p.BuscaProduto(value);
 
                 //Define a tabela que deverá fazer a buscada do produto
                 string tabela = p.tamanho == 0 ? "Anel" : "Oculos";
                 
                 //Pega as imagens através do método que sorteia similares
-                List<String> imagens = p.produtosSimilares(tabela, value);
+                List<String> imagens = p.ProdutosSimilares(tabela, value);
                 //Pega os ids dos similares
                 int[] similares = p.similaresid;
 
@@ -122,9 +122,9 @@ namespace WeAR.Controllers
             Produto p = new Produto();
 
             //Busca todos os valores do produto com base no seu ID
-            p = p.buscaProduto(id);
+            p = p.BuscaProduto(id);
             p.id = id;
-            ViewBag.modelo3D = p.valorModelo3d(id); //ViewBag para poder definir se haverá botão de TryON ou não
+            ViewBag.modelo3D = p.ValorModelo3D(id); //ViewBag para poder definir se haverá botão de TryON ou não
             ViewBag.anel = p.tamanho != 0 ? true : false; //Viewbag que passa o valor de anel caso true se houver tamanho
 
             //Chama o método que diminui a quantidade de P caso ele já exista
@@ -160,12 +160,12 @@ namespace WeAR.Controllers
             //If que checka qual botão redirecionou para essa função, ou seja, se foi anel, óculos de sol ou de grau, se não foi nenhum , retorna todos os produtos
             if (categoria == "Anel")
             {
-                produtos = p.pegarTodosAneis(); //Chama o método da classe produto, para pegar os aneis
+                produtos = p.PegarTodosAneis(); //Chama o método da classe produto, para pegar os aneis
 
                 //Para cada produto existente, checka se ele já foi comprado anteriormente, se sim, diminui sua quantidade
                 foreach (Produto prod in produtos)
                 {
-                    prod.id = p.pegarID(prod.nome);
+                    prod.id = p.PegarID(prod.nome);
                     DecreaseQuantity(prod);
                 }
 
@@ -176,12 +176,12 @@ namespace WeAR.Controllers
             }
             else if (categoria == "Oculos Sol")
             {
-                produtos = p.pegarTodosOculos("Sol");//Chama o método da classe produto, para pegar os óculos e passa a categoria selecionada
+                produtos = p.PegarTodosOculos("Sol");//Chama o método da classe produto, para pegar os óculos e passa a categoria selecionada
 
                 //Para cada produto existente, checka se ele já foi comprado anteriormente, se sim, diminui sua quantidade
                 foreach (Produto prod in produtos)
                 {
-                    prod.id = p.pegarID(prod.nome);
+                    prod.id = p.PegarID(prod.nome);
                     DecreaseQuantity(prod);
                 }
 
@@ -191,13 +191,13 @@ namespace WeAR.Controllers
             }
             else if (categoria == "Oculos Grau")
             {
-                produtos = p.pegarTodosOculos("Grau");//Chama o método da classe produto, para pegar os óculos e passa a categoria selecionada
+                produtos = p.PegarTodosOculos("Grau");//Chama o método da classe produto, para pegar os óculos e passa a categoria selecionada
 
                 //Para cada produto existente, checka se ele já foi comprado anteriormente, se sim, diminui sua quantidade
                 
                 foreach (Produto prod in produtos)
                 {
-                    prod.id = p.pegarID(prod.nome);
+                    prod.id = p.PegarID(prod.nome);
 
                     DecreaseQuantity(prod);
                 }
@@ -208,13 +208,13 @@ namespace WeAR.Controllers
             }
             else
             {
-                produtos = p.pegarTodosProdutos(); //Chama o método da classe produto, para pegar todos os produtos
+                produtos = p.PegarTodosProdutos(); //Chama o método da classe produto, para pegar todos os produtos
 
                 //Para cada produto existente, checka se ele já foi comprado anteriormente, se sim, diminui sua quantidade
                 foreach (Produto prod in produtos)
                 {
 
-                    prod.id = p.pegarID(prod.nome);
+                    prod.id = p.PegarID(prod.nome);
                     DecreaseQuantity(prod);
                 }
 
