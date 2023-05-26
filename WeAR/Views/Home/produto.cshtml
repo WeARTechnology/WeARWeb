@@ -78,7 +78,7 @@
             <!-- Se o viewbag retornar true, o que significa que possui Modelo 3d, ele adiciona o botão de Try ON
                 porém, se for true, mas possuir tamanho (é um anel) não tem TryON, pois no site aneis não tem tryON
             -->
-            @if (ViewBag.modelo3D == false || Model.tamanho != 0)
+            @if (Model.modelo3d == false || Model.tamanho != 0)
             {
 
             }

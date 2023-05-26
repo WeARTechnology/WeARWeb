@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using WeAR.Models;
@@ -8,87 +9,171 @@ using WeAR.Models;
 namespace WeAR.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("/api/[controller]")]
     public class WebServiceController : Controller
     {
 
         [HttpGet]
-        [Route("api/[controller]/produtos")]
+        [Route("/api/[controller]/produtos")]
         //Método que pega todos os produtos existentes
-        public List<Produto> pegarProdutos()
+        public String pegarTudoProdutos()
         {
             //Cria-se objetos da classe, e uma lista de objetos
             Produto p = new Produto();
-            List<Produto> finalList;
+            List<Produto> productList;
 
             //Pega os valores da lista através do método no Model Produto.cs
-            finalList = p.PegarTodosProdutos();
+            productList = p.PegarTodosProdutos();
+
+            //Cria-se o objeto de Imagem, para chamar os métodos posteriormente
+            Imagem img = new Imagem();
+
+
+            //Cria uma lista de produto com imagem
+            List<ProdutoComImagem> combinedList = new List<ProdutoComImagem>();
+
+            if (productList.Count > 1)
+            {
+                //Para cada objeto existente na lista de produto, cria um novo objeto da lista combinada
+                for (int i = 0; i < productList.Count; i++)
+                {
+                    combinedList.Add(new ProdutoComImagem
+                    {
+                        id = productList[i].id,
+                        nome = productList[i].nome,
+                        preco = productList[i].preco,
+                        desc = productList[i].desc,
+                        tipo = productList[i].tipo,
+                        qntd = productList[i].qntd,
+                        tamanho = productList[i].tamanho,
+                        modelo3d = productList[i].modelo3d,
+                        imagem = img.PegarImagem(productList[i].id) //Pega a imagem através do método usando o id do produto atual
+                    });
+                }
+            }
 
             //Se houver algo na lista, a retorna, caso contrário, retorna uma lista vazia
-            if(finalList.Count > 0)
+            if (combinedList.Count > 0)
             {
-                return finalList;
+                return JsonConvert.SerializeObject(combinedList);
 
             }
             else
             {
-                return new List<Produto>();
+                return "";
             }
 
 
         }
 
         [HttpGet]
-        [Route("api/[controller]/aneis")]
-        public List<Produto> pegarAneis()
+        [Route("/api/[controller]/aneis")]
+        public String pegarAneis()
         {
             //Cria-se objetos da classe, e uma lista de objetos
             Produto p = new Produto();
-            List<Produto> finalList;
+            List<Produto> productList;
 
             //Pega os valores da lista através do método no Model Produto.cs
-            finalList = p.PegarTodosAneis();
+            productList = p.PegarTodosAneis();
+
+            //Cria-se o objeto de Imagem, para chamar os métodos posteriormente
+            Imagem img = new Imagem();
+
+
+            //Cria uma lista de produto com imagem
+            List<ProdutoComImagem> combinedList = new List<ProdutoComImagem>();
+
+            if (productList.Count > 1)
+            {
+                //Para cada objeto existente na lista de produto, cria um novo objeto da lista combinada
+                for (int i = 0; i < productList.Count; i++)
+                {
+                    combinedList.Add(new ProdutoComImagem
+                    {
+                        id = productList[i].id,
+                        nome = productList[i].nome,
+                        preco = productList[i].preco,
+                        desc = productList[i].desc,
+                        tipo = productList[i].tipo,
+                        qntd = productList[i].qntd,
+                        tamanho = productList[i].tamanho,
+                        modelo3d = productList[i].modelo3d,
+                        imagem = img.PegarImagem(productList[i].id) //Pega a imagem através do método usando o id do produto atual
+                    });
+                }
+            }
 
             //Se houver algo na lista, a retorna, caso contrário, retorna uma lista vazia
-            if (finalList.Count > 0)
+            if (combinedList.Count > 0)
             {
-                return finalList;
+                return JsonConvert.SerializeObject(combinedList);
 
             }
             else
             {
-                return new List<Produto>();
+                return "";
+            }
+
+
+
+        }
+
+        [HttpGet]
+        [Route("/api/[controller]/oculos")]
+        public String pegarOculos(string categoria)
+        {
+            //Cria-se objetos da classe, e uma lista de objetos
+            Produto p = new Produto();
+            List<Produto> productList;
+
+            //Pega os valores da lista através do método no Model Produto.cs
+            productList = p.PegarTodosOculos(categoria);
+
+            //Cria-se o objeto de Imagem, para chamar os métodos posteriormente
+            Imagem img = new Imagem();
+
+
+            //Cria uma lista de produto com imagem
+            List<ProdutoComImagem> combinedList = new List<ProdutoComImagem>();
+
+            if (productList.Count > 1)
+            {
+                //Para cada objeto existente na lista de produto, cria um novo objeto da lista combinada
+                for (int i = 0; i < productList.Count; i++)
+                {
+                    combinedList.Add(new ProdutoComImagem
+                    {
+                        id = productList[i].id,
+                        nome = productList[i].nome,
+                        preco = productList[i].preco,
+                        desc = productList[i].desc,
+                        tipo = productList[i].tipo,
+                        qntd = productList[i].qntd,
+                        tamanho = productList[i].tamanho,
+                        modelo3d = productList[i].modelo3d,
+                        imagem = img.PegarImagem(productList[i].id) //Pega a imagem através do método usando o id do produto atual
+                    });
+                }
+            }
+
+            //Se houver algo na lista, a retorna, caso contrário, retorna uma lista vazia
+            if (combinedList.Count > 0)
+            {
+                return JsonConvert.SerializeObject(combinedList);
+
+            }
+            else
+            {
+                return "";
             }
 
 
         }
 
         [HttpGet]
-        [Route("api/[controller]/oculos")]
-        public List<Produto> pegarOculos(string categoria)
-        {
-            //Cria-se objetos da classe, e uma lista de objetos
-            Produto p = new Produto();
-            List<Produto> finalList;
-
-            //Pega os valores da lista através do método no Model Produto.cs
-            finalList = p.PegarTodosOculos(categoria);
-
-            //Se houver algo na lista, a retorna, caso contrário, retorna uma lista vazia
-            if (finalList.Count > 0)
-            {
-                return finalList;
-
-            }
-            else
-            {
-                return new List<Produto>();
-            }
-        }
-
-        [HttpGet]
-        [Route("api/[controller]/produto")]
-        public Produto pegarProduto(int id)
+        [Route("/api/[controller]/produto")]
+        public String pegarProduto(int id)
         {
             //Cria-se objetos da classe
             Produto p = new Produto();
@@ -96,45 +181,48 @@ namespace WeAR.Controllers
             //Pega o produto desejado através do seu ID
             p = p.BuscaProduto(id);
 
-            //Se houver algum valor (neste caso, o nome), ele envia o produto, caso contrário, envia um produto vazio
-            if (p.nome != null)
-            {
-                return p;
-
-            }
-            else
-            {
-                return new Produto();
-            }
-        }
-
-
-        [HttpGet]
-        [Route("api/[controller]/imagens")]
-        public List<string> pegarImagens()
-        {
-            //Cria-se o objeto de Imagem, e uma lista de String para salvar os valores das imagens
+            //Cria-se o objeto de Imagem, e uma String para salvar os valores das imagens
             Imagem img = new Imagem();
-            List<string> resultado;
+            string imgResult;
 
-            //Pega=se todas as imagens do banco de dados através do método
-            resultado = img.PegarTudo();
+            imgResult = img.PegarImagem(id);
 
-            //Se a lista de resultado tiver valores, a retorna, caso contrário, retorna um lista vazia
-            if(resultado.Count > 0)
+
+            //Cria uma lista de produto com imagem
+            ProdutoComImagem combinedProd = new ProdutoComImagem();
+
+            //Para cada objeto existente na lista de produto, cria um novo objeto da lista combinada
+          
+                combinedProd = new ProdutoComImagem
+                {
+                    id = p.id,
+                    nome = p.nome,
+                    preco = p.preco,
+                    desc = p.desc,
+                    tipo = p.tipo,
+                    qntd = p.qntd,
+                    tamanho = p.tamanho,
+                    modelo3d = p.modelo3d,
+                    imagem = imgResult
+                };
+            
+
+            //Se houver algo na lista, a retorna, caso contrário, retorna uma lista vazia
+            if (combinedProd.id != 1)
             {
-                return resultado;
+                return JsonConvert.SerializeObject(combinedProd);
+
             }
             else
             {
-                return new List<string>();
+                return "";
             }
-
         }
 
+
         [HttpGet]
-        [Route("api/[controller]/imagem")]
-        public string pegarImagem(int id)
+        [Route("/api/[controller]/imagem")]
+        public String pegarImagem(int id)
         {
             //Cria-se objetos da classe imagem, e a string que pega o resultado
             Imagem img = new Imagem();

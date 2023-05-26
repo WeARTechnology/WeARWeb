@@ -23,7 +23,6 @@
     else
     {
         float total = 0; //Inicializa-se a variável total que será utilizada depois
-        bool anel = false; //Inicializa - se a variável anel que será utilizada depois
         <div class="produtos">
             <div class="prodCarrinho">
 
@@ -56,7 +55,6 @@
                             </div>
                             @if (p.tamanho != 0)
                             {
-                                anel = true;
                                 <p id="tamanho">Tamanho: @p.tamanho</p>
                             }
                             <h3 class="subtotal_@p.id" data-tamanho="@p.tamanho">Subtotal:@subtotal </h3> <!--O id é subtotal_ID, e o valor do subtotal, usa a variável criada anterirmente-->
