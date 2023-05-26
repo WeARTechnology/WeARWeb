@@ -123,7 +123,6 @@ namespace WeAR.Controllers
 
             //Busca todos os valores do produto com base no seu ID
             p = p.BuscaProduto(id);
-            p.id = id;
             ViewBag.anel = p.tamanho != 0 ? true : false; //Viewbag que passa o valor de anel caso true se houver tamanho
 
             //Chama o método que diminui a quantidade de P caso ele já exista
@@ -164,7 +163,6 @@ namespace WeAR.Controllers
                 //Para cada produto existente, checka se ele já foi comprado anteriormente, se sim, diminui sua quantidade
                 foreach (Produto prod in produtos)
                 {
-                    prod.id = p.id;
                     DecreaseQuantity(prod);
                 }
 
@@ -180,7 +178,6 @@ namespace WeAR.Controllers
                 //Para cada produto existente, checka se ele já foi comprado anteriormente, se sim, diminui sua quantidade
                 foreach (Produto prod in produtos)
                 {
-                    prod.id = p.id;
                     DecreaseQuantity(prod);
                 }
 
@@ -195,9 +192,7 @@ namespace WeAR.Controllers
                 //Para cada produto existente, checka se ele já foi comprado anteriormente, se sim, diminui sua quantidade
                 
                 foreach (Produto prod in produtos)
-                {
-                    prod.id = p.id;
-                        
+                {                        
                     DecreaseQuantity(prod);
                 }
 
@@ -212,8 +207,6 @@ namespace WeAR.Controllers
                 //Para cada produto existente, checka se ele já foi comprado anteriormente, se sim, diminui sua quantidade
                 foreach (Produto prod in produtos)
                 {
-
-                    prod.id = p.id;
                     DecreaseQuantity(prod);
                 }
 

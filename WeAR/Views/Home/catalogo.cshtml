@@ -41,22 +41,28 @@
                     </div>
                 </a>
 
+                @if (p.tamanho == 0)
+                {
+                    <form id="carrinhoForm" method="post" type="hidden">
+                        <!--Quando se clica no botão de carrinho, se realiza um post para o controller, o método em JS modifica o action do form usando o id do produto-->
+                        <button class="btn" id="btnCarrinho" onclick="submitCarrinhoForm(event,@id)">Comprar</button>
+                    </form>
+                }
+                else
+                {
+                    <form id="carrinhoForm" method="post" type="hidden">
+                        <!--Quando se clica no botão de carrinho, se realiza um post para o controller, o método em JS modifica o action do form usando o id do produto-->
+                        <button class="btn" id="btnCarrinho">
+                            <a href=@Url.Action("produto","Home", values: new {id= id})>
+                                <!--Define o href do click, chamando a função do controller que
+                                redireciona a página do produto, e define o id como o id passado -->
+                                Comprar
+                            </a>
+                        </button>
+                    </form>
+                }
+
             </fieldset>
-            @if (p.tamanho == 0)
-            {
-                <form id="carrinhoForm" method="post" type="hidden">
-                    <!--Quando se clica no botão de carrinho, se realiza um post para o controller, o método em JS modifica o action do form usando o id do produto-->
-                <button class="btn" id="btnCarrinho" onclick="submitCarrinhoForm(event,@id)">Comprar</button> 
-                </form>
-            }
-            else
-            {
-                <form id="carrinhoForm" method="post" type="hidden">
-                    <!--Quando se clica no botão de carrinho, se realiza um post para o controller, o método em JS modifica o action do form usando o id do produto-->
-                    <button class="btn" id="btnCarrinho" ><a href=@Url.Action("produto","Home", values: new {id= id})> <!--Define o href do click, chamando a função do controller que 
-                                                                            redireciona a página do produto, e define o id como o id passado -->Comprar</a></button>
-                </form>
-            }
         }
     }
 

@@ -320,6 +320,38 @@
 }
 /* Fim da área de produtos similares */
 
+/* Botão de quantidade */
+.quant button {
+    padding: 0% 2%;
+}
+
+    /* Hover é aquele usado quando passamos o cursor do mouse por cima de algum elemento na página html */
+    .quant button:hover {
+        opacity: 70%;
+    }
+
+/* Valor total da compra */
+#total {
+    height: 10%; /* Altura */
+    border: none;
+    font-family: "WeAR semi negrito";
+    font-size: 150%;
+    color: #144d83;
+    margin: 5% 0%;
+}
+
+/* Para permitir e configurar a mudança de valores */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Input para recebimento de números */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
 /* Media | Responsividade da aba em 1100px*/
 @media (max-width: 1100px) {
   .containerInformProduto {

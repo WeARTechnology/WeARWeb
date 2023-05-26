@@ -334,7 +334,7 @@ namespace WeAR.Models
                 //Função para sortear 4 numeros aleatórios, sem repeti-los, e, sem que sejam iguais ao id inicial que foi enviado através do método
                 for (int i = 0; i < 4; i++)
                 {
-                    produtos[i] = rnd.Next(valores[0], valores[valores.Count]);
+                    produtos[i] = rnd.Next(valores[0], valores[valores.Count - 1]);
                     for (int j = 0; j < 4; j++)
                     {
                         if (produtos[j] == produtos[i] && j!=i || produtos[i] == id)

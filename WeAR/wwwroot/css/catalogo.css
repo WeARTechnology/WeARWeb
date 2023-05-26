@@ -90,3 +90,24 @@ fieldset a:hover {
     transition: all 0.2s ease 0s;
     font-weight: bolder;
 }
+
+#btnCarrinho {
+    border: none;
+    background: #e1ba77;
+    font-family: "WeAR semi negrito";
+    font-size: large;
+    padding: 1% 4%;
+    color: #ffffff;
+    transition: 0.3s ease-in-out;
+}
+
+#btnCarrinho:hover {
+    padding: 1.5% 4.5%;
+}
+
+#btnCarrinho a {
+    color: #ffffff;
+}
+    #btnCarrinho a {
+        text-decoration: none;
+    }

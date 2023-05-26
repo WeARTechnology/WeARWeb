@@ -96,6 +96,7 @@ nav:hover {
 @media (max-width: 1500px) {
   body {
     overflow-x: hidden; /* Esconder o que fica pra fora do body */
+    overflow-y: hidden; /* Esconder o que fica pra fora do body */
   }
   .nav-list {
     font-size: 75%;
