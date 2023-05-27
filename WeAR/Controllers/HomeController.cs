@@ -164,7 +164,6 @@ namespace WeAR.Controllers
                 //Para cada produto existente, checka se ele já foi comprado anteriormente, se sim, diminui sua quantidade
                 foreach (Produto prod in produtos)
                 {
-                    prod.id = p.id;
                     DecreaseQuantity(prod);
                 }
 
@@ -180,7 +179,6 @@ namespace WeAR.Controllers
                 //Para cada produto existente, checka se ele já foi comprado anteriormente, se sim, diminui sua quantidade
                 foreach (Produto prod in produtos)
                 {
-                    prod.id = p.id;
                     DecreaseQuantity(prod);
                 }
 
@@ -195,9 +193,7 @@ namespace WeAR.Controllers
                 //Para cada produto existente, checka se ele já foi comprado anteriormente, se sim, diminui sua quantidade
                 
                 foreach (Produto prod in produtos)
-                {
-                    prod.id = p.id;
-                        
+                {                        
                     DecreaseQuantity(prod);
                 }
 
@@ -212,8 +208,6 @@ namespace WeAR.Controllers
                 //Para cada produto existente, checka se ele já foi comprado anteriormente, se sim, diminui sua quantidade
                 foreach (Produto prod in produtos)
                 {
-
-                    prod.id = p.id;
                     DecreaseQuantity(prod);
                 }
 
