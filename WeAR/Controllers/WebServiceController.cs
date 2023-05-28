@@ -218,6 +218,52 @@ namespace WeAR.Controllers
         }
 
         [HttpGet]
+        [Route("/api/[controller]/imagemNoStock")]
+        public String pegarImagemNoStock(int id)
+        {
+            //Cria-se objetos da classe imagem, e a string que pega o resultado
+            Imagem img = new Imagem();
+            string resultado;
+
+            //Pega a imagem através do ID
+            resultado = img.PegarImagemNoStock(id);
+
+            //Se o resultado for null, retorna erro, caso contrário, retorna o resultado
+            if (resultado == null)
+            {
+                return "Error";
+
+            }
+            else
+            {
+                return resultado;
+            }
+        }
+
+        [HttpGet]
+        [Route("/api/[controller]/imagemRound")]
+        public String pegarImagemRound(int id)
+        {
+            //Cria-se objetos da classe imagem, e a string que pega o resultado
+            Imagem img = new Imagem();
+            string resultado;
+
+            //Pega a imagem através do ID
+            resultado = img.PegarImagemRound(id);
+
+            //Se o resultado for null, retorna erro, caso contrário, retorna o resultado
+            if (resultado == null)
+            {
+                return "Error";
+
+            }
+            else
+            {
+                return resultado;
+            }
+        }
+
+        [HttpGet]
         [Route("/api/[controller]/similaresID")]
         public List<ProdutoComImagem> pegarImagem(int id, string tabela)
         {
