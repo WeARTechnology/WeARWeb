@@ -15,7 +15,7 @@ namespace WeAR.Models
         public String desc, nome, tipo;
         public Double preco;
         public int qntd;
-        public int tamanho = 0;       
+        public int tamanho = 0;
         public bool modelo3d;
         public int id;
 
@@ -45,7 +45,7 @@ namespace WeAR.Models
         }
 
         //Construtor do Óculos (Somente tipo, sem tamanho)
-        public Produto(int id,string desc, string nome, string tipo, double preco, int qntd, bool modelo3d)
+        public Produto(int id, string desc, string nome, string tipo, double preco, int qntd, bool modelo3d)
         {
             this.id = id;
             this.desc = desc;
@@ -55,7 +55,20 @@ namespace WeAR.Models
             this.qntd = qntd;
             this.modelo3d = modelo3d;
         }
-        
+
+        //Construtor do Anel (Somente tamanho, sem tipo)
+        public Produto(int id, string desc, string nome, double preco, int qntd, int tamanho, bool modelo3d, string tipo)
+        {
+            this.id = id;
+            this.desc = desc;
+            this.nome = nome;
+            this.preco = preco;
+            this.qntd = qntd;
+            this.tamanho = tamanho;
+            this.modelo3d = modelo3d;
+            this.tipo = tipo;
+        }
+
 
         //Busca um produto específico através do  ID
         public Produto BuscaProduto(int id)
@@ -86,7 +99,7 @@ namespace WeAR.Models
                         {
                             //Constroi o objeto P de produto, com base nas informações retornadas da tabela Produto e da tabela Óculos
                             p = new Produto((int)leitor["id"], leitor["descricao"].ToString(), leitor["nome"].ToString(),
-                                leitor2["categoria"].ToString(), Double.Parse(leitor["preco"].ToString()), (int)leitor["quantidade"], (bool) leitor["modelo3d"]);
+                                leitor2["categoria"].ToString(), Double.Parse(leitor["preco"].ToString()), (int)leitor["quantidade"], (bool)leitor["modelo3d"]);
 
                         }
                         conecta2.Close(); //Fecha a conexão 2
@@ -110,7 +123,7 @@ namespace WeAR.Models
                         }
 
                         //Fecha todas as conexões
-                        conecta3.Close(); 
+                        conecta3.Close();
                         conecta2.Close();
                         return p; //Retorna o produto P
                     }
@@ -268,14 +281,20 @@ namespace WeAR.Models
 
                 conecta.Open(); //Abrindo conexão
 
-                //Comando para pegar tudo
-                query = new SqlCommand("Select * from Produto", conecta);
+                /*Comando que pega todos os valores da tabela de produto, da tabela de oculos, e todos os valores distintos da tabela de anel
+                 junta eles, e devolve somente quanto  o id for maior que 0, e o tamanho for 10 ou nulo*/
+                query = new SqlCommand("SELECT DISTINCT [dbo].[Anel].tamanho, [dbo].[Produto].*, " +
+                    "[dbo].[Oculos].* FROM [dbo].[Produto] FULL JOIN [dbo].[Oculos] ON " +
+                    "[dbo].[Oculos].fk_Produto_id = [dbo].[Produto].id FULL JOIN [dbo].[Anel] ON [dbo].[Anel].fk_Produto_id = [dbo].[Produto].id " +
+                    "WHERE [dbo].[Produto].id > 0 AND ([dbo].[Anel].tamanho = 10 OR [dbo].[Anel].tamanho IS NULL)", conecta);
                 SqlDataReader leitor = query.ExecuteReader();
 
                 while (leitor.Read()) //Pega todos os valores que vem do query, e adiciona a lista de produtos
                 {
-                    p = new Produto((int)leitor["id"], leitor["descricao"].ToString(), leitor["nome"].ToString(),
-                                          Double.Parse(leitor["preco"].ToString()), (int)leitor["quantidade"], 0, (bool)leitor["modelo3d"]);
+                    p = new Produto((int)leitor["id"], leitor["descricao"].ToString(), leitor["nome"].ToString(), Double.Parse(leitor["preco"].ToString()), 
+                        (int)leitor["quantidade"], leitor["tamanho"] == DBNull.Value ? 0 : (int)leitor["tamanho"], (bool)leitor["modelo3d"],
+                        leitor["categoria"] == DBNull.Value ? "" : leitor["categoria"].ToString());
+
 
                     produtos.Add(p);
                 }
@@ -294,7 +313,7 @@ namespace WeAR.Models
             }
 
 
-        }      
+        }
 
 
 
@@ -320,9 +339,9 @@ namespace WeAR.Models
                 /*Neste query, tabela não pode ser passado como Parametro, pois se refere ao nome de uma tabela, 
                  * e, como não é possivel SQLInjection, pelo fato de o usuário não ter como mudar esse valor, o 
                  * código segue seguro mesmo com essa declaração explicita*/
-                query = new SqlCommand("SELECT Produto.id from Produto INNER JOIN " + tabela +" on Produto.id = " + tabela + ".fk_Produto_id GROUP BY Produto.id", conecta);
+                query = new SqlCommand("SELECT Produto.id from Produto INNER JOIN " + tabela + " on Produto.id = " + tabela + ".fk_Produto_id GROUP BY Produto.id", conecta);
                 SqlDataReader leitor = query.ExecuteReader();
-                
+
 
                 //Função para pegar os valores dos id's dados pelo query
                 while (leitor.Read())
@@ -339,13 +358,13 @@ namespace WeAR.Models
                     produtos[i] = rnd.Next(valores[0], valores[valores.Count - 1]);
                     for (int j = 0; j < 4; j++)
                     {
-                        if (produtos[j] == produtos[i] && j!=i || produtos[i] == id)
+                        if (produtos[j] == produtos[i] && j != i || produtos[i] == id)
                         {
                             i--;
                             break;
                         }
                     }
-                    
+
                 }
 
                 Array.Sort(produtos);//Coloca a array em ordem crescente de valores
@@ -355,7 +374,7 @@ namespace WeAR.Models
                 while (leitor.Read())
                 {
                     for (int i = 0; i < produtos.Length; i++)
-                    {                       
+                    {
                         if (leitor.GetInt32("id") == produtos[i])
                         {
                             Imagem img = new Imagem();
