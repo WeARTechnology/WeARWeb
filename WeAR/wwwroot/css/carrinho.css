@@ -217,6 +217,10 @@ hr {
   transition: all 0.2s ease 0s;
 }
 
+#tamanho {
+    font-family: "WeAR semi negrito";
+}
+
 /* Definindo a responsividade do site de acordo com o tamanho da janela */
 @media (max-width: 999px) {
   * {

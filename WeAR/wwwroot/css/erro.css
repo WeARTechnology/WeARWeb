@@ -1,0 +1,45 @@
+@font-face {
+    font-family: "WeAR extra negrito";
+    src: url(../fonts/postnobillscolombo-extrabold.ttf);
+}
+
+@font-face {
+    font-family: "WeAR negrito";
+    src: url(../fonts/postnobillscolombo-bold.ttf);
+}
+
+@font-face {
+    font-family: "WeAR semi negrito";
+    src: url(../fonts/postnobillscolombo-semibold.ttf);
+}
+
+@font-face {
+    font-family: "WeAR regular";
+    src: url(../fonts/postnobillscolombo-regular.ttf);
+}
+
+@font-face {
+    font-family: "WeAR médio";
+    src: url(../fonts/postnobillscolombo-medium.ttf);
+}
+
+@font-face {
+    font-family: "WeAR light";
+    src: url(../fonts/postnobillscolombo-light.ttf);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.erro {
+    font-family: "WeAR semi negrito";
+    color: #144d83;
+    text-align: center;
+    margin: 15.13%;
+}
+
+.txtAlerta a {
+    font-family: "WeAR extra negrito";
+}

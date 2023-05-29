@@ -1,0 +1,49 @@
+/* Import das fontes utilizadas no site */
+@font-face {
+    font-family: "WeAR extra negrito";
+    src: url(../fonts/postnobillscolombo-extrabold.ttf);
+}
+
+@font-face {
+    font-family: "WeAR negrito";
+    src: url(../fonts/postnobillscolombo-bold.ttf);
+}
+
+@font-face {
+    font-family: "WeAR semi negrito";
+    src: url(../fonts/postnobillscolombo-semibold.ttf);
+}
+
+@font-face {
+    font-family: "WeAR regular";
+    src: url(../fonts/postnobillscolombo-regular.ttf);
+}
+
+@font-face {
+    font-family: "WeAR médio";
+    src: url(../fonts/postnobillscolombo-medium.ttf);
+}
+
+@font-face {
+    font-family: "WeAR light";
+    src: url(../fonts/postnobillscolombo-light.ttf);
+}
+
+/* Configuração geral dos elementos do site */
+* {
+    margin: 0; /* Margem */
+    padding: 0; /* Distância entre elementos e borda */
+}
+
+.containerSucesso {
+    font-family: "WeAR semi negrito";
+    color: #144d83;
+    text-align: center;
+    margin: 15.13%;
+    font-size: 150%;
+}
+
+    .containerSucesso #icone {
+        color: #e1ba77;
+        font-size: 280%;
+    }
