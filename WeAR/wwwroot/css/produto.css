@@ -321,16 +321,22 @@
 /* Fim da área de produtos similares */
 
 /* Botão de quantidade */
-.quant button {
-    padding: 0% 2%;
+.quant{
+    align-items: center;
+}
+
+#plus #minus {
+    font-family: "WeAR semi negrito";
+    background: #c88c20;
+    color: white;
 }
 
     /* Hover é aquele usado quando passamos o cursor do mouse por cima de algum elemento na página html */
     .quant button:hover {
-        opacity: 70%;
+        opacity: 80%;
     }
 
-/* Valor total da compra */
+/* Quantidade total */
 #total {
     height: 10%; /* Altura */
     border: none;

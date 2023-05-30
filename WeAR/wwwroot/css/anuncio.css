@@ -136,11 +136,9 @@ hr{
 
 /* Hover é aquele usado quando passamos o cursor do mouse por cima de algum elemento na página html */
 .direcoes button:hover{
-    cursor: pointer; /* Cursor do mouse */
-    width: 39%;
-    transition: all 0.2s ease 0s; /* Transição */
-    letter-spacing: 0.5px; /* Espaçamento entre as letras */
-    white-space: nowrap; /* Espaço em branco */
+   opacity: 80%;
+   padding: 0.2%;
+   transition: 0.3s ease-in-out;
 }
 
 .direcoes button a{
