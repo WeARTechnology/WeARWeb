@@ -1,12 +1,37 @@
-/* Import da fonte utilizada */
+/* Import das fontes utilizadas no site */
 @font-face {
-  font-family: "WeAR";
-  src: url(../fonts/postnobillscolombo-regular.ttf);
+    font-family: "WeAR extra negrito";
+    src: url(../fonts/postnobillscolombo-extrabold.ttf);
+}
+
+@font-face {
+    font-family: "WeAR negrito";
+    src: url(../fonts/postnobillscolombo-bold.ttf);
+}
+
+@font-face {
+    font-family: "WeAR semi negrito";
+    src: url(../fonts/postnobillscolombo-semibold.ttf);
+}
+
+@font-face {
+    font-family: "WeAR regular";
+    src: url(../fonts/postnobillscolombo-regular.ttf);
+}
+
+@font-face {
+    font-family: "WeAR médio";
+    src: url(../fonts/postnobillscolombo-medium.ttf);
+}
+
+@font-face {
+    font-family: "WeAR light";
+    src: url(../fonts/postnobillscolombo-light.ttf);
 }
 
 /* Configuração geral da página */
 * {
-  font-family: "WeAR", sans-serif; /* Fonte */
+  font-family: "WeAR regular"; /* Fonte */
   margin: 0; /* Margem */
   padding: 0; /* Distanciamento entre a borda e os itens */
   /* border: red solid 1px; //Borda */
@@ -26,7 +51,7 @@
   margin-top: 3%;
   margin-left: 3%;
   z-index: 1000; /* Ordem da pilha em que o elemento esta */
-  width: 200%; /* Comprimento */
+  width: 185%; /* Comprimento */
   border-image: url(../img/MolduraProdutos.png) 200 stretch; /* Adicionando uma borda a imagem representada pela classe */
   border-width: 10vh;
   border-style: double;
@@ -232,15 +257,16 @@
 
 
 .buttonCarrinho .btn { /* Botão para adicionar ao carrinho */
-  font-size: 1.3rem;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  background: #e1ba77;
-  color: white;
-  transition: 0.7s;
-  width: 18rem;
-  gap: 1rem;
+    font-size: 1.3rem;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    background: #e1ba77;
+    color: white;
+    transition: 0.7s;
+    width: 18rem;
+    gap: 1rem;
+    font-family: "WeAR semi negrito";
 }
 
 .buttonCarrinho {
@@ -321,30 +347,40 @@
 /* Fim da área de produtos similares */
 
 /* Botão de quantidade */
-.quant{
+#quant{
     align-items: center;
+    margin-left: 6%;
 }
 
-#plus #minus {
+button {
+    border: none;
+    background: #e1ba77;
+    padding: 1%;
     font-family: "WeAR semi negrito";
-    background: #c88c20;
     color: white;
+    transition: 0.3s ease-in-out;
 }
 
     /* Hover é aquele usado quando passamos o cursor do mouse por cima de algum elemento na página html */
-    .quant button:hover {
-        opacity: 80%;
+    button:hover {
+        background: #c88c20;
+
     }
 
 /* Quantidade total */
-#total {
-    height: 10%; /* Altura */
+ #total  {
+    height: 4%; /* Altura */
     border: none;
+    outline: none;
     font-family: "WeAR semi negrito";
-    font-size: 150%;
+    font-size: 120%;
     color: #144d83;
     margin: 5% 0%;
+    padding: 0;
 }
+ input:focus{
+     outline: none;
+ }
 
 /* Para permitir e configurar a mudança de valores */
 input::-webkit-outer-spin-button,
