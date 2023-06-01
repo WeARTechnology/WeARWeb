@@ -31,7 +31,6 @@
 
 /* Configuração geral da página */
 * {
-  font-family: "WeAR regular"; /* Fonte */
   margin: 0; /* Margem */
   padding: 0; /* Distanciamento entre a borda e os itens */
   /* border: red solid 1px; //Borda */
@@ -39,22 +38,25 @@
 
 /* Área destinada as informações do produto */
 .containerInformProduto {
-  display: flex; /* Layout */
-  flex-direction: row; /* Direção do layout */
+    display: flex; /* Layout */
+    flex-direction: row; /* Direção do layout */
+    font-family: "WeAR semi negrito";
 }
 
 .containerInformProduto .detalhesProduto {
-  margin-left: 30%;
+  margin-left: 15%;
+  margin-right: 5%;
 }
 
-.moldura#moldura {
-  margin-top: 3%;
-  margin-left: 3%;
-  z-index: 1000; /* Ordem da pilha em que o elemento esta */
-  width: 185%; /* Comprimento */
-  border-image: url(../img/MolduraProdutos.png) 200 stretch; /* Adicionando uma borda a imagem representada pela classe */
-  border-width: 10vh;
-  border-style: double;
+.imagemProduto img {
+    margin-top: 3%;
+    margin-left: 7%;
+    z-index: 1000; /* Ordem da pilha em que o elemento esta */
+    width: 185%; /* Comprimento */
+    border-image: url(../img/MolduraProdutos.png) 200 stretch; /* Adicionando uma borda a imagem representada pela classe */
+    border-width: 10vh;
+    border-style: double;
+    width: 100%;
 }
 
 /* Título */
@@ -306,12 +308,13 @@
 
 /* Produtos Similares */
 .txtPdtSim p {
-  padding-top: 1rem;
-  margin-left: 2%;
-  font-size: 2rem;
-  color: #c88c20;
-  width: 95%;
-  transition: 0.5s;
+    padding-top: 1rem;
+    margin-left: 2%;
+    font-size: 2rem;
+    color: #c88c20;
+    width: 95%;
+    transition: 0.5s;
+    font-family: "WeAR semi negrito";
 }
 
 .txtPdtSim p:hover {
@@ -376,7 +379,7 @@ button {
     font-size: 120%;
     color: #144d83;
     margin: 5% 0%;
-    padding: 0;
+    text-align:center;
 }
  input:focus{
      outline: none;

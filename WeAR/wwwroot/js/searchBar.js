@@ -1,5 +1,5 @@
 var searchbar = document.getElementById("divBusca");
-var buttonPesquisar = document.getElementById("buttonPesquisar");
+var buttonPesquisar = document.getElementById("btnPesquisar");
 var navList = document.getElementById("nav-list");
 searchbar.style.display = "none";
 
@@ -21,7 +21,7 @@ buttonPesquisar.addEventListener("click", function () {
         parent.replaceChild(navList, searchbar);
     }
 });
-var btnBusca = document.getElementById("btnBusca");
+var btnBusca = document.getElementById("btnFecharBusca");
 btnBusca.addEventListener("click", function () {
     // Hide searchbar
     searchbar.style.display = "none";

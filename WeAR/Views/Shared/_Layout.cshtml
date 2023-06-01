@@ -11,6 +11,8 @@
     <link rel="shortcut icon" type="image/png" href="~/img/icon.png">
     <link rel="stylesheet" href="~/css/navbar.css">
     <link rel="stylesheet" href="~/css/footer.css">
+    <link rel="stylesheet" href="~/css/searchBar.css">
+
 </head>
 
 <body>
@@ -36,7 +38,7 @@
                 <li><a>@Html.ActionLink("Anéis", "catalogo", "Home", routeValues: new { categoria = "Anel" })</a></li>
                 <li><a href="/Cart/Carrinho"><img src="/img/compras.png" alt="Carrinho"></a></li>
                 <li><a href="/Home/Contato"><img src="/img/telefone.png" alt="Contato"></a></li>
-                <li><a href=""><img src="/img/pesquisar.png" alt="Pesquisar"></a></li>
+                <li><a id="btnPesquisar"><img src="/img/pesquisar.png" alt="Pesquisar"></a></li>
             </ul>
         </nav>
     </header>

@@ -44,7 +44,7 @@ namespace WeAR.Controllers
 
                 //Sorteia um numero aleatório com base na quantidade de produtos
                 Random rnd = new Random();
-                int value = rnd.Next(lista.Count());
+                int value = rnd.Next(lista.Count() - 1);
 
                 //Busca o produto com o id sorteado
                 p = p.BuscaProduto(value);
@@ -100,6 +100,11 @@ namespace WeAR.Controllers
         {
             return View();
         }
+
+        public IActionResult pagSucessoForm() {
+            
+                return View();  
+            }
 
         //[Authorize]
         public IActionResult EnviarImagens()

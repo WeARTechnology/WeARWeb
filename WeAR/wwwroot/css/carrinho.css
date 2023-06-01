@@ -143,17 +143,21 @@ h1 {
 
 /* Hover é aquele usado quando passamos o cursor do mouse por cima de algum elemento na página html */
 .quant button:hover {
-  opacity: 70%;
+  color: c88c20;
 }
 
 /* Valor total da compra */
 #total {
   height: 10%; /* Altura */
   border: none;
+  outline: none;
   font-family: "WeAR semi negrito";
   font-size: 150%;
   color: #144d83;
   margin: 5% 0%;
+}
+input:focus {
+    outline: none;
 }
 
 /* Para permitir e configurar a mudança de valores */
@@ -219,6 +223,8 @@ hr {
 
 #tamanho {
     font-family: "WeAR semi negrito";
+    color: #144d83;
+    font-size: 150%;
 }
 
 /* Definindo a responsividade do site de acordo com o tamanho da janela */

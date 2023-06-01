@@ -30,6 +30,9 @@
                 @*<input type="hidden" name="_autoresponse" value="Prezados da empresa que nos contatou, Gostaríamos de agradecer pelo contato e pela confiança em nossa empresa WeAR. Informamos que recebemos as suas informações e estamos trabalhando para analisá-las cuidadosamente. Em breve, entraremos em contato para fornecer uma resposta completa à sua solicitação. Agradecemos novamente pela sua consideração e estamos ansiosos para trabalhar juntos em um futuro próximo.Atenciosamente,Equipe WeAR">*@
                 <input type="text" name="_honey" style="display:none">
                 <input type="hidden" name="_subject" id="_subject" value="Novo Cliente - ">
+                <input type="hidden" name="_next" value="https://weartechhost.azurewebsites.net/Home/pagSucessoForm">
+
+
 
 
                 <fieldset>
@@ -51,12 +54,12 @@
                     </div>
                     <div class="row">
                         <label for="telefone" class="form-label">Telefone</label>
-                        <input type="text" class="form-control" id="telefone" name="Telefone" onchange="mascaraTelefone(this)"
+                        <input type="text" class="form-control" id="telefone" name="Telefone" onkeypress="mascaraTelefone(this)"
                                placeholder="Digite o seu telefone" aria-describedby="emailHelp" required>
                     </div>
                     <div class="row">
                         <label for="cnpj" class="form-label">CNPJ</label>
-                        <input type="text" class="form-control" id="cnpj" name="CNPJ" onchange="mascaraCNPJ(this)" placeholder="Digite o seu CPF"
+                        <input type="text" class="form-control" id="cnpj" name="CNPJ" onkeypress="mascaraCNPJ(this)" placeholder="Digite o seu CPF"
                                aria-describedby="emailHelp" required>
                     </div>
                     <div class="row">
