@@ -46,9 +46,11 @@
     <!-- inicio searchBar -->
     <div class="pesquisa">
         <div id="divBusca">
-            <input type="text" id="txtBusca" placeholder="Digite o que procura" />
+            <form  id="formBusca" type="hidden" action='@Html.Raw(Url.Action("Catalogo","Home", new {categoria = "Anel", busca = "noite"}))'>
+            <input type="text" id="txtBusca" placeholder="Digite o que procura" onkeyup="enviarBusca(event)"/>
             <button><img src="~/img/fechar.png" id="btnFecharBusca" alt="Buscar" /></button>
             <hr>
+            </form>
         </div>
     </div>
     <!-- Fim searchBar -->
@@ -104,3 +106,23 @@
 <script src="~/js/navbar.js"></script>
 <script src="~/js/searchBar.js"></script>
 </html>
+<script>
+    function enviarBusca(event) {
+        event.preventDefault();
+        if (event.keyCode === 13) {//Se a tecla pressionada for 13 (enter)
+            //Pega o texto e o formulário
+            var texto = document.getElementById("txtBusca").value;
+            var form = document.getElementById("formBusca");
+            console.log(texto);
+
+            //Define a url de busca com o dado do texto
+            var url = '@Html.Raw(Url.Action("Catalogo","Home",new {categoria = "Anel" , busca = "_Texto_"}))'
+            .replace("_Texto_", texto);
+
+            //Define a ação do formulário e a executa
+            form.action = url;
+            form.submit();
+        }
+
+    }
+</script>
