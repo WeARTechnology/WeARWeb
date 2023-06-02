@@ -1,5 +1,5 @@
 var searchbar = document.getElementById("divBusca");
-var buttonPesquisar = document.getElementById("buttonPesquisar");
+var buttonPesquisar = document.getElementById("btnBusca");
 var navList = document.getElementById("nav-list");
 searchbar.style.display = "none";
 
@@ -8,6 +8,7 @@ buttonPesquisar.addEventListener("click", function () {
     if (searchbar.style.display === "none") {
         // Set searchbar display to block
         searchbar.style.display = "block";
+
         // Get parent element of navList
         var parent = navList.parentNode;
         // Replace navList with searchbar
@@ -21,7 +22,7 @@ buttonPesquisar.addEventListener("click", function () {
         parent.replaceChild(navList, searchbar);
     }
 });
-var btnBusca = document.getElementById("btnBusca");
+var btnBusca = document.getElementById("btnFecharBusca");
 btnBusca.addEventListener("click", function () {
     // Hide searchbar
     searchbar.style.display = "none";
