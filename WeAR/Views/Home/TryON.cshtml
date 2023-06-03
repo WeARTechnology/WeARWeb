@@ -1,0 +1,191 @@
+﻿
+<html>
+<head>
+    <!-- Nomeando a aba -->
+    <title>Try ON</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@@mediapipe/face_mesh/face_mesh.js" crossorigin="anonymous"></script>
+
+</head>
+
+<!-- Corpo da página web -->
+<body style="background-color:aliceblue; text-align:center;">
+    <h1>Nota: Este recurso ainda está em beta, suas funcionalidades totais estarão disponíveis na próxima atualização</h1>
+    <div class="container">
+      <video class="input_video" style="display: none;"></video>
+      <canvas class="output_canvas" width="640px" height="480px"></canvas>
+    </div>
+</body>
+<script type="module">
+    import * as THREE from 'https://cdn.skypack.dev/three@0.129.0/build/three.module.js';
+    import { GLTFLoader } from 'https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/GLTFLoader.js';
+
+
+    const videoElement = document.getElementsByClassName('input_video')[0];
+    const canvasElement = document.getElementsByClassName('output_canvas')[0];
+    const canvasCtx = canvasElement.getContext('webgl2');
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(45, 640 / 480, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas: canvasElement });
+
+    renderer.setSize(640, 480);
+
+    // Create video texture
+    const videoTexture = new THREE.VideoTexture(videoElement);
+    videoTexture.minFilter = THREE.LinearFilter;
+    videoTexture.magFilter = THREE.LinearFilter;
+    videoTexture.format = THREE.RGBFormat;
+
+    // Create video mesh with video texture
+    const videoPlane = new THREE.PlaneBufferGeometry(10, 10 * (480 / 640));
+    const videoMaterial = new THREE.MeshBasicMaterial({ map: videoTexture, side: THREE.DoubleSide });
+    const videoMesh = new THREE.Mesh(videoPlane, videoMaterial);
+    videoMesh.position.z = -5;
+    scene.add(videoMesh);
+
+    // Add the 3D model
+    const model = new THREE.Group();
+    scene.add(model);
+
+    const loader = new GLTFLoader();
+    loader.load("/3dModels/Cipreste.glb", (gltf) => {
+    model.add(gltf.scene);
+        scene.traverse((child) => {
+            if (child.isMesh) {
+                child.castShadow = true;
+                child.receiveShadow = true;
+            }
+        });
+        animate();
+    });
+
+    // Position the camera
+    camera.position.z = 5;
+
+    // Rest of the code remains the same
+
+
+    // Animation loop
+    async function animate() {
+        requestAnimationFrame(animate);
+
+        // Render the scene
+        renderer.render(scene, camera);
+    }
+
+
+    function onResults(results) {
+        if (results.multiFaceLandmarks) {
+            for (const landmarks of results.multiFaceLandmarks) {
+                const leftEye = convertLandmarkToCanvas(landmarks[226], canvasElement.width, canvasElement.height);
+                const rightEye = convertLandmarkToCanvas(landmarks[446], canvasElement.width, canvasElement.height);
+
+                model.position.set(
+                    ((leftEye.x + rightEye.x) / 2) / canvasElement.width,
+                    ((leftEye.y + rightEye.y) / 2) / canvasElement.height - 0.6, // Use the converted Y coordinate
+                    (leftEye.z + rightEye.z) / 2 - 5
+                );
+
+
+                // Adjust the size and rotation of glasses based on the landmarks
+                const distance = Math.sqrt(Math.pow(leftEye.x - rightEye.x, 2) + Math.pow(leftEye.y - rightEye.y, 2));
+                const scaleFactor = distance / 300; // Adjust the scaling factor as needed
+                model.scale.set(scaleFactor, scaleFactor, scaleFactor);
+
+
+                // Rotate glasses model based on the angle between the eyes
+                model.rotation.z = Math.atan2(rightEye.y - leftEye.y, rightEye.x - leftEye.x);
+            }
+        } else {
+            // If no face landmarks detected, do nothing and leave the model at its last position
+        }
+    }
+
+
+    function convertLandmarkToCanvas(landmark, canvasWidth, canvasHeight) {
+        const videoAspect = videoElement.videoWidth / videoElement.videoHeight;
+        const canvasAspect = canvasWidth / canvasHeight;
+        let scaleX = 1;
+        let scaleY = 1;
+
+        if (canvasAspect < videoAspect) {
+            scaleY = (canvasHeight / canvasWidth) * videoAspect;
+        } else {
+            scaleX = (canvasWidth / canvasHeight) / videoAspect;
+        }
+
+        return {
+            x: landmark.x * canvasWidth * scaleX,
+            y: (1 - landmark.y) * canvasHeight * scaleY,
+            z: landmark.z * 100, // Multiply by a constant factor to scale the Z coordinate
+        };
+    }
+
+
+
+
+
+
+    const faceMesh = new FaceMesh({
+        locateFile: (file) => {
+            return `https://cdn.jsdelivr.net/npm/@@mediapipe/face_mesh/${file}`;
+        }
+    });
+    faceMesh.setOptions({
+        maxNumFaces: 1,
+        refineLandmarks: true,
+        minDetectionConfidence: 0.95,
+        minTrackingConfidence: 0.95
+    });
+    faceMesh.onResults(onResults);
+
+
+    async function startVideo() {
+        try {
+            const constraints = {
+                video: {
+                    width: 640,
+                    height: 360,
+                },
+            };
+
+            let stream;
+
+            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                stream = await navigator.mediaDevices.getUserMedia(constraints);
+            } else if (navigator.getUserMedia) {
+                stream = await new Promise((resolve, reject) => {
+                    navigator.getUserMedia(constraints, resolve, reject);
+                });
+            } else {
+                throw new Error('getUserMedia is not supported in this browser');
+            }
+
+            videoElement.srcObject = stream;
+            videoElement.play();
+
+            // Start processing the video stream
+            videoElement.addEventListener('loadedmetadata', () => {
+                processVideo();
+            });
+        } catch (error) {
+            console.error('Error accessing camera:', error);
+        }
+    }
+
+
+    async function processVideo() {
+        await faceMesh.send({ image: videoElement });
+        requestAnimationFrame(processVideo);
+    }
+
+    startVideo();
+    animate();
+</script>
+</html>

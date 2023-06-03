@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,6 +27,14 @@ namespace WeAR
         {
             services.AddControllersWithViews();
             services.AddSession();
+            services.Configure<StaticFileOptions>(options =>
+            {
+                var provider = new FileExtensionContentTypeProvider();
+                provider.Mappings[".glb"] = "model/gltf-binary";
+                options.ContentTypeProvider = provider;
+            });
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

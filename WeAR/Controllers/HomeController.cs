@@ -21,18 +21,16 @@ namespace WeAR.Controllers
         {
             _logger = logger;
         }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View("pagErro");
         }
 
         //Redirecionamento ao Index, que sorteia os produtos recomendados automaticamente
         public IActionResult Index()
         {
             //Verifica se os valores da sessão não existem
-            if(HttpContext.Session.Get("IndexRandom") == null && HttpContext.Session.Get("IndexRandomIds") == null)
+            if (HttpContext.Session.Get("IndexRandom") == null && HttpContext.Session.Get("IndexRandomIds") == null)
             {
                 //Cria um objeto de produto, e uma lista de produtos
                 Produto p = new Produto();
@@ -48,8 +46,16 @@ namespace WeAR.Controllers
                 //Busca o produto com o id sorteado
                 p = p.BuscaProduto(value);
 
-                //Define a tabela que deverá fazer a buscada do produto
-                string tabela = p.tamanho == 0 ? "Anel" : "Oculos";
+                string tabela;
+                if (p != null) {
+                    //Define a tabela que deverá fazer a buscada do produto
+                    tabela = p.tamanho == 0 ? "Anel" : "Oculos";
+                }
+                else
+                {
+                    p = new Produto();
+                    tabela = "Anel";
+                }
                 
                 //Pega as imagens através do método que sorteia similares
                 List<String> imagens = p.ProdutosSimilares(tabela, value);
@@ -91,11 +97,11 @@ namespace WeAR.Controllers
         {
             return View();
         }
-        public IActionResult indexFiltro()
+        public IActionResult TryON()
         {
             return View();
         }
-        public IActionResult contato()
+        public IActionResult Contato()
         {
             return View();
         }

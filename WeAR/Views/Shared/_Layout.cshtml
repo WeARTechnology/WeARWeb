@@ -8,7 +8,7 @@
     <!--Importa Jquery, o icone da página , o css da navbar e do footer-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="shortcut icon" type="image/png" href="~/img/icon.png">
+    <link rel="shortcut icon" type="image/png" href="/img/icon.png">
     <link rel="stylesheet" href="~/css/navbar.css">
     <link rel="stylesheet" href="~/css/footer.css">
     <link rel="stylesheet" href="~/css/searchBar.css">
@@ -46,10 +46,10 @@
     <!-- inicio searchBar -->
     <div class="pesquisa">
         <div id="divBusca">
-            <form  id="formBusca" type="hidden" action='@Html.Raw(Url.Action("Catalogo","Home", new {categoria = "Anel", busca = "noite"}))'>
-            <input type="text" id="txtBusca" placeholder="Digite o que procura" onkeyup="enviarBusca(event)"/>
-            <button><img src="~/img/fechar.png" id="btnFecharBusca" alt="Buscar" /></button>
-            <hr>
+            <form  id="formBusca" method="post">
+                <input type="text" id="txtBusca" placeholder="Digite o que procura" onkeydown="enviarBusca(event)"/>
+                <button><img src="~/img/fechar.png" id="btnFecharBusca" alt="Buscar" /></button>
+                <hr>
             </form>
         </div>
     </div>
@@ -68,12 +68,12 @@
             <!-- Adicionando os ícones das redes sociais - no caso, gitHub e Instagram -->
             <ul class="social_icon">
                 <li>
-                    <a href="#">
+                    <a href="https://instagram.com/wear.solutions?igshid=MzRlODBiNWFlZA==">
                         <ion-icon name="logo-instagram"></ion-icon>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="https://github.com/WeARTechnology">
                         <ion-icon name="logo-github"></ion-icon>
                     </a>
                 </li>
@@ -105,19 +105,20 @@
 <!-- Importando o JavaScript -->
 <script src="~/js/navbar.js"></script>
 <script src="~/js/searchBar.js"></script>
-</html>
 <script>
     function enviarBusca(event) {
-        event.preventDefault();
         if (event.keyCode === 13) {//Se a tecla pressionada for 13 (enter)
+            event.preventDefault(); // Previne o padrão de acontecer
+
             //Pega o texto e o formulário
             var texto = document.getElementById("txtBusca").value;
             var form = document.getElementById("formBusca");
             console.log(texto);
 
             //Define a url de busca com o dado do texto
-            var url = '@Html.Raw(Url.Action("Catalogo","Home",new {categoria = "Anel" , busca = "_Texto_"}))'
-            .replace("_Texto_", texto);
+            var url = '/Home/Catalogo?busca=' + encodeURIComponent(texto);
+
+            console.log(url);
 
             //Define a ação do formulário e a executa
             form.action = url;
@@ -126,3 +127,4 @@
 
     }
 </script>
+</html>
