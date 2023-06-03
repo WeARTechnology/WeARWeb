@@ -91,14 +91,6 @@
     text-decoration: none;
   }
   
-  hr {
-    background-color: #144d83; /* Cor de fundo */
-    width: 90%;
-    border: none;
-    height: 1px; /* Altura */
-    margin-left: 5%;
-    margin-right: 5%;
-  }
   
   /* Área destinada aos "Mais Vendidos" */
   .osMaisVend {

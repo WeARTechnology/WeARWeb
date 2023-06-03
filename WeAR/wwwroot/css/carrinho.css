@@ -63,10 +63,13 @@ h1 {
 
 /* Produtos do carrinho */
 .prodCarrinho {
-  display: flex;
-  text-align: center;
-  margin-bottom: 5%;
-  width: 93%;
+    display: flex;
+    text-align: center;
+    margin-bottom: 5%;
+    width: 93%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .produtos {
@@ -76,7 +79,7 @@ h1 {
 .prod {
   width: 90%;
   text-align: center;
-  margin: 0% 5%;
+  margin: 0% 1%;
 }
 
 /* Imagem do produto */
@@ -85,25 +88,20 @@ h1 {
 }
 
 .prodCarrinho img {
-  width: 100%;
+    margin-top: 5%;
+  width: 40%;
   border-width: 3vh; /* Grossura da borda */
   border-image: url(../img/molduras/moldura10.png) 60 stretch; /* Adicionando uma borda as imagens dos produtos */
   border-style: double; /* Estilo da borda */
 }
 
-.prodCarrinho img {
-  width: 100%;
-  border-width: 3vh;
-  border-image: url(../img/molduras/moldura10.png) 60 stretch;
-  border-style: double;
-}
 
 /* Textos */
 .textProd {
   width: 95%;
-  margin: 7% 2% 5% 1%;
+  margin: 3% 2% 0% 1%;
   text-align: center;
-  margin-left: 7%;
+  align-items: center;
 }
 
 .textProd h2 {
@@ -143,17 +141,21 @@ h1 {
 
 /* Hover é aquele usado quando passamos o cursor do mouse por cima de algum elemento na página html */
 .quant button:hover {
-  opacity: 70%;
+  color: c88c20;
 }
 
 /* Valor total da compra */
 #total {
   height: 10%; /* Altura */
   border: none;
+  outline: none;
   font-family: "WeAR semi negrito";
   font-size: 150%;
   color: #144d83;
   margin: 5% 0%;
+}
+input:focus {
+    outline: none;
 }
 
 /* Para permitir e configurar a mudança de valores */
@@ -219,6 +221,8 @@ hr {
 
 #tamanho {
     font-family: "WeAR semi negrito";
+    color: #144d83;
+    font-size: 150%;
 }
 
 /* Definindo a responsividade do site de acordo com o tamanho da janela */
@@ -233,7 +237,10 @@ hr {
     flex-direction: column;
     margin-left: 3%;
   }
+
   .valorFinalizacao {
+      justify-content:center;
+      align-items:center;
     width: 80%;
     margin-top: 7%;
     margin-left: 0;
