@@ -97,8 +97,25 @@ namespace WeAR.Controllers
         {
             return View();
         }
-        public IActionResult TryON()
+        public IActionResult TryON(int prod)
         {
+            switch (prod)
+            {
+                case 5:
+                    ViewBag.Model3D = "/3dModels/Cipreste.glb";
+                    @ViewBag.distancia = 300;
+                    break;
+                case 7:
+                    ViewBag.Model3D = "/3dModels/DeAardappeleters.glb";
+                    @ViewBag.distancia = 1150;
+                    break;
+                case 6:
+                    ViewBag.Model3D = "/3dModels/MaratusConstelatus.glb";
+                    @ViewBag.distancia = 150;
+                    break;
+                default:
+                    break;
+            }
             return View();
         }
         public IActionResult Contato()

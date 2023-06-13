@@ -10,7 +10,10 @@
     <script src="https://cdn.jsdelivr.net/npm/@@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@@mediapipe/face_mesh/face_mesh.js" crossorigin="anonymous"></script>
-
+    <script>
+        var model3DRef = "@ViewBag.Model3D";
+        var distanceDivisor = @ViewBag.distancia;
+    </script>
 </head>
 
 <!-- Corpo da página web -->
@@ -18,7 +21,7 @@
     <h1>Nota: Este recurso ainda está em beta, suas funcionalidades totais estarão disponíveis na próxima atualização</h1>
     <div class="container">
       <video class="input_video" style="display: none;"></video>
-      <canvas class="output_canvas" width="640px" height="480px"></canvas>
+      <canvas class="output_canvas" width="1920" height="1080"></canvas>
     </div>
 </body>
 <script type="module">
@@ -54,7 +57,7 @@
     scene.add(model);
 
     const loader = new GLTFLoader();
-    loader.load("/3dModels/Cipreste.glb", (gltf) => {
+    loader.load(model3DRef, (gltf) => {
     model.add(gltf.scene);
         scene.traverse((child) => {
             if (child.isMesh) {
@@ -63,7 +66,7 @@
             }
         });
         animate();
-    });
+    })
 
     // Position the camera
     camera.position.z = 5;
@@ -95,7 +98,7 @@
 
                 // Adjust the size and rotation of glasses based on the landmarks
                 const distance = Math.sqrt(Math.pow(leftEye.x - rightEye.x, 2) + Math.pow(leftEye.y - rightEye.y, 2));
-                const scaleFactor = distance / 300; // Adjust the scaling factor as needed
+                const scaleFactor = distance / distanceDivisor; // Adjust the scaling factor as needed
                 model.scale.set(scaleFactor, scaleFactor, scaleFactor);
 
 

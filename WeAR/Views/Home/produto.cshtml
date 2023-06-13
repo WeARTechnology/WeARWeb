@@ -87,7 +87,7 @@
             else
             {
                 <div class="buttonTryOn">
-                    <a href="@Url.Action("TryON","Home")"><button class="btn" id="try-on">Virtual Try-On </button></a>
+                    <a href="@Url.Action("TryON","Home", values: new{prod=@Model.id})"><button class="btn" id="try-on">Virtual Try-On </button></a>
                 </div>
             }
         </div>
