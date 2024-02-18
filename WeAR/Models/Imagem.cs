@@ -5,6 +5,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using System.Threading.Tasks;
+using MySql.Data.MySqlClient;
 
 namespace WeAR.Models
 {
@@ -12,8 +13,8 @@ namespace WeAR.Models
     public class Imagem
     {
         //Faz a conexão com o banco de dados
-        SqlConnection conecta = CreateConnection.getAzureConnection(); //Variavel que faz a conexão com o banco
-        SqlCommand query; //Variavel que faz os comandos
+        MySqlConnection conecta = CreateConnection.getFreeSQLConnection(); //Variavel que faz a conexão com o banco
+        MySqlCommand query; //Variavel que faz os comandos
 
 
         /*                                      Métodos                                     */
@@ -34,11 +35,11 @@ namespace WeAR.Models
                     try
                     {
                         conecta.Open();
-                        query = new SqlCommand("Insert into Imagem(fk_Produto_id) VALUES (@id,@imagem)", conecta); //Define o comando SQL
+                        query = new MySqlCommand("Insert into Imagem(fk_Produto_id) VALUES (@id,@imagem)", conecta); //Define o comando SQL
                         //Parameters para evitar SQLInjection
                         query.Parameters.AddWithValue("@imagem", bytesArquivo);
                         query.Parameters.AddWithValue("@id", id);
-                       
+
 
                         query.ExecuteNonQuery(); //Executa o comando
                         return "Sucesso";
@@ -67,12 +68,12 @@ namespace WeAR.Models
             try
             {
                 conecta.Open(); //Abre a conexão
-                query = new SqlCommand("Select  * from Imagem", conecta); //Define o comando SQL
-                SqlDataReader leitor = query.ExecuteReader(); //Define o leitor do comando
+                query = new MySqlCommand("Select  * from Imagem", conecta); //Define o comando SQL
+                MySqlDataReader leitor = query.ExecuteReader(); //Define o leitor do comando
                 while (leitor.Read()) //Enquanto ele ler, ou seja, enquanto ainda houverem valores
                 {
                     byte[] bytesArquivo = (byte[])leitor["imagem"]; //Transforma o retorno do leitor, em uma sequencia de bytes
-                    listaImagens.Add(Convert.ToBase64String(bytesArquivo)); //Adiciona estes bytes a lista
+                    listaImagens.Add(System.Text.Encoding.ASCII.GetString(bytesArquivo)); //Adiciona estes bytes a lista
                 }
 
             }
@@ -98,15 +99,15 @@ namespace WeAR.Models
             try
             {
                 conecta.Open(); //Abre a conexão
-                query = new SqlCommand("Select  * from Imagem where fk_Produto_id = @id and noStock = 0 and round_android = 0", conecta); //Define o comando SQL
+                query = new MySqlCommand("Select  * from Imagem where fk_Produto_id = @id and noStock = 0 and round_android = 0", conecta); //Define o comando SQL
                 //Parameters para evitar SQLINjection
                 query.Parameters.AddWithValue("@id", id);
-                
-                SqlDataReader leitor = query.ExecuteReader();   //Define um leitor
+
+                MySqlDataReader leitor = query.ExecuteReader();   //Define um leitor
                 while (leitor.Read()) //Enquanto o leitor ler, ou seja, enquanto houverem valores a serem lidos
                 {
                     byte[] bytesArquivo = (byte[])leitor["imagem"]; //Transforma a imagem obtida do leitor em um array de bytes
-                    imagem = (Convert.ToBase64String(bytesArquivo)); //Define o valor da string imagem como o array de bytes convertido em Base64
+                    imagem = System.Text.Encoding.ASCII.GetString(bytesArquivo); //Define o valor da string imagem como o array de bytes convertido em Base64
                 }
 
             }
@@ -132,15 +133,15 @@ namespace WeAR.Models
             try
             {
                 conecta.Open(); //Abre a conexão
-                query = new SqlCommand("Select  * from Imagem where fk_Produto_id = @id and noStock = 1", conecta); //Define o comando SQL
+                query = new MySqlCommand("Select  * from Imagem where fk_Produto_id = @id and noStock = 1", conecta); //Define o comando SQL
                 //Parameters para evitar SQLINjection
                 query.Parameters.AddWithValue("@id", id);
 
-                SqlDataReader leitor = query.ExecuteReader();   //Define um leitor
+                MySqlDataReader leitor = query.ExecuteReader();   //Define um leitor
                 while (leitor.Read()) //Enquanto o leitor ler, ou seja, enquanto houverem valores a serem lidos
                 {
                     byte[] bytesArquivo = (byte[])leitor["imagem"]; //Transforma a imagem obtida do leitor em um array de bytes
-                    imagem = (Convert.ToBase64String(bytesArquivo)); //Define o valor da string imagem como o array de bytes convertido em Base64
+                    imagem = System.Text.Encoding.ASCII.GetString(bytesArquivo); //Define o valor da string imagem como o array de bytes convertido em Base64
                 }
 
             }
@@ -167,15 +168,15 @@ namespace WeAR.Models
             try
             {
                 conecta.Open(); //Abre a conexão
-                query = new SqlCommand("Select  * from Imagem where fk_Produto_id = @id and round_android = 1", conecta); //Define o comando SQL
+                query = new MySqlCommand("Select  * from Imagem where fk_Produto_id = @id and round_android = 1", conecta); //Define o comando SQL
                 //Parameters para evitar SQLINjection
                 query.Parameters.AddWithValue("@id", id);
 
-                SqlDataReader leitor = query.ExecuteReader();   //Define um leitor
+                MySqlDataReader leitor = query.ExecuteReader();   //Define um leitor
                 while (leitor.Read()) //Enquanto o leitor ler, ou seja, enquanto houverem valores a serem lidos
                 {
                     byte[] bytesArquivo = (byte[])leitor["imagem"]; //Transforma a imagem obtida do leitor em um array de bytes
-                    imagem = (Convert.ToBase64String(bytesArquivo)); //Define o valor da string imagem como o array de bytes convertido em Base64
+                    imagem = System.Text.Encoding.ASCII.GetString(bytesArquivo); //Define o valor da string imagem como o array de bytes convertido em Base64
                 }
 
             }

@@ -47,7 +47,8 @@ namespace WeAR.Controllers
                 p = p.BuscaProduto(value);
 
                 string tabela;
-                if (p != null) {
+                if (p != null)
+                {
                     //Define a tabela que deverá fazer a buscada do produto
                     tabela = p.tamanho == 0 ? "Anel" : "Oculos";
                 }
@@ -56,7 +57,7 @@ namespace WeAR.Controllers
                     p = new Produto();
                     tabela = "Anel";
                 }
-                
+
                 //Pega as imagens através do método que sorteia similares
                 List<String> imagens = p.ProdutosSimilares(tabela, value);
                 //Pega os ids dos similares
@@ -81,7 +82,7 @@ namespace WeAR.Controllers
                 return View(imagens); //Retorna a view e o modelo
             }
 
-            
+
         }
 
 
@@ -123,10 +124,11 @@ namespace WeAR.Controllers
             return View();
         }
 
-        public IActionResult pagSucessoForm() {
-            
-                return View();  
-            }
+        public IActionResult pagSucessoForm()
+        {
+
+            return View();
+        }
 
         //[Authorize]
         public IActionResult EnviarImagens()
@@ -137,7 +139,7 @@ namespace WeAR.Controllers
         public IActionResult objeto3D()
         {
             return View();
-        }      
+        }
 
 
         /*                  Outros Métodos                  */
@@ -175,53 +177,79 @@ namespace WeAR.Controllers
 
 
         //Método usado para carregar todos os valores no carrinho,
-        
-            public IActionResult Catalogo(string categoria, string? busca = null)
+
+        public IActionResult Catalogo(string categoria, string? busca = null)
+        {
+            //Lista com todos os produtos
+            List<Produto> produtos = new List<Produto>();
+            Produto p = new Produto(); //Objeto de produto
+
+
+            //If que checka qual botão redirecionou para essa função, ou seja, se foi anel, óculos de sol ou de grau, se não foi nenhum , retorna todos os produtos
+            if (categoria == "Anel")
             {
-                //Lista com todos os produtos
-                List<Produto> produtos = new List<Produto>();
-                Produto p = new Produto(); //Objeto de produto
+                produtos = p.PegarTodosAneis(); //Chama o método da classe produto, para pegar os aneis
 
-
-                //If que checka qual botão redirecionou para essa função, ou seja, se foi anel, óculos de sol ou de grau, se não foi nenhum , retorna todos os produtos
-                if (categoria == "Anel")
+                //Para cada produto existente, checka se ele já foi comprado anteriormente, se sim, diminui sua quantidade
+                foreach (Produto prod in produtos)
                 {
-                    produtos = p.PegarTodosAneis(); //Chama o método da classe produto, para pegar os aneis
-
-                    //Para cada produto existente, checka se ele já foi comprado anteriormente, se sim, diminui sua quantidade
-                    foreach (Produto prod in produtos)
-                    {
-                        DecreaseQuantity(prod);
-                    }
-
-                    //Retona a View de nome Catálogo, junto com o modelo de produtos
-                    return View(produtos);
-
-
+                    DecreaseQuantity(prod);
                 }
-                else if (categoria == "Oculos Sol")
+
+                //Retona a View de nome Catálogo, junto com o modelo de produtos
+                return View(produtos);
+
+
+            }
+            else if (categoria == "Oculos Sol")
+            {
+                produtos = p.PegarTodosOculos("Sol");//Chama o método da classe produto, para pegar os óculos e passa a categoria selecionada
+
+                //Para cada produto existente, checka se ele já foi comprado anteriormente, se sim, diminui sua quantidade
+                foreach (Produto prod in produtos)
                 {
-                    produtos = p.PegarTodosOculos("Sol");//Chama o método da classe produto, para pegar os óculos e passa a categoria selecionada
-
-                    //Para cada produto existente, checka se ele já foi comprado anteriormente, se sim, diminui sua quantidade
-                    foreach (Produto prod in produtos)
-                    {
-                        DecreaseQuantity(prod);
-                    }
-
-                    //Retona a View de nome Catálogo, junto com o modelo de produtos
-                    return View(produtos);
-
+                    DecreaseQuantity(prod);
                 }
-                else if (categoria == "Oculos Grau")
+
+                //Retona a View de nome Catálogo, junto com o modelo de produtos
+                return View(produtos);
+
+            }
+            else if (categoria == "Oculos Grau")
+            {
+                produtos = p.PegarTodosOculos("Grau");//Chama o método da classe produto, para pegar os óculos e passa a categoria selecionada
+
+                //Para cada produto existente, checka se ele já foi comprado anteriormente, se sim, diminui sua quantidade
+
+                foreach (Produto prod in produtos)
                 {
-                    produtos = p.PegarTodosOculos("Grau");//Chama o método da classe produto, para pegar os óculos e passa a categoria selecionada
+                    DecreaseQuantity(prod);
+                }
+
+                //Retona a View de nome Catálogo, junto com o modelo de produtos
+                return View(produtos);
+
+            }
+            else
+            {
+                if (busca != null)
+                {
+                    produtos = p.PegarTodosProdutos(); //Chama o método da classe produto, para pegar todos os produtos
 
                     //Para cada produto existente, checka se ele já foi comprado anteriormente, se sim, diminui sua quantidade
-                
-                    foreach (Produto prod in produtos)
-                    {                        
-                        DecreaseQuantity(prod);
+                    for (int i = 0; i < produtos.Count; i++)
+
+                    {
+                        if (RemoveAccents(produtos[i].nome).ToLower().Contains(RemoveAccents(busca).ToLower())) //Como busca não é null, se o nome do produto tiver algo que tem na pesquisa, retorna normalmente
+                                                                                                                //Caso contrario, remove este produto
+                        {
+                            DecreaseQuantity(produtos[i]);
+                        }
+                        else
+                        {
+                            produtos.Remove(produtos[i]);
+                            i--;
+                        }
                     }
 
                     //Retona a View de nome Catálogo, junto com o modelo de produtos
@@ -230,52 +258,26 @@ namespace WeAR.Controllers
                 }
                 else
                 {
-                    if (busca != null)
+                    produtos = p.PegarTodosProdutos(); //Chama o método da classe produto, para pegar todos os produtos
+
+                    //Para cada produto existente, checka se ele já foi comprado anteriormente, se sim, diminui sua quantidade
+                    foreach (Produto prod in produtos)
                     {
-                        produtos = p.PegarTodosProdutos(); //Chama o método da classe produto, para pegar todos os produtos
-
-                        //Para cada produto existente, checka se ele já foi comprado anteriormente, se sim, diminui sua quantidade
-                        for (int i = 0; i < produtos.Count; i++)
-
-                        {
-                            if (RemoveAccents(produtos[i].nome).ToLower().Contains(RemoveAccents(busca).ToLower())) //Como busca não é null, se o nome do produto tiver algo que tem na pesquisa, retorna normalmente
-                                                            //Caso contrario, remove este produto
-                            {
-                                DecreaseQuantity(produtos[i]);
-                            }
-                            else
-                            {
-                                produtos.Remove(produtos[i]);
-                                i--;
-                            }
-                        }
-
-                        //Retona a View de nome Catálogo, junto com o modelo de produtos
-                        return View(produtos);
-
+                        DecreaseQuantity(prod);
                     }
-                    else
-                    {
-                        produtos = p.PegarTodosProdutos(); //Chama o método da classe produto, para pegar todos os produtos
 
-                        //Para cada produto existente, checka se ele já foi comprado anteriormente, se sim, diminui sua quantidade
-                        foreach (Produto prod in produtos)
-                        {
-                            DecreaseQuantity(prod);
-                        }
-
-                        //Retona a View de nome Catálogo, junto com o modelo de produtos
-                        return View(produtos);
-                    }
+                    //Retona a View de nome Catálogo, junto com o modelo de produtos
+                    return View(produtos);
                 }
-
-
-            
-
-        
             }
 
-   
+
+
+
+
+        }
+
+
 
 
         /*              Métodos que modificam o Banco, usa-se [Authorize] para não permitir que sejam acessados                 */

@@ -9,7 +9,7 @@ namespace WeAR.Controllers
 {
     public class CartController : Controller
     {
-     
+
 
         /*No método do carrinho, independente se foi acessado através da inserção de um Produto (Post) ou não, é necessário ler o valor dentro da Session
          para conseguir obter quais objetos já estão no carrinho*/

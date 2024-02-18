@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -21,8 +22,8 @@ namespace WeAR.Models
 
         //Array de inteiros com os ID's de produtos similares (Método produtosSimilares())
         public int[] similaresid = new int[4];
-        readonly SqlConnection conecta = CreateConnection.getAzureConnection(); //Variavel que faz a conexão com o banco
-        SqlCommand query; //Variavel que faz os comandos
+        MySqlConnection conecta = CreateConnection.getFreeSQLConnection(); //Variavel que faz a conexão com o banco
+        MySqlCommand query; //Variavel que faz os comandos
 
 
         //Construtor vazio
@@ -76,9 +77,9 @@ namespace WeAR.Models
             try
             {
                 conecta.Open(); //Abre a conexão
-                query = new SqlCommand("SELECT * from Produto where id=@id", conecta); //Query que pega os produtos conforme o ID
+                query = new MySqlCommand("SELECT * from Produto where id=@id", conecta); //Query que pega os produtos conforme o ID
                 query.Parameters.AddWithValue("@id", id);  //Parametros para evitar SQLInjection
-                SqlDataReader leitor = query.ExecuteReader();
+                MySqlDataReader leitor = query.ExecuteReader();
 
                 if (leitor.HasRows) // Se o leitor retornar algo ele executa a função
                 {
@@ -86,11 +87,11 @@ namespace WeAR.Models
 
 
                     //Query que faz a leitura da tabela Oculos em busca de algum produto com o id inserido
-                    SqlConnection conecta2 = CreateConnection.getAzureConnection(); //Variavel que faz a conexão com o banco
+                    MySqlConnection conecta2 = CreateConnection.getFreeSQLConnection(); //Variavel que faz a conexão com o banco
                     conecta2.Open();
-                    SqlCommand query2 = new SqlCommand("Select * from Oculos where fk_Produto_id=@id", conecta2);
+                    MySqlCommand query2 = new MySqlCommand("Select * from Oculos where fk_Produto_id=@id", conecta2);
                     query2.Parameters.AddWithValue("@id", id);
-                    SqlDataReader leitor2 = query2.ExecuteReader();
+                    MySqlDataReader leitor2 = query2.ExecuteReader();
 
 
                     if (leitor2.HasRows) //Se possui linhas, significa que é um Óculos, e não um Anel, pois o query retornou algo
@@ -99,7 +100,7 @@ namespace WeAR.Models
                         {
                             //Constroi o objeto P de produto, com base nas informações retornadas da tabela Produto e da tabela Óculos
                             p = new Produto((int)leitor["id"], leitor["descricao"].ToString(), leitor["nome"].ToString(),
-                                leitor2["categoria"].ToString(), Double.Parse(leitor["preco"].ToString()), (int)leitor["quantidade"], (bool)leitor["modelo3d"]);
+                                leitor2["categoria"].ToString(), Double.Parse(leitor["preco"].ToString()), (int)leitor["quantidade"], leitor.GetBoolean("modelo3d"));
 
                         }
                         conecta2.Close(); //Fecha a conexão 2
@@ -108,17 +109,17 @@ namespace WeAR.Models
                     else //Se não possui linhas, é um anel
                     {
                         //Query que faz a leitura da tabela Anel
-                        SqlConnection conecta3 = CreateConnection.getAzureConnection(); //Variavel que faz a conexão com o banco
+                        MySqlConnection conecta3 = CreateConnection.getFreeSQLConnection(); //Variavel que faz a conexão com o banco
                         conecta3.Open();
-                        SqlCommand query3 = new SqlCommand("Select * from Anel where fk_Produto_id=@id", conecta3);
+                        MySqlCommand query3 = new MySqlCommand("Select * from Anel where fk_Produto_id=@id", conecta3);
                         query3.Parameters.AddWithValue("@id", id);
-                        SqlDataReader leitor3 = query3.ExecuteReader();
+                        MySqlDataReader leitor3 = query3.ExecuteReader();
 
                         //Constroi o objeto P de produto, com base nas informações da tabela Produto e Anel
                         if (leitor.Read() && leitor3.Read())
                         {
                             p = new Produto((int)leitor["id"], leitor["descricao"].ToString(), leitor["nome"].ToString(),
-                                 Double.Parse(leitor["preco"].ToString()), (int)leitor["quantidade"], int.Parse(leitor3["tamanho"].ToString()), (bool)leitor["modelo3d"]);
+                                 Double.Parse(leitor["preco"].ToString()), (int)leitor["quantidade"], int.Parse(leitor3["tamanho"].ToString()), leitor.GetBoolean("modelo3d"));
 
                         }
 
@@ -159,9 +160,9 @@ namespace WeAR.Models
                 int contador = 0; //Contator para ser usado no while
 
                 conecta.Open(); //Abre a conexão
-                query = new SqlCommand("SELECT * from Anel where fk_Produto_id=@id", conecta); //Query que pega os aneis conforme o ID de Produto
+                query = new MySqlCommand("SELECT * from Anel where fk_Produto_id=@id", conecta); //Query que pega os aneis conforme o ID de Produto
                 query.Parameters.AddWithValue("@id", id);  //Parametros para evitar SQLInjection
-                SqlDataReader leitor = query.ExecuteReader();
+                MySqlDataReader leitor = query.ExecuteReader();
 
                 while (leitor.Read()) //Enquanto conseguir ler, ele adiciona o valor do leitor no Array
                 {
@@ -198,11 +199,10 @@ namespace WeAR.Models
                 conecta.Open(); //Abrindo conexão
 
                 /*Query que pega todos os valores de produtos, quando o id for correspondente a FK de Óculos, e, filtra pela categoria que foi inserida*/
-                query = new SqlCommand("SELECT * FROM [dbo].[Produto] inner join [dbo].[Oculos] on [dbo].[Produto].id = " +
-                    "[dbo].[Oculos].fk_Produto_id WHERE categoria = @categoria", conecta);
+                query = new MySqlCommand("SELECT * FROM Produto INNER JOIN Oculos ON Produto.id = Oculos.fk_Produto_id WHERE categoria = @categoria", conecta);
 
                 query.Parameters.AddWithValue("@categoria", categoria); //Parameters para evitar SQL INJECTION
-                SqlDataReader leitor = query.ExecuteReader();
+                MySqlDataReader leitor = query.ExecuteReader();
 
 
 
@@ -210,7 +210,7 @@ namespace WeAR.Models
                 {
 
                     p = new Produto((int)leitor["id"], leitor["descricao"].ToString(), leitor["nome"].ToString(),
-                                                leitor["categoria"].ToString(), Double.Parse(leitor["preco"].ToString()), (int)leitor["quantidade"], (bool)leitor["modelo3d"]);
+                                                leitor["categoria"].ToString(), Double.Parse(leitor["preco"].ToString()), (int)leitor["quantidade"], leitor.GetBoolean("modelo3d"));
                     produtos.Add(p);
                 }
 
@@ -243,14 +243,14 @@ namespace WeAR.Models
                  * os valores quando, na tabela de produto, não for um anel), e, seleciona apenas um tamanho, para que seja puxado 1 exemplar
                  de cada produto, pois, para o catálogo, não é necessário todos os tamanhos disponíveis para todos os produtos*/
                 conecta.Open();
-                query = new SqlCommand("SELECT * from [dbo].[Produto] INNER JOIN [dbo].[Anel] on [dbo].[Produto].id = [dbo].[Anel].fk_Produto_id WHERE tamanho = 10", conecta);
-                SqlDataReader leitor = query.ExecuteReader();
+                query = new MySqlCommand("SELECT * FROM Produto INNER JOIN Anel ON Produto.id = Anel.fk_Produto_id WHERE tamanho = 10", conecta);
+                MySqlDataReader leitor = query.ExecuteReader();
 
 
                 while (leitor.Read())
                 {
                     p = new Produto((int)leitor["id"], leitor["descricao"].ToString(), leitor["nome"].ToString(),
-                                          Double.Parse(leitor["preco"].ToString()), (int)leitor["quantidade"], (int)leitor["tamanho"], (bool)leitor["modelo3d"]);
+                                          Double.Parse(leitor["preco"].ToString()), (int)leitor["quantidade"], (int)leitor["tamanho"], leitor.GetBoolean("modelo3d"));
 
                     produtos.Add(p);
                 }
@@ -283,16 +283,14 @@ namespace WeAR.Models
 
                 /*Comando que pega todos os valores da tabela de produto, da tabela de oculos, e todos os valores distintos da tabela de anel
                  junta eles, e devolve somente quanto  o id for maior que 0, e o tamanho for 10 ou nulo*/
-                query = new SqlCommand("SELECT DISTINCT [dbo].[Anel].tamanho, [dbo].[Produto].*, " +
-                    "[dbo].[Oculos].* FROM [dbo].[Produto] FULL JOIN [dbo].[Oculos] ON " +
-                    "[dbo].[Oculos].fk_Produto_id = [dbo].[Produto].id FULL JOIN [dbo].[Anel] ON [dbo].[Anel].fk_Produto_id = [dbo].[Produto].id " +
-                    "WHERE [dbo].[Produto].id > 0 AND ([dbo].[Anel].tamanho = 10 OR [dbo].[Anel].tamanho IS NULL)", conecta);
-                SqlDataReader leitor = query.ExecuteReader();
+                query = new MySqlCommand("SELECT DISTINCT Anel.tamanho, Produto.*, Oculos.* FROM Produto LEFT JOIN Oculos ON Oculos.fk_Produto_id = Produto.id " +
+                    "LEFT JOIN Anel ON Anel.fk_Produto_id = Produto.id WHERE Produto.id > 0 AND(Anel.tamanho = 10 OR Anel.tamanho IS NULL)", conecta);
+                MySqlDataReader leitor = query.ExecuteReader();
 
                 while (leitor.Read()) //Pega todos os valores que vem do query, e adiciona a lista de produtos
                 {
-                    p = new Produto((int)leitor["id"], leitor["descricao"].ToString(), leitor["nome"].ToString(), Double.Parse(leitor["preco"].ToString()), 
-                        (int)leitor["quantidade"], leitor["tamanho"] == DBNull.Value ? 0 : (int)leitor["tamanho"], (bool)leitor["modelo3d"],
+                    p = new Produto((int)leitor["id"], leitor["descricao"].ToString(), leitor["nome"].ToString(), Double.Parse(leitor["preco"].ToString()),
+                        (int)leitor["quantidade"], leitor["tamanho"] == DBNull.Value ? 0 : (int)leitor["tamanho"], leitor.GetBoolean("modelo3d"),
                         leitor["categoria"] == DBNull.Value ? "" : leitor["categoria"].ToString());
 
 
@@ -339,8 +337,8 @@ namespace WeAR.Models
                 /*Neste query, tabela não pode ser passado como Parametro, pois se refere ao nome de uma tabela, 
                  * e, como não é possivel SQLInjection, pelo fato de o usuário não ter como mudar esse valor, o 
                  * código segue seguro mesmo com essa declaração explicita*/
-                query = new SqlCommand("SELECT Produto.id from Produto INNER JOIN " + tabela + " on Produto.id = " + tabela + ".fk_Produto_id GROUP BY Produto.id", conecta);
-                SqlDataReader leitor = query.ExecuteReader();
+                query = new MySqlCommand("SELECT Produto.id from Produto INNER JOIN " + tabela + " on Produto.id = " + tabela + ".fk_Produto_id GROUP BY Produto.id", conecta);
+                MySqlDataReader leitor = query.ExecuteReader();
 
 
                 //Função para pegar os valores dos id's dados pelo query

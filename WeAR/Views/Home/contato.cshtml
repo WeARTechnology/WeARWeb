@@ -26,11 +26,11 @@
     <div class="background">
         <div class="content">
             <form action="https://formsubmit.co/ee24cd18939a319418d2af8ed358ae71" method="POST" enctype="multipart/form-data" id="formContato">
-                <input type="hidden" name="_next" value="https://weartechhost.azurewebsites.net/Home/Index">
+                <input type="hidden" name="_next" value="https://weartech.netlify.app/Home/Index">
                 @*<input type="hidden" name="_autoresponse" value="Prezados da empresa que nos contatou, Gostaríamos de agradecer pelo contato e pela confiança em nossa empresa WeAR. Informamos que recebemos as suas informações e estamos trabalhando para analisá-las cuidadosamente. Em breve, entraremos em contato para fornecer uma resposta completa à sua solicitação. Agradecemos novamente pela sua consideração e estamos ansiosos para trabalhar juntos em um futuro próximo.Atenciosamente,Equipe WeAR">*@
                 <input type="text" name="_honey" style="display:none">
                 <input type="hidden" name="_subject" id="_subject" value="Novo Cliente - ">
-                <input type="hidden" name="_next" value="https://weartechhost.azurewebsites.net/Home/pagSucessoForm">
+                <input type="hidden" name="_next" value="https://weartech.netlify.app/Home/pagSucessoForm">
 
 
 
@@ -150,7 +150,7 @@
     // Função para validar um CNPJ formatado
     function validarCNPJ(cnpj) {
         var regex = /^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$/; // Expressão regular para validar o formato do CNPJ
-        //O CNPJ deve ter o formato de dois dígitos seguidos de ponto, seguidos de três dígitos e outro ponto, 
+        //O CNPJ deve ter o formato de dois dígitos seguidos de ponto, seguidos de três dígitos e outro ponto,
         //seguidos de três dígitos e uma barra, seguidos de quatro dígitos, um hífen e dois dígitos.
         return regex.test(cnpj); // Retorna true se o CNPJ passar na validação, caso contrário, retorna false
     }
@@ -158,7 +158,7 @@
     // Função para validar um número de telefone formatado
     function validarTelefone(tel) {
         var regex = /^\([1-9]{2}\) (?:[2-8]|9[1-9])[0-9]{3}\-[0-9]{4}$/; // Expressão regular para validar o formato do telefone
-        //O número de telefone deve ter o formato de dois dígitos entre parênteses, seguidos de espaço, um dígito de 2 a 8 ou 9 
+        //O número de telefone deve ter o formato de dois dígitos entre parênteses, seguidos de espaço, um dígito de 2 a 8 ou 9
         //seguido de um dígito de 1 a 9, mais três dígitos e um hífen, e finalmente mais quatro dígitos.
         return regex.test(tel); // Retorna true se o telefone passar na validação, caso contrário, retorna false
     }

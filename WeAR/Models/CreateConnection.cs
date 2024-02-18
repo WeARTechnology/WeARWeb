@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Data.SqlClient;
 using System.IO;
+using MySql.Data.MySqlClient;
 
 namespace WeAR.Models
 {
@@ -19,6 +20,11 @@ namespace WeAR.Models
         public static SqlConnection getAzure2Connection()
         {
             return new SqlConnection(Configuration().GetConnectionString("Azure2"));
+        }
+
+        public static MySqlConnection getFreeSQLConnection()
+        {
+            return new MySqlConnection(Configuration().GetConnectionString("FreeMySql"));
         }
 
         //Método que constroi uma configuração do aplicativo, definindo como caminho o objeto JSON appsetings
